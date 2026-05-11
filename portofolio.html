@@ -1,0 +1,297 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Portofolio — Alfaris Aulia</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <link href="css/custom.css" rel="stylesheet" />
+</head>
+
+<body data-page="portfolio">
+  <nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top shadow-sm">
+    <div class="container">
+      <a class="navbar-brand fw-semibold" href="index.html">
+        Alfaris Aulia
+      </a>
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav"
+        aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="mainNav">
+        <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-1">
+          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="portofolio.html">Portofolio</a></li>
+          <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="gallery.html">Gallery</a></li>
+          <li class="nav-item"><a class="nav-link" href="report.html">Report</a></li>
+          <li class="nav-item"><a class="nav-link" href="kontak.html">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <section class="py-5">
+    <div class="container">
+      <div class="p-4 p-lg-5 bg-white rounded-4 shadow-sm text-center">
+        <h1 class="fw-bold mt-2 mb-2">Portofolio</h1>
+        <p class="text-secondary mb-0 mx-auto" style="max-width: 560px;">
+          Berikut beberapa project dan kegiatan yang pernah saya lakukan.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="pb-2">
+    <div class="container">
+      <div class="d-flex justify-content-center">
+        <ul class="nav nav-pills gap-2" id="portfolioTabs">
+          <li class="nav-item"><button class="nav-link active" data-filter="all" type="button">All</button></li>
+          <li class="nav-item"><button class="nav-link" data-filter="music" type="button">Music</button></li>
+          <li class="nav-item"><button class="nav-link" data-filter="design" type="button">Design</button></li>
+          <li class="nav-item"><button class="nav-link" data-filter="web" type="button">Web</button></li>
+          <li class="nav-item"><button class="nav-link" data-filter="java" type="button">Java</button></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-4 pb-5">
+    <div class="container">
+      <div class="row g-4" id="portfolioGrid">
+
+        <div class="col-md-6 col-lg-4 portfolio-item" data-category="web">
+          <div class="card portfolio-card h-100">
+            <img src="images/portofolio_1.1.png" class="portfolio-thumb w-100" alt="Project 1">
+            <div class="card-body">
+              <div class="d-flex justify-content-between align-items-start gap-2">
+                <h5 class="fw-semibold mb-1">Web Profile Bootstrap</h5>
+                <span class="badge badge-soft">Web</span>
+              </div>
+              <p class="text-secondary mb-3">Membuat web profile berbasis Bootstrap 5</p>
+
+              <button class="btn btn-outline-primary w-100"
+                data-bs-toggle="modal" data-bs-target="#portfolioModal"
+                data-title="Web Profile Bootstrap"
+                data-category="Web"
+                data-desc="Web profile berbasis Bootstrap 5 untuk memenuhi tugas Desain Web."
+                data-tech="Bootstrap 5, HTML, CSS, JavaScript"
+                data-images="images/portofolio_1.1.png,images/portofolio_1.2.png,images/portofolio_1.3.png">
+                Detail
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4 portfolio-item" data-category="design">
+          <div class="card portfolio-card h-100">
+            <img src="images/portofolio_2.1.png" class="portfolio-thumb w-100" alt="Project 2">
+            <div class="card-body">
+              <div class="d-flex justify-content-between align-items-start gap-2">
+                <h5 class="fw-semibold mb-1">Aplikasi Kontak</h5>
+                <span class="badge badge-soft">Java</span>
+              </div>
+              <p class="text-secondary mb-3">Aplikasi Kontak berbasis Java GUI.</p>
+
+              <button class="btn btn-outline-primary w-100"
+                data-bs-toggle="modal" data-bs-target="#portfolioModal"
+                data-title="UI Landing Concept"
+                data-category="Design"
+                data-desc="Aplikasi Kontak berbasis Java GUI sederhana untuk memenuhi UAP Algoritma dan Pemrograman."
+                data-tech="Java"
+                data-images="images/portofolio_2.1.png,images/portofolio_2.2.png">
+                Detail
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4 portfolio-item" data-category="music">
+          <div class="card portfolio-card h-100">
+            <img src="images/portofolio_3.png" class="portfolio-thumb w-100" alt="Project 3">
+            <div class="card-body">
+              <div class="d-flex justify-content-between align-items-start gap-2">
+                <h5 class="fw-semibold mb-1">Theater Sound Designer</h5>
+                <span class="badge badge-soft">Music</span>
+              </div>
+              <p class="text-secondary mb-3">Penata suara untuk kebutuhan Teater Drama Musikal.</p>
+
+              <button class="btn btn-outline-primary w-100"
+                data-bs-toggle="modal" data-bs-target="#portfolioModal"
+                data-title="Music Project"
+                data-category="Music"
+                data-desc="Penata suara untuk kebutuhan Teater Drama Musikal"
+                data-tech="FL Studio"
+                data-images="images/portofolio_3.png">
+                Detail
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4 portfolio-item" data-category="java">
+          <div class="card portfolio-card h-100 text-center">
+            <div class="d-flex align-items-center justify-content-center"
+                 style="height:190px; background:#f1f3f5;">
+              <span class="fw-semibold text-secondary">Coming Soon</span>
+            </div>
+            <div class="card-body">
+              <h5 class="fw-semibold text-muted mb-1">Java Project</h5>
+              <p class="text-secondary mb-0">Sedang dikembangkan.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4 portfolio-item" data-category="web">
+          <div class="card portfolio-card h-100 text-center">
+            <div class="d-flex align-items-center justify-content-center"
+                 style="height:190px; background:#f1f3f5;">
+              <span class="fw-semibold text-secondary">Coming Soon</span>
+            </div>
+            <div class="card-body">
+              <h5 class="fw-semibold text-muted mb-1">Web Project</h5>
+              <p class="text-secondary mb-0">Sedang dikembangkan.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4 portfolio-item" data-category="design">
+          <div class="card portfolio-card h-100 text-center">
+            <div class="d-flex align-items-center justify-content-center"
+                 style="height:190px; background:#f1f3f5;">
+              <span class="fw-semibold text-secondary">Coming Soon</span>
+            </div>
+            <div class="card-body">
+              <h5 class="fw-semibold text-muted mb-1">Design Project</h5>
+              <p class="text-secondary mb-0">Sedang dikembangkan.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <div class="modal fade" id="portfolioModal" tabindex="-1" aria-labelledby="portfolioModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content rounded-4">
+        <div class="modal-header">
+          <div>
+            <h5 class="modal-title fw-bold" id="portfolioModalLabel">Detail</h5>
+            <small class="text-secondary" id="modalCategory">Category</small>
+          </div>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+
+        <div class="modal-body">
+          <div id="modalCarousel" class="carousel slide mb-3" data-bs-ride="carousel">
+            <div class="carousel-indicators" id="modalIndicators"></div>
+            <div class="carousel-inner" id="modalInner"></div>
+
+            <button class="carousel-control-prev" type="button" data-bs-target="#modalCarousel" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#modalCarousel" data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Next</span>
+            </button>
+          </div>
+
+          <p class="mb-2" id="modalDesc">Deskripsi</p>
+          <div class="p-3 border rounded-4 bg-light">
+            <div class="d-flex align-items-center gap-2 mb-1">
+              <i class="bi bi-stack text-primary"></i>
+              <span class="fw-semibold">Tech Stack</span>
+            </div>
+            <small class="text-secondary" id="modalTech">-</small>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="pt-5 pb-4">
+    <div class="container">
+      <div class="row g-4">
+
+        <div class="col-lg-4">
+          <h5 class="fw-bold text-white">Alfaris Aulia</h5>
+          <p class="mb-3">
+            Website portofolio untuk dokumentasi pembelajaran Web, Java, Design, dan Music.
+          </p>
+
+          <div class="d-flex gap-2">
+            <a class="btn btn-outline-light btn-sm"
+               href="https://instagram.com/faisrahman02"
+               target="_blank" rel="noopener"
+               aria-label="Instagram">
+              <i class="bi bi-instagram"></i>
+            </a>
+
+            <a class="btn btn-outline-light btn-sm"
+               href="https://github.com/alfarisauliarahman"
+               target="_blank" rel="noopener"
+               aria-label="GitHub">
+              <i class="bi bi-github"></i>
+            </a>
+
+            <a class="btn btn-outline-light btn-sm"
+               href="https://www.linkedin.com/in/alfaris-aulia-rahman-50425a312/"
+               target="_blank" rel="noopener"
+               aria-label="LinkedIn">
+              <i class="bi bi-linkedin"></i>
+            </a>
+          </div>
+        </div>
+
+        <div class="col-6 col-lg-2">
+          <h6 class="text-white fw-semibold">Quick Links</h6>
+          <ul class="list-unstyled">
+            <li class="mb-2"><a href="index.html">Home</a></li>
+            <li class="mb-2"><a href="portofolio.html">Portofolio</a></li>
+            <li class="mb-2"><a href="about.html">About</a></li>
+            <li class="mb-2"><a href="report.html">Report</a></li>
+            <li class="mb-2"><a href="kontak.html">Contact</a></li>
+          </ul>
+        </div>
+
+        <div class="col-6 col-lg-3">
+          <h6 class="text-white fw-semibold">Kontak</h6>
+          <ul class="list-unstyled">
+            <li class="mb-2">
+              <i class="bi bi-envelope me-2"></i>
+              2411533006_alfaris@student.unand.ac.id
+            </li>
+            <li class="mb-2">
+              <i class="bi bi-telephone me-2"></i>
+              +62 878-4002-9650
+            </li>
+            <li class="mb-2">
+              <i class="bi bi-geo-alt me-2"></i>
+              Padang, Indonesia
+            </li>
+          </ul>
+        </div>
+
+      </div>
+
+      <hr class="my-4 border-secondary" />
+
+      <div class="text-center">
+        <p class="mb-0">&copy; 2025 Alfaris Aulia. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,270 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Contact — Alfaris Aulia</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <link href="css/custom.css" rel="stylesheet" />
+</head>
+
+<body data-page="contact">
+
+  <nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top shadow-sm">
+    <div class="container">
+      <a class="navbar-brand fw-semibold" href="index.html">
+        Alfaris Aulia
+      </a>
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav"
+        aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="mainNav">
+        <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-1">
+          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="portofolio.html">Portofolio</a></li>
+          <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="gallery.html">Gallery</a></li>
+          <li class="nav-item"><a class="nav-link" href="report.html">Report</a></li>
+          <li class="nav-item"><a class="nav-link" href="kontak.html">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <section class="pb-5">
+    <div class="container">
+      <div class="row g-4">
+
+        <div class="col-lg-7">
+          <div id="alertSuccess" class="alert alert-success d-none" role="alert">
+            <i class="bi bi-check-circle me-2"></i>Pesan berhasil dikirim!
+          </div>
+
+          <div id="alertError" class="alert alert-danger d-none" role="alert">
+            <i class="bi bi-exclamation-triangle me-2"></i>Form belum valid. Periksa input.
+          </div>
+
+          <div id="alertWarn" class="alert alert-warning d-none" role="alert">
+            <i class="bi bi-info-circle me-2"></i>Pastikan email yang kamu isi benar.
+          </div>
+
+          <div class="card rounded-4 shadow-sm">
+            <div class="card-body p-4">
+              <h5 class="fw-semibold mb-3">Contact Form</h5>
+
+              <form id="contactForm" class="needs-validation" novalidate>
+                <div class="row g-3">
+                  <div class="col-md-6">
+                    <label class="form-label required">Name</label>
+                    <input type="text" class="form-control" id="name" required>
+                    <div class="invalid-feedback">Nama wajib diisi.</div>
+                    <div class="valid-feedback">OK.</div>
+                  </div>
+
+                  <div class="col-md-6">
+                    <label class="form-label required">Email</label>
+                    <input type="email" class="form-control" id="email" required>
+                    <div class="invalid-feedback">Email tidak valid / belum diisi.</div>
+                    <div class="valid-feedback">OK.</div>
+                  </div>
+
+                  <div class="col-md-6">
+                    <label class="form-label required">Phone</label>
+                    <input type="tel" class="form-control" id="phone" required pattern="^[0-9+ ]{8,20}$">
+                    <div class="invalid-feedback">Nomor telepon wajib diisi (8–20 karakter angka/+ spasi).</div>
+                    <div class="valid-feedback">OK.</div>
+                  </div>
+
+                  <div class="col-md-6">
+                    <label class="form-label required">Subject</label>
+                    <select class="form-select" id="subject" required>
+                      <option value="" selected disabled>Pilih topik...</option>
+                      <option value="kerja-sama">Kerja Sama</option>
+                      <option value="tanya-proyek">Tanya Proyek</option>
+                      <option value="jasa-web">Jasa Web</option>
+                      <option value="lainnya">Lainnya</option>
+                    </select>
+                    <div class="invalid-feedback">Subject wajib dipilih.</div>
+                    <div class="valid-feedback">OK.</div>
+                  </div>
+
+                  <div class="col-12">
+                    <label class="form-label required">Message</label>
+                    <textarea class="form-control" id="message" rows="5" required minlength="10"></textarea>
+                    <div class="invalid-feedback">Pesan minimal 10 karakter.</div>
+                    <div class="valid-feedback">OK.</div>
+                  </div>
+
+                  <div class="col-12">
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="" id="agree" required>
+                      <label class="form-check-label required" for="agree">
+                        I agree to terms and conditions
+                      </label>
+                      <div class="invalid-feedback">Kamu harus menyetujui terms and conditions.</div>
+                    </div>
+                  </div>
+
+                  <div class="col-12">
+                    <button id="submitBtn" class="btn btn-primary w-100" type="submit">
+                      <i class="bi bi-send me-1"></i> Submit
+                    </button>
+                  </div>
+                </div>
+              </form>
+
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-5">
+          <div class="card rounded-4 shadow-sm mb-4">
+            <div class="card-body p-4">
+              <h5 class="fw-semibold mb-3">Contact Information</h5>
+
+              <div class="d-flex align-items-start gap-3 mb-3">
+                <div class="icon-badge"><i class="bi bi-geo-alt"></i></div>
+                <div>
+                  <div class="fw-semibold">Address</div>
+                  <div class="text-secondary">Padang, Indonesia</div>
+                </div>
+              </div>
+
+              <div class="d-flex align-items-start gap-3 mb-3">
+                <div class="icon-badge"><i class="bi bi-telephone"></i></div>
+                <div>
+                  <div class="fw-semibold">Phone</div>
+                  <div class="text-secondary">+62 878-4002-9650</div>
+                </div>
+              </div>
+
+              <div class="d-flex align-items-start gap-3 mb-3">
+                <div class="icon-badge"><i class="bi bi-envelope"></i></div>
+                <div>
+                  <div class="fw-semibold">Email</div>
+                  <div class="text-secondary">2411533006_alfaris@student.unand.ac.id</div>
+                </div>
+              </div>
+
+              <div class="d-flex gap-2 mt-2 flex-wrap">
+                <a class="btn btn-outline-primary btn-sm"
+                   href="https://instagram.com/faisrahman02"
+                   target="_blank" rel="noopener">
+                  <i class="bi bi-instagram me-1"></i>Instagram
+                </a>
+
+                <a class="btn btn-outline-primary btn-sm"
+                   href="https://github.com/alfarisauliarahman"
+                   target="_blank" rel="noopener">
+                  <i class="bi bi-github me-1"></i>GitHub
+                </a>
+
+                <a class="btn btn-outline-primary btn-sm"
+                   href="https://www.linkedin.com/in/alfaris-aulia-rahman-50425a312/"
+                   target="_blank" rel="noopener">
+                  <i class="bi bi-linkedin me-1"></i>LinkedIn
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div class="card rounded-4 shadow-sm">
+            <div class="card-body p-0">
+              <iframe
+                title="Google Maps"
+                src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d415.4077981310198!2d100.46433392658672!3d-0.9199009167503518!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e1!3m2!1sen!2sid!4v1765544290123!5m2!1sen!2sid"
+                width="100%"
+                height="360"
+                style="border:0; border-radius: 18px;"
+                allowfullscreen
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <footer class="pt-5 pb-4">
+    <div class="container">
+      <div class="row g-4">
+
+        <div class="col-lg-4">
+          <h5 class="fw-bold text-white">Alfaris Aulia</h5>
+          <p class="mb-3">
+            Website portofolio untuk dokumentasi pembelajaran Web, Java, Design, dan Music.
+          </p>
+
+          <div class="d-flex gap-2">
+            <a class="btn btn-outline-light btn-sm"
+               href="https://instagram.com/faisrahman02"
+               target="_blank" rel="noopener"
+               aria-label="Instagram">
+              <i class="bi bi-instagram"></i>
+            </a>
+
+            <a class="btn btn-outline-light btn-sm"
+               href="https://github.com/alfarisauliarahman"
+               target="_blank" rel="noopener"
+               aria-label="GitHub">
+              <i class="bi bi-github"></i>
+            </a>
+
+            <a class="btn btn-outline-light btn-sm"
+               href="https://www.linkedin.com/in/alfaris-aulia-rahman-50425a312/"
+               target="_blank" rel="noopener"
+               aria-label="LinkedIn">
+              <i class="bi bi-linkedin"></i>
+            </a>
+          </div>
+        </div>
+
+        <div class="col-6 col-lg-2">
+          <h6 class="text-white fw-semibold">Quick Links</h6>
+          <ul class="list-unstyled">
+            <li class="mb-2"><a href="index.html">Home</a></li>
+            <li class="mb-2"><a href="portofolio.html">Portofolio</a></li>
+            <li class="mb-2"><a href="about.html">About</a></li>
+            <li class="mb-2"><a href="report.html">Report</a></li>
+            <li class="mb-2"><a href="kontak.html">Contact</a></li>
+          </ul>
+        </div>
+
+        <div class="col-6 col-lg-3">
+          <h6 class="text-white fw-semibold">Kontak</h6>
+          <ul class="list-unstyled">
+            <li class="mb-2">
+              <i class="bi bi-envelope me-2"></i>
+              2411533006_alfaris@student.unand.ac.id
+            </li>
+            <li class="mb-2">
+              <i class="bi bi-telephone me-2"></i>
+              +62 878-4002-9650
+            </li>
+            <li class="mb-2">
+              <i class="bi bi-geo-alt me-2"></i>
+              Padang, Indonesia
+            </li>
+          </ul>
+        </div>
+
+      </div>
+
+      <hr class="my-4 border-secondary" />
+
+      <div class="text-center">
+        <p class="mb-0">&copy; 2025 Alfaris Aulia. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
