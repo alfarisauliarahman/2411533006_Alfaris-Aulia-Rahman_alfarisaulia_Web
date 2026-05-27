@@ -1,0 +1,1088 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Praktikum 8 — Eloquent Relationship · Alfaris Aulia</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <link href="../css/custom.css" rel="stylesheet" />
+  <style>
+    .page-hero {
+      background: linear-gradient(135deg, #1a1f35 0%, #2d3548 100%);
+      margin-top: -70px;
+      padding-top: calc(70px + 1.4rem);
+      padding-bottom: 1.6rem;
+      color: #fff;
+    }
+    .page-hero .breadcrumb-item a { color: rgba(255,255,255,.65); text-decoration: none; }
+    .page-hero .breadcrumb-item a:hover { color: #fff; }
+    .page-hero .breadcrumb-item.active { color: rgba(255,255,255,.45); }
+    .page-hero .breadcrumb-item + .breadcrumb-item::before { color: rgba(255,255,255,.35); }
+    .page-hero h1 { font-size: 1.55rem; }
+    .page-hero .sub { font-size: .82rem; color: rgba(255,255,255,.55); }
+
+    .section-label {
+      font-size: .7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      color: #0d6efd;
+      margin-bottom: .6rem;
+    }
+
+    .terminal {
+      background: #1e1e1e;
+      color: #d4d4d4;
+      border-radius: .5rem;
+      padding: .9rem 1.1rem;
+      font-family: 'Consolas','Courier New',monospace;
+      font-size: .8rem;
+      line-height: 1.7;
+      overflow-x: auto;
+      white-space: pre;
+      margin-bottom: .75rem;
+    }
+
+    .code-block {
+      background: #f8f9fa;
+      border: 1px solid #dee2e6;
+      border-left: 3px solid #0d6efd;
+      border-radius: .4rem;
+      padding: .85rem 1rem;
+      font-family: 'Consolas','Courier New',monospace;
+      font-size: .8rem;
+      line-height: 1.75;
+      overflow-x: auto;
+      white-space: pre;
+      color: #212529;
+      margin-bottom: .75rem;
+    }
+
+    .report-img {
+      width: 100%;
+      height: auto;
+      border-radius: .5rem;
+      border: 1px solid #dee2e6;
+      display: block;
+    }
+    .img-caption {
+      font-size: .82rem;
+      color: #6c757d;
+      margin-top: .4rem;
+      margin-bottom: 1rem;
+      text-align: center;
+    }
+
+    .nav-pertemuan { list-style: none; padding: 0; margin: 0; }
+    .nav-pertemuan li a,
+    .nav-pertemuan li span {
+      display: flex;
+      align-items: center;
+      gap: .55rem;
+      padding: .45rem .5rem;
+      border-radius: .4rem;
+      font-size: .86rem;
+      text-decoration: none;
+      transition: background .15s;
+    }
+    .nav-pertemuan li a { color: #0d6efd; }
+    .nav-pertemuan li a:hover { background: rgba(13,110,253,.07); }
+    .nav-pertemuan li a.active { background: #0d6efd; color: #fff; font-weight: 600; }
+    .nav-pertemuan li span { color: #adb5bd; cursor: default; }
+    .nav-pertemuan li + li { margin-top: .15rem; }
+
+    .sub-section { margin-top: 1.75rem; }
+    .sub-section-title {
+      font-size: .93rem;
+      font-weight: 700;
+      padding-bottom: .5rem;
+      border-bottom: 1px solid #dee2e6;
+      margin-bottom: .9rem;
+    }
+
+    /* Relationship badge */
+    .rel-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: .4rem;
+      background: #e7f1ff;
+      border: 1px solid #b6d4fe;
+      color: #084298;
+      border-radius: .35rem;
+      padding: .3rem .6rem;
+      font-size: .8rem;
+      font-family: 'Consolas','Courier New',monospace;
+      margin-bottom: .4rem;
+    }
+
+    /* ERD table style */
+    .erd-table th {
+      background: #2d3548;
+      color: #fff;
+      font-size: .78rem;
+      letter-spacing: .04em;
+    }
+    .erd-table td { font-size: .82rem; font-family: 'Consolas','Courier New',monospace; }
+    .erd-pk { color: #dc3545; font-weight: 700; }
+    .erd-fk { color: #0d6efd; }
+  </style>
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top shadow-sm">
+    <div class="container">
+      <a class="navbar-brand fw-semibold" href="../index.html">Alfaris Aulia</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="mainNav">
+        <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-1">
+          <li class="nav-item"><a class="nav-link" href="../index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="../portofolio.html">Portofolio</a></li>
+          <li class="nav-item"><a class="nav-link" href="../about.html">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="../gallery.html">Gallery</a></li>
+          <li class="nav-item"><a class="nav-link active" href="report.html">Report</a></li>
+          <li class="nav-item"><a class="nav-link" href="../kontak.html">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <div class="page-hero">
+    <div class="container">
+      <nav aria-label="breadcrumb" class="mb-2">
+        <ol class="breadcrumb mb-0" style="font-size:.8rem;">
+          <li class="breadcrumb-item"><a href="report.html">Report</a></li>
+          <li class="breadcrumb-item active">Pertemuan 8</li>
+        </ol>
+      </nav>
+      <div class="d-flex align-items-start justify-content-between flex-wrap gap-2 mt-1">
+        <div>
+          <h1 class="fw-bold mb-1">Eloquent Relationship: Students, Majors, and Subject</h1>
+          <p class="sub mb-0">Mata Kuliah Desain Web</p>
+        </div>
+        <span class="badge bg-success px-3 py-2 align-self-center" style="font-size:.85rem;">Selesai</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="container py-4">
+    <div class="row g-4">
+
+      <!-- Main -->
+      <div class="col-lg-8">
+
+        <!-- 1.1 Tujuan -->
+        <div class="card border shadow-sm mb-3">
+          <div class="card-body">
+            <p class="section-label">1.1 Tujuan Pembelajaran</p>
+            <p class="text-secondary mb-2" style="font-size:.88rem;">Setelah melakukan praktikum ini, mahasiswa diharapkan mampu:</p>
+            <ol class="text-secondary mb-0" style="font-size:.88rem;">
+              <li class="mb-1">Memahami dan mengimplementasikan Eloquent Relationship pada Laravel</li>
+              <li class="mb-1">Menerapkan konsep <em>One-to-Many</em> dan <em>Many-to-Many</em> relationship</li>
+              <li class="mb-1">Membuat migration untuk relasi antar tabel</li>
+              <li class="mb-1">Mengelola Subject (mata kuliah) menggunakan CRUD dalam relasi</li>
+              <li class="mb-0">Menyajikan data yang terorganisir dari banyak tabel</li>
+            </ol>
+          </div>
+        </div>
+
+        <!-- 1.2 Alat -->
+        <div class="card border shadow-sm mb-3">
+          <div class="card-body">
+            <p class="section-label">1.2 Alat</p>
+            <ul class="mb-0">
+              <li>Komputer / Laptop</li>
+              <li>XAMPP</li>
+              <li>Visual Studio Code / IDE</li>
+              <li>Composer, Git, Node.js, NPM</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Pengertian -->
+        <div class="card border shadow-sm mb-3">
+          <div class="card-body">
+            <p class="section-label">Pengertian Join dan Relationship</p>
+            <p class="text-secondary mb-3" style="font-size:.88rem;">Dalam melakukan proses join dan relationship pada Laravel, perlu diketahui beberapa hal sebagai berikut:</p>
+
+            <div class="d-flex flex-column gap-2 mb-3">
+              <div class="rel-badge"><i class="bi bi-arrow-right-circle text-primary"></i> Student <strong class="mx-1">belongsTo</strong> Major — Satu Student punya Satu Major (<em>One-to-One</em>)</div>
+              <div class="rel-badge"><i class="bi bi-arrow-right-circle text-primary"></i> Student <strong class="mx-1">belongsToMany</strong> Subjects — Satu Student boleh ambil banyak Subject (<em>Many-to-Many</em>)</div>
+              <div class="rel-badge"><i class="bi bi-arrow-right-circle text-primary"></i> Major <strong class="mx-1">hasMany</strong> Students — Satu Major punya banyak Student (<em>One-to-Many</em>)</div>
+              <div class="rel-badge"><i class="bi bi-arrow-right-circle text-primary"></i> Subject <strong class="mx-1">belongsToMany</strong> Mahasiswas — Relasi pivot balik dari Subject</div>
+            </div>
+
+            <p class="section-label mt-3">ERD (Entity Relationship Diagram)</p>
+            <div style="overflow-x:auto; border-radius:.5rem;">
+              <svg viewBox="0 0 835 185" xmlns="http://www.w3.org/2000/svg"
+                   style="width:100%; min-width:580px; display:block;"
+                   font-family="'Consolas','Courier New',ui-monospace,monospace">
+
+                <!-- Background -->
+                <rect width="835" height="185" rx="8" fill="#f8f9fa" stroke="#e9ecef" stroke-width="1"/>
+
+                <!-- ── CONNECTION 1: majors.id → mahasiswas.major_id (1:N) ── -->
+                <path d="M 165,90 L 193,90 L 193,133 L 215,133"
+                      fill="none" stroke="#6c757d" stroke-width="1.5" stroke-linejoin="round"/>
+                <!-- one-mark at majors end -->
+                <line x1="173" y1="83" x2="173" y2="97" stroke="#6c757d" stroke-width="1.5"/>
+                <!-- crow's foot at mahasiswas end -->
+                <line x1="205" y1="127" x2="215" y2="133" stroke="#6c757d" stroke-width="1.5"/>
+                <line x1="205" y1="133" x2="215" y2="133" stroke="#6c757d" stroke-width="1.5"/>
+                <line x1="205" y1="139" x2="215" y2="133" stroke="#6c757d" stroke-width="1.5"/>
+                <text x="177" y="88"  fill="#6c757d" font-size="10" font-style="italic" font-weight="700">1</text>
+                <text x="196" y="131" fill="#6c757d" font-size="10" font-style="italic" font-weight="700">N</text>
+
+                <!-- ── CONNECTION 2: mahasiswas.id → student_subject.mahasiswa_id (1:N) ── -->
+                <path d="M 390,55 L 412,55 L 412,103 L 430,103"
+                      fill="none" stroke="#6c757d" stroke-width="1.5" stroke-linejoin="round"/>
+                <line x1="398" y1="48" x2="398" y2="62" stroke="#6c757d" stroke-width="1.5"/>
+                <line x1="420" y1="97"  x2="430" y2="103" stroke="#6c757d" stroke-width="1.5"/>
+                <line x1="420" y1="103" x2="430" y2="103" stroke="#6c757d" stroke-width="1.5"/>
+                <line x1="420" y1="109" x2="430" y2="103" stroke="#6c757d" stroke-width="1.5"/>
+                <text x="394" y="52"  fill="#6c757d" font-size="10" font-style="italic" font-weight="700">1</text>
+                <text x="415" y="101" fill="#6c757d" font-size="10" font-style="italic" font-weight="700">N</text>
+
+                <!-- ── CONNECTION 3: subjects.id → student_subject.subject_id (1:N, right-to-left) ── -->
+                <path d="M 665,55 L 643,55 L 643,129 L 605,129"
+                      fill="none" stroke="#6c757d" stroke-width="1.5" stroke-linejoin="round"/>
+                <line x1="657" y1="48" x2="657" y2="62" stroke="#6c757d" stroke-width="1.5"/>
+                <line x1="615" y1="123" x2="605" y2="129" stroke="#6c757d" stroke-width="1.5"/>
+                <line x1="615" y1="129" x2="605" y2="129" stroke="#6c757d" stroke-width="1.5"/>
+                <line x1="615" y1="135" x2="605" y2="129" stroke="#6c757d" stroke-width="1.5"/>
+                <text x="646" y="52"  fill="#6c757d" font-size="10" font-style="italic" font-weight="700">1</text>
+                <text x="609" y="127" fill="#6c757d" font-size="10" font-style="italic" font-weight="700">N</text>
+
+                <!-- ═════════════ MAJORS TABLE ═════════════ -->
+                <rect x="5" y="45" width="160" height="84" rx="4" fill="white" stroke="#dee2e6" stroke-width="1"/>
+                <!-- header -->
+                <rect x="5" y="45" width="160" height="32" rx="4" fill="#2d3548"/>
+                <rect x="5" y="61" width="160" height="16" fill="#2d3548"/>
+                <text x="85" y="66" text-anchor="middle" fill="white" font-weight="700" font-size="12"
+                      font-family="Inter,system-ui,sans-serif">majors</text>
+                <!-- id -->
+                <rect x="6"  y="77"  width="158" height="26" fill="white"/>
+                <text x="16" y="94"  fill="#dc3545" font-weight="700" font-size="11">id</text>
+                <text x="82" y="94"  fill="#adb5bd" font-size="9.5">bigint · PK</text>
+                <!-- nama -->
+                <rect x="6"  y="103" width="158" height="26" fill="#f9f9fb"/>
+                <text x="16" y="120" fill="#212529" font-size="11">nama</text>
+                <text x="82" y="120" fill="#adb5bd" font-size="9.5">varchar</text>
+                <line x1="6" y1="103" x2="164" y2="103" stroke="#f0f0f0" stroke-width="0.8"/>
+
+                <!-- ═════════════ MAHASISWAS TABLE ═════════════ -->
+                <rect x="215" y="10" width="175" height="162" rx="4" fill="white" stroke="#dee2e6" stroke-width="1"/>
+                <rect x="215" y="10" width="175" height="32" rx="4" fill="#0d6efd"/>
+                <rect x="215" y="26" width="175" height="16" fill="#0d6efd"/>
+                <text x="302" y="31" text-anchor="middle" fill="white" font-weight="700" font-size="12"
+                      font-family="Inter,system-ui,sans-serif">mahasiswas</text>
+                <!-- id -->
+                <rect x="216" y="42"  width="173" height="26" fill="white"/>
+                <text x="226" y="59"  fill="#dc3545" font-weight="700" font-size="11">id</text>
+                <text x="312" y="59"  fill="#adb5bd" font-size="9.5">bigint · PK</text>
+                <!-- nama -->
+                <rect x="216" y="68"  width="173" height="26" fill="#f9f9fb"/>
+                <text x="226" y="85"  fill="#212529" font-size="11">nama</text>
+                <text x="312" y="85"  fill="#adb5bd" font-size="9.5">varchar</text>
+                <!-- nim -->
+                <rect x="216" y="94"  width="173" height="26" fill="white"/>
+                <text x="226" y="111" fill="#212529" font-size="11">nim</text>
+                <text x="312" y="111" fill="#adb5bd" font-size="9.5">varchar</text>
+                <!-- major_id (FK) - highlighted -->
+                <rect x="216" y="120" width="173" height="26" fill="#eef3ff"/>
+                <text x="226" y="137" fill="#0d6efd" font-size="11">major_id</text>
+                <text x="312" y="137" fill="#adb5bd" font-size="9.5">bigint · FK</text>
+                <!-- email -->
+                <rect x="216" y="146" width="173" height="26" fill="white"/>
+                <text x="226" y="163" fill="#212529" font-size="11">email</text>
+                <text x="312" y="163" fill="#adb5bd" font-size="9.5">varchar</text>
+                <!-- dividers -->
+                <line x1="216" y1="68"  x2="388" y2="68"  stroke="#f0f0f0" stroke-width="0.8"/>
+                <line x1="216" y1="94"  x2="388" y2="94"  stroke="#f0f0f0" stroke-width="0.8"/>
+                <line x1="216" y1="120" x2="388" y2="120" stroke="#f0f0f0" stroke-width="0.8"/>
+                <line x1="216" y1="146" x2="388" y2="146" stroke="#f0f0f0" stroke-width="0.8"/>
+
+                <!-- ═════════════ STUDENT_SUBJECT TABLE (pivot) ═════════════ -->
+                <rect x="430" y="58" width="175" height="84" rx="4" fill="white" stroke="#dee2e6" stroke-width="1"/>
+                <rect x="430" y="58" width="175" height="32" rx="4" fill="#6f42c1"/>
+                <rect x="430" y="74" width="175" height="16" fill="#6f42c1"/>
+                <text x="517" y="79" text-anchor="middle" fill="white" font-weight="700" font-size="11"
+                      font-family="Inter,system-ui,sans-serif">student_subject</text>
+                <!-- mahasiswa_id -->
+                <rect x="431" y="90"  width="173" height="26" fill="#f6f0ff"/>
+                <text x="441" y="107" fill="#6f42c1" font-size="11">mahasiswa_id</text>
+                <text x="545" y="107" fill="#adb5bd" font-size="9.5">FK</text>
+                <!-- subject_id -->
+                <rect x="431" y="116" width="173" height="26" fill="white"/>
+                <text x="441" y="133" fill="#6f42c1" font-size="11">subject_id</text>
+                <text x="545" y="133" fill="#adb5bd" font-size="9.5">FK</text>
+                <line x1="431" y1="116" x2="604" y2="116" stroke="#f0f0f0" stroke-width="0.8"/>
+
+                <!-- ═════════════ SUBJECTS TABLE ═════════════ -->
+                <rect x="665" y="10" width="160" height="136" rx="4" fill="white" stroke="#dee2e6" stroke-width="1"/>
+                <rect x="665" y="10" width="160" height="32" rx="4" fill="#198754"/>
+                <rect x="665" y="26" width="160" height="16" fill="#198754"/>
+                <text x="745" y="31" text-anchor="middle" fill="white" font-weight="700" font-size="12"
+                      font-family="Inter,system-ui,sans-serif">subjects</text>
+                <!-- id -->
+                <rect x="666" y="42"  width="158" height="26" fill="white"/>
+                <text x="676" y="59"  fill="#dc3545" font-weight="700" font-size="11">id</text>
+                <text x="740" y="59"  fill="#adb5bd" font-size="9.5">bigint · PK</text>
+                <!-- nama -->
+                <rect x="666" y="68"  width="158" height="26" fill="#f9f9fb"/>
+                <text x="676" y="85"  fill="#212529" font-size="11">nama</text>
+                <text x="740" y="85"  fill="#adb5bd" font-size="9.5">varchar</text>
+                <!-- kode -->
+                <rect x="666" y="94"  width="158" height="26" fill="white"/>
+                <text x="676" y="111" fill="#212529" font-size="11">kode</text>
+                <text x="740" y="111" fill="#adb5bd" font-size="9.5">varchar</text>
+                <!-- sks -->
+                <rect x="666" y="120" width="158" height="26" fill="#f9f9fb"/>
+                <text x="676" y="137" fill="#212529" font-size="11">sks</text>
+                <text x="740" y="137" fill="#adb5bd" font-size="9.5">integer</text>
+                <!-- dividers -->
+                <line x1="666" y1="68"  x2="824" y2="68"  stroke="#f0f0f0" stroke-width="0.8"/>
+                <line x1="666" y1="94"  x2="824" y2="94"  stroke="#f0f0f0" stroke-width="0.8"/>
+                <line x1="666" y1="120" x2="824" y2="120" stroke="#f0f0f0" stroke-width="0.8"/>
+
+                <!-- ── Legend ── -->
+                <rect x="5" y="157" width="165" height="23" rx="3" fill="white" stroke="#dee2e6" stroke-width="0.8"/>
+                <text x="12" y="168" fill="#dc3545" font-weight="700" font-size="9">PK</text>
+                <text x="26" y="168" fill="#6c757d" font-size="9"> = Primary Key  </text>
+                <text x="100" y="168" fill="#0d6efd" font-size="9">FK</text>
+                <text x="114" y="168" fill="#6c757d" font-size="9"> = Foreign Key</text>
+                <text x="12" y="177" fill="#6c757d" font-size="8.5">│  = 1 (one)    &#x2AA4;  = N (many)</text>
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        <!-- Langkah-langkah -->
+        <div class="card border shadow-sm mb-3">
+          <div class="card-body">
+            <p class="section-label">1.3 Langkah Pengerjaan Praktikum</p>
+
+            <!-- Langkah 1: Migration -->
+            <div class="sub-section">
+              <p class="sub-section-title">Langkah 1: Membuat Migration</p>
+
+              <p class="fw-semibold mb-1" style="font-size:.88rem;">A. Migration untuk tabel majors</p>
+              <div class="terminal">php artisan make:migration create_majors_table</div>
+              <div class="code-block">&lt;?php
+// database/migrations/xxxx_xx_xx_create_majors_table.php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    public function up()
+    {
+        Schema::create('majors', function (Blueprint $table) {
+            $table-&gt;id();
+            $table-&gt;string('name');
+            $table-&gt;timestamps();
+        });
+    }
+
+    public function down()
+    {
+        Schema::dropIfExists('majors');
+    }
+};</div>
+
+              <p class="fw-semibold mb-1" style="font-size:.88rem;">B. Migration untuk tabel students</p>
+              <div class="terminal">php artisan make:migration create_students_table</div>
+              <div class="code-block">&lt;?php
+// database/migrations/xxxx_xx_xx_create_students_table.php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    public function up()
+    {
+        Schema::create('students', function (Blueprint $table) {
+            $table-&gt;id();
+            $table-&gt;string('nim')-&gt;unique();
+            $table-&gt;string('name');
+            $table-&gt;text('address');
+            $table-&gt;foreignId('major_id')-&gt;constrained('majors')-&gt;onDelete('cascade');
+            $table-&gt;timestamps();
+        });
+    }
+
+    public function down()
+    {
+        Schema::dropIfExists('students');
+    }
+};</div>
+
+              <p class="fw-semibold mb-1" style="font-size:.88rem;">C. Migration untuk tabel subjects</p>
+              <div class="terminal">php artisan make:migration create_subjects_table</div>
+              <div class="code-block">&lt;?php
+// database/migrations/xxxx_xx_xx_create_subjects_table.php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    public function up()
+    {
+        Schema::create('subjects', function (Blueprint $table) {
+            $table-&gt;id();
+            $table-&gt;string('name');
+            $table-&gt;integer('sks');
+            $table-&gt;timestamps();
+        });
+    }
+
+    public function down()
+    {
+        Schema::dropIfExists('subjects');
+    }
+};</div>
+
+              <p class="fw-semibold mb-1" style="font-size:.88rem;">D. Migration untuk tabel pivot student_subject</p>
+              <div class="terminal">php artisan make:migration create_student_subject_table</div>
+              <div class="code-block">&lt;?php
+// database/migrations/xxxx_xx_xx_create_student_subject_table.php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    public function up()
+    {
+        Schema::create('student_subject', function (Blueprint $table) {
+            $table-&gt;foreignId('student_id')-&gt;constrained('students')-&gt;onDelete('cascade');
+            $table-&gt;foreignId('subject_id')-&gt;constrained('subjects')-&gt;onDelete('cascade');
+            $table-&gt;timestamps();
+
+            // Mencegah duplikasi kombinasi student_id dan subject_id
+            $table-&gt;unique(['student_id', 'subject_id']);
+        });
+    }
+
+    public function down()
+    {
+        Schema::dropIfExists('student_subject');
+    }
+};</div>
+
+              <p class="fw-semibold mb-1" style="font-size:.88rem;">Jalankan Migration</p>
+              <div class="terminal">php artisan migrate</div>
+            </div>
+
+            <!-- Langkah 2: Model -->
+            <div class="sub-section">
+              <p class="sub-section-title">Langkah 2: Membuat Model dengan Relationship</p>
+
+              <p class="fw-semibold mb-1" style="font-size:.88rem;">A. Model Major</p>
+              <div class="terminal">php artisan make:model Major</div>
+              <div class="code-block">&lt;?php
+// app/Models/Major.php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+class Major extends Model
+{
+    use HasFactory;
+
+    protected $fillable = ['name'];
+
+    // Relationship: One Major has many Students
+    public function students()
+    {
+        return $this-&gt;hasMany(Student::class);
+    }
+}</div>
+
+              <p class="fw-semibold mb-1" style="font-size:.88rem;">B. Model Student</p>
+              <div class="terminal">php artisan make:model Student</div>
+              <div class="code-block">&lt;?php
+// app/Models/Student.php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+class Student extends Model
+{
+    use HasFactory;
+
+    protected $fillable = ['nim', 'name', 'address', 'major_id'];
+
+    // Relationship: Many Students belong to one Major
+    public function major()
+    {
+        return $this-&gt;belongsTo(Major::class);
+    }
+
+    // Relationship: Many Students belong to many Subjects
+    public function subjects()
+    {
+        return $this-&gt;belongsToMany(Subject::class);
+    }
+}</div>
+
+              <p class="fw-semibold mb-1" style="font-size:.88rem;">C. Model Subject</p>
+              <div class="terminal">php artisan make:model Subject</div>
+              <div class="code-block">&lt;?php
+// app/Models/Subject.php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+class Subject extends Model
+{
+    use HasFactory;
+
+    protected $fillable = ['name', 'sks'];
+
+    // Relationship: Many Subjects belong to many Students
+    public function students()
+    {
+        return $this-&gt;belongsToMany(Student::class);
+    }
+}</div>
+            </div>
+
+            <!-- Langkah 3: Seeder -->
+            <div class="sub-section">
+              <p class="sub-section-title">Langkah 3: Seeder untuk Data Sample</p>
+
+              <p class="fw-semibold mb-1" style="font-size:.88rem;">A. Seeder untuk Major</p>
+              <div class="terminal">php artisan make:seeder MajorSeeder</div>
+              <div class="code-block">&lt;?php
+// database/seeders/MajorSeeder.php
+
+namespace Database\Seeders;
+
+use App\Models\Major;
+use Illuminate\Database\Seeder;
+
+class MajorSeeder extends Seeder
+{
+    public function run()
+    {
+        $majors = [
+            ['name' =&gt; 'Teknik Informatika'],
+            ['name' =&gt; 'Sistem Informasi'],
+            ['name' =&gt; 'Teknik Komputer'],
+            ['name' =&gt; 'Manajemen Informatika'],
+        ];
+
+        foreach ($majors as $major) {
+            Major::create($major);
+        }
+    }
+}</div>
+
+              <p class="fw-semibold mb-1" style="font-size:.88rem;">B. Seeder untuk Subject</p>
+              <div class="terminal">php artisan make:seeder SubjectSeeder</div>
+              <div class="code-block">&lt;?php
+// database/seeders/SubjectSeeder.php
+
+namespace Database\Seeders;
+
+use App\Models\Subject;
+use Illuminate\Database\Seeder;
+
+class SubjectSeeder extends Seeder
+{
+    public function run()
+    {
+        $subjects = [
+            ['name' =&gt; 'Pemrograman Web', 'sks' =&gt; 5],
+            ['name' =&gt; 'Database', 'sks' =&gt; 3],
+            ['name' =&gt; 'Algoritma', 'sks' =&gt; 4],
+            ['name' =&gt; 'Jaringan Komputer', 'sks' =&gt; 3],
+            ['name' =&gt; 'Sistem Operasi', 'sks' =&gt; 2],
+        ];
+
+        foreach ($subjects as $subject) {
+            Subject::create($subject);
+        }
+    }
+}</div>
+
+              <p class="fw-semibold mb-1" style="font-size:.88rem;">C. Seeder untuk Student</p>
+              <div class="terminal">php artisan make:seeder StudentSeeder</div>
+              <div class="code-block">&lt;?php
+// database/seeders/StudentSeeder.php
+
+namespace Database\Seeders;
+
+use App\Models\Student;
+use App\Models\Major;
+use App\Models\Subject;
+use Illuminate\Database\Seeder;
+
+class StudentSeeder extends Seeder
+{
+    public function run()
+    {
+        $students = [
+            ['nim' =&gt; '20210001', 'name' =&gt; 'Ahmad Rizki', 'address' =&gt; 'Jl. Merdeka No. 1', 'major_id' =&gt; 1],
+            ['nim' =&gt; '20210002', 'name' =&gt; 'Siti Varnaliza', 'address' =&gt; 'Jl. Sudirman No. 15', 'major_id' =&gt; 2],
+            ['nim' =&gt; '20210003', 'name' =&gt; 'Budi Santoso', 'address' =&gt; 'Jl. Pahlawan No. 8', 'major_id' =&gt; 1],
+            ['nim' =&gt; '20210004', 'name' =&gt; 'Dewi Kartika', 'address' =&gt; 'Jl. Diponegoro No. 22', 'major_id' =&gt; 2],
+            ['nim' =&gt; '20210005', 'name' =&gt; 'Iko Prasetyo', 'address' =&gt; 'Jl. Gatot Subroto No. 11', 'major_id' =&gt; 2],
+        ];
+
+        foreach ($students as $studentData) {
+            $student = Student::create($studentData);
+
+            // Assign random subjects to each student
+            $subjects = Subject::inRandomOrder()-&gt;take(rand(2, 4))-&gt;pluck('id');
+            $student-&gt;subjects()-&gt;attach($subjects);
+        }
+    }
+}</div>
+
+              <p class="fw-semibold mb-1" style="font-size:.88rem;">D. Update DatabaseSeeder</p>
+              <div class="code-block">&lt;?php
+// database/seeders/DatabaseSeeder.php
+
+namespace Database\Seeders;
+
+use Illuminate\Database\Seeder;
+
+class DatabaseSeeder extends Seeder
+{
+    public function run()
+    {
+        $this-&gt;call([
+            MajorSeeder::class,
+            SubjectSeeder::class,
+            StudentSeeder::class,
+        ]);
+    }
+}</div>
+
+              <p class="fw-semibold mb-1" style="font-size:.88rem;">Jalankan Seeder</p>
+              <div class="terminal">php artisan db:seed</div>
+            </div>
+
+            <!-- Langkah 4: Controller -->
+            <div class="sub-section">
+              <p class="sub-section-title">Langkah 4: Membuat Controller</p>
+              <p class="fw-semibold mb-1" style="font-size:.88rem;">A. StudentController</p>
+              <div class="terminal">php artisan make:controller StudentController</div>
+              <div class="code-block">&lt;?php
+// app/Http/Controllers/StudentController.php
+
+namespace App\Http\Controllers;
+
+use App\Models\Student;
+use App\Models\Major;
+use App\Models\Subject;
+use Illuminate\Http\Request;
+
+class StudentController extends Controller
+{
+    public function index()
+    {
+        // Eager loading untuk menghindari N+1 problem
+        $students = Student::with(['major', 'subjects'])-&gt;get();
+        return view('students.index', compact('students'));
+    }
+
+    public function show($id)
+    {
+        $student = Student::with(['major', 'subjects'])-&gt;findOrFail($id);
+        return view('students.show', compact('student'));
+    }
+
+    public function create()
+    {
+        $majors = Major::all();
+        $subjects = Subject::all();
+        return view('students.create', compact('majors', 'subjects'));
+    }
+
+    public function store(Request $request)
+    {
+        $request-&gt;validate([
+            'nim'       =&gt; 'required|unique:students',
+            'name'      =&gt; 'required',
+            'address'   =&gt; 'required',
+            'major_id'  =&gt; 'required|exists:majors,id',
+            'subjects'  =&gt; 'required|array',
+            'subjects.*'=&gt; 'exists:subjects,id',
+        ]);
+
+        $student = Student::create($request-&gt;only(['nim', 'name', 'address', 'major_id']));
+        $student-&gt;subjects()-&gt;attach($request-&gt;subjects);
+
+        return redirect()-&gt;route('students.index')-&gt;with('success', 'Student created successfully');
+    }
+
+    public function edit($id)
+    {
+        $student  = Student::with('subjects')-&gt;findOrFail($id);
+        $majors   = Major::all();
+        $subjects = Subject::all();
+        return view('students.edit', compact('student', 'majors', 'subjects'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $student = Student::findOrFail($id);
+
+        $request-&gt;validate([
+            'nim'       =&gt; 'required|unique:students,nim,' . $student-&gt;id,
+            'name'      =&gt; 'required',
+            'address'   =&gt; 'required',
+            'major_id'  =&gt; 'required|exists:majors,id',
+            'subjects'  =&gt; 'required|array',
+            'subjects.*'=&gt; 'exists:subjects,id',
+        ]);
+
+        $student-&gt;update($request-&gt;only(['nim', 'name', 'address', 'major_id']));
+        $student-&gt;subjects()-&gt;sync($request-&gt;subjects);
+
+        return redirect()-&gt;route('students.index')-&gt;with('success', 'Student updated successfully');
+    }
+
+    public function destroy($id)
+    {
+        $student = Student::findOrFail($id);
+        $student-&gt;subjects()-&gt;detach(); // Remove all subject relationships
+        $student-&gt;delete();
+
+        return redirect()-&gt;route('students.index')-&gt;with('success', 'Student deleted successfully');
+    }
+}</div>
+            </div>
+
+            <!-- Langkah 5: Routes -->
+            <div class="sub-section">
+              <p class="sub-section-title">Langkah 5: Membuat Routes</p>
+              <div class="code-block">&lt;?php
+// routes/web.php
+
+use App\Http\Controllers\StudentController;
+use Illuminate\Support\Facades\Route;
+
+Route::get('/', function () {
+    return redirect()-&gt;route('students.index');
+});
+
+Route::resource('students', StudentController::class);</div>
+            </div>
+
+            <!-- Langkah 6: Views -->
+            <div class="sub-section">
+              <p class="sub-section-title">Langkah 6: Membuat Views</p>
+
+              <p class="fw-semibold mb-1" style="font-size:.88rem;">A. Layout utama <code>{{-- resources/views/layouts/app.blade.php --}}</code></p>
+              <div class="code-block">&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;Student Management System&lt;/title&gt;
+    &lt;link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;nav class="navbar navbar-expand-lg navbar-dark bg-primary"&gt;
+        &lt;div class="container"&gt;
+            &lt;a class="navbar-brand" href="{{ route('students.index') }}"&gt;Student Management&lt;/a&gt;
+        &lt;/div&gt;
+    &lt;/nav&gt;
+
+    &lt;div class="container mt-4"&gt;
+        @if(session('success'))
+            &lt;div class="alert alert-success"&gt;
+                {{ session('success') }}
+            &lt;/div&gt;
+        @endif
+
+        @yield('content')
+    &lt;/div&gt;
+
+    &lt;script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</div>
+
+              <p class="fw-semibold mb-1" style="font-size:.88rem;">B. Index Students <code>{{-- resources/views/students/index.blade.php --}}</code></p>
+              <div class="code-block">@extends('layouts.app')
+
+@section('content')
+&lt;div class="d-flex justify-content-between align-items-center mb-4"&gt;
+    &lt;h1&gt;Daftar Mahasiswa&lt;/h1&gt;
+    &lt;a href="{{ route('students.create') }}" class="btn btn-primary"&gt;Tambah Mahasiswa&lt;/a&gt;
+&lt;/div&gt;
+
+&lt;div class="table-responsive"&gt;
+    &lt;table class="table table-striped"&gt;
+        &lt;thead&gt;
+            &lt;tr&gt;
+                &lt;th&gt;NIM&lt;/th&gt;
+                &lt;th&gt;Nama&lt;/th&gt;
+                &lt;th&gt;Jurusan&lt;/th&gt;
+                &lt;th&gt;Mata Kuliah&lt;/th&gt;
+                &lt;th&gt;Total SKS&lt;/th&gt;
+                &lt;th&gt;Aksi&lt;/th&gt;
+            &lt;/tr&gt;
+        &lt;/thead&gt;
+        &lt;tbody&gt;
+            @foreach($students as $student)
+            &lt;tr&gt;
+                &lt;td&gt;{{ $student-&gt;nim }}&lt;/td&gt;
+                &lt;td&gt;{{ $student-&gt;name }}&lt;/td&gt;
+                &lt;td&gt;{{ $student-&gt;major-&gt;name }}&lt;/td&gt;
+                &lt;td&gt;
+                    @foreach($student-&gt;subjects as $subject)
+                        &lt;span class="badge bg-secondary me-1"&gt;{{ $subject-&gt;name }}&lt;/span&gt;
+                    @endforeach
+                &lt;/td&gt;
+                &lt;td&gt;{{ $student-&gt;subjects-&gt;sum('sks') }}&lt;/td&gt;
+                &lt;td&gt;
+                    &lt;a href="{{ route('students.show', $student-&gt;id) }}" class="btn btn-sm btn-info"&gt;Detail&lt;/a&gt;
+                    &lt;a href="{{ route('students.edit', $student-&gt;id) }}" class="btn btn-sm btn-warning"&gt;Edit&lt;/a&gt;
+                    &lt;form action="{{ route('students.destroy', $student-&gt;id) }}" method="POST" class="d-inline"&gt;
+                        @csrf
+                        @method('DELETE')
+                        &lt;button type="submit" class="btn btn-sm btn-danger"
+                            onclick="return confirm('Yakin ingin menghapus?')"&gt;Hapus&lt;/button&gt;
+                    &lt;/form&gt;
+                &lt;/td&gt;
+            &lt;/tr&gt;
+            @endforeach
+        &lt;/tbody&gt;
+    &lt;/table&gt;
+&lt;/div&gt;
+@endsection</div>
+
+              <p class="fw-semibold mb-1" style="font-size:.88rem;">C. Create Student <code>{{-- resources/views/students/create.blade.php --}}</code></p>
+              <div class="code-block">@extends('layouts.app')
+
+@section('content')
+&lt;h2&gt;Tambah Mahasiswa&lt;/h2&gt;
+
+&lt;div class="card"&gt;
+    &lt;div class="card-body"&gt;
+        &lt;form action="{{ route('students.store') }}" method="POST"&gt;
+            @csrf
+
+            &lt;div class="mb-3"&gt;
+                &lt;label for="nim" class="form-label"&gt;NIM&lt;/label&gt;
+                &lt;input type="text" class="form-control @error('nim') is-invalid @enderror"
+                    id="nim" name="nim" value="{{ old('nim') }}"&gt;
+                @error('nim')
+                    &lt;div class="invalid-feedback"&gt;{{ $message }}&lt;/div&gt;
+                @enderror
+            &lt;/div&gt;
+
+            &lt;div class="mb-3"&gt;
+                &lt;label for="name" class="form-label"&gt;Nama&lt;/label&gt;
+                &lt;input type="text" class="form-control @error('name') is-invalid @enderror"
+                    id="name" name="name" value="{{ old('name') }}"&gt;
+                @error('name')
+                    &lt;div class="invalid-feedback"&gt;{{ $message }}&lt;/div&gt;
+                @enderror
+            &lt;/div&gt;
+
+            &lt;div class="mb-3"&gt;
+                &lt;label for="address" class="form-label"&gt;Alamat&lt;/label&gt;
+                &lt;textarea class="form-control @error('address') is-invalid @enderror"
+                    id="address" name="address" rows="3"&gt;{{ old('address') }}&lt;/textarea&gt;
+                @error('address')
+                    &lt;div class="invalid-feedback"&gt;{{ $message }}&lt;/div&gt;
+                @enderror
+            &lt;/div&gt;
+
+            &lt;div class="mb-3"&gt;
+                &lt;label for="major_id" class="form-label"&gt;Jurusan&lt;/label&gt;
+                &lt;select class="form-control @error('major_id') is-invalid @enderror"
+                    id="major_id" name="major_id"&gt;
+                    &lt;option value=""&gt;-- Pilih Jurusan --&lt;/option&gt;
+                    @foreach($majors as $major)
+                        &lt;option value="{{ $major-&gt;id }}" {{ old('major_id') == $major-&gt;id ? 'selected' : '' }}&gt;
+                            {{ $major-&gt;name }}
+                        &lt;/option&gt;
+                    @endforeach
+                &lt;/select&gt;
+                @error('major_id')
+                    &lt;div class="invalid-feedback"&gt;{{ $message }}&lt;/div&gt;
+                @enderror
+            &lt;/div&gt;
+
+            &lt;div class="mb-3"&gt;
+                &lt;label class="form-label"&gt;Mata Kuliah&lt;/label&gt;
+                @error('subjects')
+                    &lt;div class="text-danger"&gt;{{ $message }}&lt;/div&gt;
+                @enderror
+                @foreach($subjects as $subject)
+                    &lt;div class="form-check"&gt;
+                        &lt;input class="form-check-input" type="checkbox"
+                            name="subjects[]" value="{{ $subject-&gt;id }}"
+                            id="subject_{{ $subject-&gt;id }}"
+                            {{ in_array($subject-&gt;id, old('subjects', [])) ? 'checked' : '' }}&gt;
+                        &lt;label class="form-check-label" for="subject_{{ $subject-&gt;id }}"&gt;
+                            {{ $subject-&gt;name }} ({{ $subject-&gt;sks }} SKS)
+                        &lt;/label&gt;
+                    &lt;/div&gt;
+                @endforeach
+            &lt;/div&gt;
+
+            &lt;button type="submit" class="btn btn-primary"&gt;Simpan&lt;/button&gt;
+            &lt;a href="{{ route('students.index') }}" class="btn btn-secondary"&gt;Batal&lt;/a&gt;
+        &lt;/form&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+@endsection</div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Latihan dan Tugas -->
+        <div class="card border shadow-sm mb-3">
+          <div class="card-body">
+            <p class="section-label">Latihan dan Tugas</p>
+
+            <p class="fw-semibold mb-2" style="font-size:.9rem;">Latihan 1: Query dengan Relationship</p>
+            <p class="text-secondary mb-2" style="font-size:.88rem;">Buat query untuk menampilkan:</p>
+            <ol class="text-secondary mb-0" style="font-size:.88rem;">
+              <li class="mb-1">Semua mahasiswa beserta jurusan dan mata kuliahnya</li>
+              <li class="mb-1">Jurusan yang memiliki mahasiswa terbanyak</li>
+              <li class="mb-1">Mata kuliah yang diambil oleh mahasiswa tertentu</li>
+              <li class="mb-0">Total SKS yang diambil setiap mahasiswa</li>
+            </ol>
+          </div>
+        </div>
+
+        <!-- Kesimpulan -->
+        <div class="card border shadow-sm mb-3">
+          <div class="card-body">
+            <p class="section-label">Kesimpulan</p>
+            <p class="text-secondary mb-2" style="font-size:.88rem;">Dalam modul ini, mahasiswa telah mempelajari:</p>
+            <ol class="text-secondary mb-3" style="font-size:.88rem;">
+              <li class="mb-1">Cara membuat relationship One-to-Many dan Many-to-Many di Laravel</li>
+              <li class="mb-1">Implementasi foreign key dan pivot table</li>
+              <li class="mb-1">Penggunaan Eloquent relationship untuk query data</li>
+              <li class="mb-1">Best practices dalam menggunakan eager loading</li>
+              <li class="mb-0">Cara menampilkan data relationship di view</li>
+            </ol>
+            <p class="text-secondary mb-0" style="font-size:.88rem;">Relationship adalah konsep fundamental dalam pengembangan aplikasi web dengan database. Pemahaman yang baik tentang relationship akan membantu dalam membangun aplikasi yang efisien dan mudah di-maintain.</p>
+          </div>
+        </div>
+
+
+
+        <!-- GitHub button -->
+        <div class="d-grid d-md-flex mb-4">
+          <a href="https://github.com/alfarisauliarahman/2411533006_AlfarisAuliaRahman_PemrogramanWeb" target="_blank" rel="noopener" class="btn btn-dark btn-lg px-4">
+            <i class="bi bi-github me-2"></i>Repository GitHub
+          </a>
+        </div>
+
+      </div>
+
+      <!-- Sidebar -->
+      <div class="col-lg-4">
+        <div class="card border shadow-sm mb-3">
+          <div class="card-body">
+            <p class="section-label">Informasi</p>
+            <table class="table table-sm table-borderless mb-0" style="font-size:.88rem;">
+              <tr><td class="text-muted ps-0">Mata Kuliah</td><td class="fw-semibold">Desain Web</td></tr>
+              <tr><td class="text-muted ps-0">Pertemuan</td><td class="fw-semibold">8</td></tr>
+              <tr><td class="text-muted ps-0">Nama</td><td class="fw-semibold">Alfaris Aulia Rahman</td></tr>
+              <tr><td class="text-muted ps-0">NIM</td><td class="fw-semibold">2411533006</td></tr>
+              <tr><td class="text-muted ps-0">Status</td><td><span class="badge bg-success">Selesai</span></td></tr>
+            </table>
+          </div>
+        </div>
+
+        <div class="card border shadow-sm">
+          <div class="card-body">
+            <p class="section-label">Daftar Pertemuan</p>
+            <ul class="nav-pertemuan">
+              <li>
+                <a href="pertemuan-6-konfigurasi-laravel.html">
+                  <i class="bi bi-journal-text flex-shrink-0"></i>
+                  <span>Pertemuan 6 — Konfigurasi Laravel</span>
+                </a>
+              </li>
+              <li>
+                <a href="pertemuan-7-migration-seeding-routing-model-controller-view.html">
+                  <i class="bi bi-journal-text flex-shrink-0"></i>
+                  <span>Pertemuan 7 — Migration, Seeding, Routing, MVC</span>
+                </a>
+              </li>
+              <li>
+                <a href="pertemuan-8-eloquent-relationship.html" class="active">
+                  <i class="bi bi-journal-text flex-shrink-0"></i>
+                  <span>Pertemuan 8 — Eloquent Relationship</span>
+                </a>
+              </li>
+              <li><span><i class="bi bi-lock flex-shrink-0"></i><span>Pertemuan 9 — Belum tersedia</span></span></li>
+              <li><span><i class="bi bi-lock flex-shrink-0"></i><span>Pertemuan 10 — Belum tersedia</span></span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <footer class="pt-5 pb-4">
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-lg-4">
+          <h5 class="fw-bold text-white">Alfaris Aulia</h5>
+          <p class="mb-3">Website portofolio untuk dokumentasi pembelajaran Web, Java, Design, dan Music.</p>
+          <div class="d-flex gap-2">
+            <a class="btn btn-outline-light btn-sm" href="https://instagram.com/faisrahman02" target="_blank" rel="noopener"><i class="bi bi-instagram"></i></a>
+            <a class="btn btn-outline-light btn-sm" href="https://github.com/alfarisauliarahman" target="_blank" rel="noopener"><i class="bi bi-github"></i></a>
+            <a class="btn btn-outline-light btn-sm" href="https://www.linkedin.com/in/alfaris-aulia-rahman-50425a312/" target="_blank" rel="noopener"><i class="bi bi-linkedin"></i></a>
+          </div>
+        </div>
+        <div class="col-6 col-lg-2">
+          <h6 class="text-white fw-semibold">Quick Links</h6>
+          <ul class="list-unstyled">
+            <li class="mb-2"><a href="../index.html">Home</a></li>
+            <li class="mb-2"><a href="../portofolio.html">Portofolio</a></li>
+            <li class="mb-2"><a href="../about.html">About</a></li>
+            <li class="mb-2"><a href="report.html">Report</a></li>
+            <li class="mb-2"><a href="../kontak.html">Contact</a></li>
+          </ul>
+        </div>
+        <div class="col-6 col-lg-3">
+          <h6 class="text-white fw-semibold">Kontak</h6>
+          <ul class="list-unstyled">
+            <li class="mb-2"><i class="bi bi-envelope me-2"></i>2411533006_alfaris@student.unand.ac.id</li>
+            <li class="mb-2"><i class="bi bi-telephone me-2"></i>+62 878-4002-9650</li>
+            <li class="mb-2"><i class="bi bi-geo-alt me-2"></i>Padang, Indonesia</li>
+          </ul>
+        </div>
+      </div>
+      <hr class="my-4 border-secondary" />
+      <div class="text-center"><p class="mb-0">&copy; 2026 Alfaris Aulia. All rights reserved.</p></div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../js/main.js"></script>
+</body>
+</html>
