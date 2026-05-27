@@ -365,610 +365,205 @@
           <div class="card-body">
             <p class="section-label">1.3 Langkah Pengerjaan Praktikum</p>
 
-            <!-- Langkah 1: Migration -->
+            <!-- Langkah 1 -->
             <div class="sub-section">
               <p class="sub-section-title">Langkah 1: Membuat Migration</p>
 
               <p class="fw-semibold mb-1" style="font-size:.88rem;">A. Migration untuk tabel majors</p>
               <div class="terminal">php artisan make:migration create_majors_table</div>
-              <div class="code-block">&lt;?php
-// database/migrations/xxxx_xx_xx_create_majors_table.php
+              <img src="../images/p8/p8.1.png" alt="Membuat Migration Table Major" class="report-img mb-1">
+              <p class="img-caption">Gambar 1. Membuat Migration Table Major</p>
+              <img src="../images/p8/p8.2.png" alt="Kode Migration Majors" class="report-img mb-1">
+              <p class="img-caption">Gambar 2. Kode Migration Tabel Majors</p>
 
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Support\Facades\Schema;
-
-return new class extends Migration
-{
-    public function up()
-    {
-        Schema::create('majors', function (Blueprint $table) {
-            $table-&gt;id();
-            $table-&gt;string('name');
-            $table-&gt;timestamps();
-        });
-    }
-
-    public function down()
-    {
-        Schema::dropIfExists('majors');
-    }
-};</div>
-
-              <p class="fw-semibold mb-1" style="font-size:.88rem;">B. Migration untuk tabel students</p>
+              <p class="fw-semibold mb-1 mt-3" style="font-size:.88rem;">B. Migration untuk tabel students</p>
               <div class="terminal">php artisan make:migration create_students_table</div>
-              <div class="code-block">&lt;?php
-// database/migrations/xxxx_xx_xx_create_students_table.php
+              <img src="../images/p8/p8.3.png" alt="Membuat Migration Students" class="report-img mb-1">
+              <p class="img-caption">Gambar 3. Membuat Migration Tabel Students</p>
+              <img src="../images/p8/p8.4.png" alt="Kode Migration Students" class="report-img mb-1">
+              <p class="img-caption">Gambar 4. Kode Migration Tabel Students</p>
 
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Support\Facades\Schema;
-
-return new class extends Migration
-{
-    public function up()
-    {
-        Schema::create('students', function (Blueprint $table) {
-            $table-&gt;id();
-            $table-&gt;string('nim')-&gt;unique();
-            $table-&gt;string('name');
-            $table-&gt;text('address');
-            $table-&gt;foreignId('major_id')-&gt;constrained('majors')-&gt;onDelete('cascade');
-            $table-&gt;timestamps();
-        });
-    }
-
-    public function down()
-    {
-        Schema::dropIfExists('students');
-    }
-};</div>
-
-              <p class="fw-semibold mb-1" style="font-size:.88rem;">C. Migration untuk tabel subjects</p>
+              <p class="fw-semibold mb-1 mt-3" style="font-size:.88rem;">C. Migration untuk tabel subjects</p>
               <div class="terminal">php artisan make:migration create_subjects_table</div>
-              <div class="code-block">&lt;?php
-// database/migrations/xxxx_xx_xx_create_subjects_table.php
+              <img src="../images/p8/p8.5.png" alt="Membuat Migration Subjects" class="report-img mb-1">
+              <p class="img-caption">Gambar 5. Membuat Migration Tabel Subjects</p>
+              <img src="../images/p8/p8.6.png" alt="Kode Migration Subjects" class="report-img mb-1">
+              <p class="img-caption">Gambar 6. Kode Migration Tabel Subjects</p>
 
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Support\Facades\Schema;
-
-return new class extends Migration
-{
-    public function up()
-    {
-        Schema::create('subjects', function (Blueprint $table) {
-            $table-&gt;id();
-            $table-&gt;string('name');
-            $table-&gt;integer('sks');
-            $table-&gt;timestamps();
-        });
-    }
-
-    public function down()
-    {
-        Schema::dropIfExists('subjects');
-    }
-};</div>
-
-              <p class="fw-semibold mb-1" style="font-size:.88rem;">D. Migration untuk tabel pivot student_subject</p>
+              <p class="fw-semibold mb-1 mt-3" style="font-size:.88rem;">D. Migration untuk tabel pivot student_subject</p>
               <div class="terminal">php artisan make:migration create_student_subject_table</div>
-              <div class="code-block">&lt;?php
-// database/migrations/xxxx_xx_xx_create_student_subject_table.php
+              <img src="../images/p8/p8.7.png" alt="Membuat Migration Student Subject" class="report-img mb-1">
+              <p class="img-caption">Gambar 7. Membuat Migration Tabel Pivot Student_Subject</p>
+              <img src="../images/p8/p8.8.png" alt="Kode Migration Student Subject" class="report-img mb-1">
+              <p class="img-caption">Gambar 8. Kode Migration Tabel Pivot Student_Subject</p>
 
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Support\Facades\Schema;
-
-return new class extends Migration
-{
-    public function up()
-    {
-        Schema::create('student_subject', function (Blueprint $table) {
-            $table-&gt;foreignId('student_id')-&gt;constrained('students')-&gt;onDelete('cascade');
-            $table-&gt;foreignId('subject_id')-&gt;constrained('subjects')-&gt;onDelete('cascade');
-            $table-&gt;timestamps();
-
-            // Mencegah duplikasi kombinasi student_id dan subject_id
-            $table-&gt;unique(['student_id', 'subject_id']);
-        });
-    }
-
-    public function down()
-    {
-        Schema::dropIfExists('student_subject');
-    }
-};</div>
-
-              <p class="fw-semibold mb-1" style="font-size:.88rem;">Jalankan Migration</p>
+              <p class="fw-semibold mb-1 mt-3" style="font-size:.88rem;">Jalankan Migration</p>
               <div class="terminal">php artisan migrate</div>
+              <img src="../images/p8/p8.9.png" alt="Jalankan Migration" class="report-img mb-1">
+              <p class="img-caption">Gambar 9. Menjalankan Migration</p>
             </div>
 
-            <!-- Langkah 2: Model -->
+            <!-- Langkah 2 -->
             <div class="sub-section">
               <p class="sub-section-title">Langkah 2: Membuat Model dengan Relationship</p>
 
               <p class="fw-semibold mb-1" style="font-size:.88rem;">A. Model Major</p>
               <div class="terminal">php artisan make:model Major</div>
-              <div class="code-block">&lt;?php
-// app/Models/Major.php
+              <img src="../images/p8/p8.10.png" alt="Membuat Model Major" class="report-img mb-1">
+              <p class="img-caption">Gambar 10. Membuat Model Major</p>
+              <img src="../images/p8/p8.11.png" alt="Kode Model Major" class="report-img mb-1">
+              <p class="img-caption">Gambar 11. Kode Model Major dengan Relasi One-to-Many</p>
 
-namespace App\Models;
-
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
-
-class Major extends Model
-{
-    use HasFactory;
-
-    protected $fillable = ['name'];
-
-    // Relationship: One Major has many Students
-    public function students()
-    {
-        return $this-&gt;hasMany(Student::class);
-    }
-}</div>
-
-              <p class="fw-semibold mb-1" style="font-size:.88rem;">B. Model Student</p>
+              <p class="fw-semibold mb-1 mt-3" style="font-size:.88rem;">B. Model Student</p>
               <div class="terminal">php artisan make:model Student</div>
-              <div class="code-block">&lt;?php
-// app/Models/Student.php
+              <img src="../images/p8/p8.12.png" alt="Membuat Model Student" class="report-img mb-1">
+              <p class="img-caption">Gambar 12. Membuat Model Student</p>
+              <img src="../images/p8/p8.13.png" alt="Kode Model Student" class="report-img mb-1">
+              <p class="img-caption">Gambar 13. Kode Model Student dengan Relasi belongsTo dan belongsToMany</p>
 
-namespace App\Models;
-
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
-
-class Student extends Model
-{
-    use HasFactory;
-
-    protected $fillable = ['nim', 'name', 'address', 'major_id'];
-
-    // Relationship: Many Students belong to one Major
-    public function major()
-    {
-        return $this-&gt;belongsTo(Major::class);
-    }
-
-    // Relationship: Many Students belong to many Subjects
-    public function subjects()
-    {
-        return $this-&gt;belongsToMany(Subject::class);
-    }
-}</div>
-
-              <p class="fw-semibold mb-1" style="font-size:.88rem;">C. Model Subject</p>
+              <p class="fw-semibold mb-1 mt-3" style="font-size:.88rem;">C. Model Subject</p>
               <div class="terminal">php artisan make:model Subject</div>
-              <div class="code-block">&lt;?php
-// app/Models/Subject.php
-
-namespace App\Models;
-
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
-
-class Subject extends Model
-{
-    use HasFactory;
-
-    protected $fillable = ['name', 'sks'];
-
-    // Relationship: Many Subjects belong to many Students
-    public function students()
-    {
-        return $this-&gt;belongsToMany(Student::class);
-    }
-}</div>
+              <img src="../images/p8/p8.14.png" alt="Membuat Model Subject" class="report-img mb-1">
+              <p class="img-caption">Gambar 14. Membuat Model Subject</p>
+              <img src="../images/p8/p8.15.png" alt="Kode Model Subject" class="report-img mb-1">
+              <p class="img-caption">Gambar 15. Kode Model Subject dengan Relasi belongsToMany</p>
             </div>
 
-            <!-- Langkah 3: Seeder -->
+            <!-- Langkah 3 -->
             <div class="sub-section">
               <p class="sub-section-title">Langkah 3: Seeder untuk Data Sample</p>
 
               <p class="fw-semibold mb-1" style="font-size:.88rem;">A. Seeder untuk Major</p>
               <div class="terminal">php artisan make:seeder MajorSeeder</div>
-              <div class="code-block">&lt;?php
-// database/seeders/MajorSeeder.php
+              <img src="../images/p8/p8.16.png" alt="Membuat MajorSeeder" class="report-img mb-1">
+              <p class="img-caption">Gambar 16. Membuat MajorSeeder</p>
+              <img src="../images/p8/p8.17.png" alt="Kode MajorSeeder" class="report-img mb-1">
+              <p class="img-caption">Gambar 17. Kode MajorSeeder dengan Data Jurusan</p>
 
-namespace Database\Seeders;
-
-use App\Models\Major;
-use Illuminate\Database\Seeder;
-
-class MajorSeeder extends Seeder
-{
-    public function run()
-    {
-        $majors = [
-            ['name' =&gt; 'Teknik Informatika'],
-            ['name' =&gt; 'Sistem Informasi'],
-            ['name' =&gt; 'Teknik Komputer'],
-            ['name' =&gt; 'Manajemen Informatika'],
-        ];
-
-        foreach ($majors as $major) {
-            Major::create($major);
-        }
-    }
-}</div>
-
-              <p class="fw-semibold mb-1" style="font-size:.88rem;">B. Seeder untuk Subject</p>
+              <p class="fw-semibold mb-1 mt-3" style="font-size:.88rem;">B. Seeder untuk Subject</p>
               <div class="terminal">php artisan make:seeder SubjectSeeder</div>
-              <div class="code-block">&lt;?php
-// database/seeders/SubjectSeeder.php
+              <img src="../images/p8/p8.18.png" alt="Membuat SubjectSeeder" class="report-img mb-1">
+              <p class="img-caption">Gambar 18. Membuat SubjectSeeder</p>
+              <img src="../images/p8/p8.19.png" alt="Kode SubjectSeeder" class="report-img mb-1">
+              <p class="img-caption">Gambar 19. Kode SubjectSeeder dengan Data Mata Kuliah</p>
 
-namespace Database\Seeders;
-
-use App\Models\Subject;
-use Illuminate\Database\Seeder;
-
-class SubjectSeeder extends Seeder
-{
-    public function run()
-    {
-        $subjects = [
-            ['name' =&gt; 'Pemrograman Web', 'sks' =&gt; 5],
-            ['name' =&gt; 'Database', 'sks' =&gt; 3],
-            ['name' =&gt; 'Algoritma', 'sks' =&gt; 4],
-            ['name' =&gt; 'Jaringan Komputer', 'sks' =&gt; 3],
-            ['name' =&gt; 'Sistem Operasi', 'sks' =&gt; 2],
-        ];
-
-        foreach ($subjects as $subject) {
-            Subject::create($subject);
-        }
-    }
-}</div>
-
-              <p class="fw-semibold mb-1" style="font-size:.88rem;">C. Seeder untuk Student</p>
+              <p class="fw-semibold mb-1 mt-3" style="font-size:.88rem;">C. Seeder untuk Student</p>
               <div class="terminal">php artisan make:seeder StudentSeeder</div>
-              <div class="code-block">&lt;?php
-// database/seeders/StudentSeeder.php
+              <img src="../images/p8/p8.20.png" alt="Membuat StudentSeeder" class="report-img mb-1">
+              <p class="img-caption">Gambar 20. Membuat StudentSeeder</p>
+              <img src="../images/p8/p8.21.png" alt="Kode StudentSeeder" class="report-img mb-1">
+              <p class="img-caption">Gambar 21. Kode StudentSeeder dengan Assign Random Subjects</p>
 
-namespace Database\Seeders;
+              <p class="fw-semibold mb-1 mt-3" style="font-size:.88rem;">D. Update DatabaseSeeder</p>
+              <img src="../images/p8/p8.22.png" alt="Update DatabaseSeeder" class="report-img mb-1">
+              <p class="img-caption">Gambar 22. Kode DatabaseSeeder Memanggil Semua Seeder</p>
 
-use App\Models\Student;
-use App\Models\Major;
-use App\Models\Subject;
-use Illuminate\Database\Seeder;
-
-class StudentSeeder extends Seeder
-{
-    public function run()
-    {
-        $students = [
-            ['nim' =&gt; '20210001', 'name' =&gt; 'Ahmad Rizki', 'address' =&gt; 'Jl. Merdeka No. 1', 'major_id' =&gt; 1],
-            ['nim' =&gt; '20210002', 'name' =&gt; 'Siti Varnaliza', 'address' =&gt; 'Jl. Sudirman No. 15', 'major_id' =&gt; 2],
-            ['nim' =&gt; '20210003', 'name' =&gt; 'Budi Santoso', 'address' =&gt; 'Jl. Pahlawan No. 8', 'major_id' =&gt; 1],
-            ['nim' =&gt; '20210004', 'name' =&gt; 'Dewi Kartika', 'address' =&gt; 'Jl. Diponegoro No. 22', 'major_id' =&gt; 2],
-            ['nim' =&gt; '20210005', 'name' =&gt; 'Iko Prasetyo', 'address' =&gt; 'Jl. Gatot Subroto No. 11', 'major_id' =&gt; 2],
-        ];
-
-        foreach ($students as $studentData) {
-            $student = Student::create($studentData);
-
-            // Assign random subjects to each student
-            $subjects = Subject::inRandomOrder()-&gt;take(rand(2, 4))-&gt;pluck('id');
-            $student-&gt;subjects()-&gt;attach($subjects);
-        }
-    }
-}</div>
-
-              <p class="fw-semibold mb-1" style="font-size:.88rem;">D. Update DatabaseSeeder</p>
-              <div class="code-block">&lt;?php
-// database/seeders/DatabaseSeeder.php
-
-namespace Database\Seeders;
-
-use Illuminate\Database\Seeder;
-
-class DatabaseSeeder extends Seeder
-{
-    public function run()
-    {
-        $this-&gt;call([
-            MajorSeeder::class,
-            SubjectSeeder::class,
-            StudentSeeder::class,
-        ]);
-    }
-}</div>
-
-              <p class="fw-semibold mb-1" style="font-size:.88rem;">Jalankan Seeder</p>
+              <p class="fw-semibold mb-1 mt-3" style="font-size:.88rem;">Jalankan Seeder</p>
               <div class="terminal">php artisan db:seed</div>
+              <img src="../images/p8/p8.23.png" alt="Jalankan Seeder" class="report-img mb-1">
+              <p class="img-caption">Gambar 23. Menjalankan Seeder</p>
             </div>
 
-            <!-- Langkah 4: Controller -->
+            <!-- Langkah 4 -->
             <div class="sub-section">
               <p class="sub-section-title">Langkah 4: Membuat Controller</p>
+
               <p class="fw-semibold mb-1" style="font-size:.88rem;">A. StudentController</p>
               <div class="terminal">php artisan make:controller StudentController</div>
-              <div class="code-block">&lt;?php
-// app/Http/Controllers/StudentController.php
-
-namespace App\Http\Controllers;
-
-use App\Models\Student;
-use App\Models\Major;
-use App\Models\Subject;
-use Illuminate\Http\Request;
-
-class StudentController extends Controller
-{
-    public function index()
-    {
-        // Eager loading untuk menghindari N+1 problem
-        $students = Student::with(['major', 'subjects'])-&gt;get();
-        return view('students.index', compact('students'));
-    }
-
-    public function show($id)
-    {
-        $student = Student::with(['major', 'subjects'])-&gt;findOrFail($id);
-        return view('students.show', compact('student'));
-    }
-
-    public function create()
-    {
-        $majors = Major::all();
-        $subjects = Subject::all();
-        return view('students.create', compact('majors', 'subjects'));
-    }
-
-    public function store(Request $request)
-    {
-        $request-&gt;validate([
-            'nim'       =&gt; 'required|unique:students',
-            'name'      =&gt; 'required',
-            'address'   =&gt; 'required',
-            'major_id'  =&gt; 'required|exists:majors,id',
-            'subjects'  =&gt; 'required|array',
-            'subjects.*'=&gt; 'exists:subjects,id',
-        ]);
-
-        $student = Student::create($request-&gt;only(['nim', 'name', 'address', 'major_id']));
-        $student-&gt;subjects()-&gt;attach($request-&gt;subjects);
-
-        return redirect()-&gt;route('students.index')-&gt;with('success', 'Student created successfully');
-    }
-
-    public function edit($id)
-    {
-        $student  = Student::with('subjects')-&gt;findOrFail($id);
-        $majors   = Major::all();
-        $subjects = Subject::all();
-        return view('students.edit', compact('student', 'majors', 'subjects'));
-    }
-
-    public function update(Request $request, $id)
-    {
-        $student = Student::findOrFail($id);
-
-        $request-&gt;validate([
-            'nim'       =&gt; 'required|unique:students,nim,' . $student-&gt;id,
-            'name'      =&gt; 'required',
-            'address'   =&gt; 'required',
-            'major_id'  =&gt; 'required|exists:majors,id',
-            'subjects'  =&gt; 'required|array',
-            'subjects.*'=&gt; 'exists:subjects,id',
-        ]);
-
-        $student-&gt;update($request-&gt;only(['nim', 'name', 'address', 'major_id']));
-        $student-&gt;subjects()-&gt;sync($request-&gt;subjects);
-
-        return redirect()-&gt;route('students.index')-&gt;with('success', 'Student updated successfully');
-    }
-
-    public function destroy($id)
-    {
-        $student = Student::findOrFail($id);
-        $student-&gt;subjects()-&gt;detach(); // Remove all subject relationships
-        $student-&gt;delete();
-
-        return redirect()-&gt;route('students.index')-&gt;with('success', 'Student deleted successfully');
-    }
-}</div>
+              <img src="../images/p8/p8.24.png" alt="Membuat StudentController" class="report-img mb-1">
+              <p class="img-caption">Gambar 24. Membuat StudentController</p>
+              <img src="../images/p8/p8.25.jpg" alt="Kode StudentController" class="report-img mb-1">
+              <p class="img-caption">Gambar 25. Kode StudentController dengan Method CRUD</p>
             </div>
 
-            <!-- Langkah 5: Routes -->
+            <!-- Langkah 5 -->
             <div class="sub-section">
               <p class="sub-section-title">Langkah 5: Membuat Routes</p>
-              <div class="code-block">&lt;?php
-// routes/web.php
-
-use App\Http\Controllers\StudentController;
-use Illuminate\Support\Facades\Route;
-
-Route::get('/', function () {
-    return redirect()-&gt;route('students.index');
-});
-
-Route::resource('students', StudentController::class);</div>
+              <img src="../images/p8/p8.25.png" alt="Routes bagian 1" class="report-img mb-1">
+              <img src="../images/p8/p8.26.png" alt="Routes bagian 2" class="report-img mb-1">
+              <p class="img-caption">Gambar 26. Konfigurasi Route Resource Students</p>
             </div>
 
-            <!-- Langkah 6: Views -->
+            <!-- Langkah 6 -->
             <div class="sub-section">
               <p class="sub-section-title">Langkah 6: Membuat Views</p>
 
               <p class="fw-semibold mb-1" style="font-size:.88rem;">A. Layout utama <code>{{-- resources/views/layouts/app.blade.php --}}</code></p>
-              <div class="code-block">&lt;!DOCTYPE html&gt;
-&lt;html lang="en"&gt;
-&lt;head&gt;
-    &lt;meta charset="UTF-8"&gt;
-    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
-    &lt;title&gt;Student Management System&lt;/title&gt;
-    &lt;link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"&gt;
-&lt;/head&gt;
-&lt;body&gt;
-    &lt;nav class="navbar navbar-expand-lg navbar-dark bg-primary"&gt;
-        &lt;div class="container"&gt;
-            &lt;a class="navbar-brand" href="{{ route('students.index') }}"&gt;Student Management&lt;/a&gt;
-        &lt;/div&gt;
-    &lt;/nav&gt;
+              <img src="../images/p8/p8.27.png" alt="Layout App" class="report-img mb-1">
+              <p class="img-caption">Gambar 27. Kode Layout Utama (app.blade.php)</p>
 
-    &lt;div class="container mt-4"&gt;
-        @if(session('success'))
-            &lt;div class="alert alert-success"&gt;
-                {{ session('success') }}
-            &lt;/div&gt;
-        @endif
+              <p class="fw-semibold mb-1 mt-3" style="font-size:.88rem;">B. Index Students <code>{{-- resources/views/students/index.blade.php --}}</code></p>
+              <img src="../images/p8/p8.28.png" alt="View Index Students" class="report-img mb-1">
+              <p class="img-caption">Gambar 28. Kode View Index Daftar Mahasiswa</p>
 
-        @yield('content')
-    &lt;/div&gt;
+              <p class="fw-semibold mb-1 mt-3" style="font-size:.88rem;">C. Create Student <code>{{-- resources/views/students/create.blade.php --}}</code></p>
+              <img src="../images/p8/p8.29.jpg" alt="View Create Student" class="report-img mb-1">
+              <p class="img-caption">Gambar 29. Kode View Form Tambah Mahasiswa</p>
 
-    &lt;script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"&gt;&lt;/script&gt;
-&lt;/body&gt;
-&lt;/html&gt;</div>
+              <p class="fw-semibold mb-1 mt-3" style="font-size:.88rem;">D. Edit Student <code>{{-- resources/views/students/edit.blade.php --}}</code></p>
+              <img src="../images/p8/p8.30.jpeg" alt="View Edit Student" class="report-img mb-1">
+              <p class="img-caption">Gambar 30. Kode View Form Edit Data Mahasiswa</p>
 
-              <p class="fw-semibold mb-1" style="font-size:.88rem;">B. Index Students <code>{{-- resources/views/students/index.blade.php --}}</code></p>
-              <div class="code-block">@extends('layouts.app')
+              <p class="fw-semibold mb-1 mt-3" style="font-size:.88rem;">E. Detail Student <code>{{-- resources/views/students/show.blade.php --}}</code></p>
+              <img src="../images/p8/p8.31.jpeg" alt="View Detail Student" class="report-img mb-1">
+              <p class="img-caption">Gambar 31. Kode View Detail Mahasiswa</p>
+            </div>
 
-@section('content')
-&lt;div class="d-flex justify-content-between align-items-center mb-4"&gt;
-    &lt;h1&gt;Daftar Mahasiswa&lt;/h1&gt;
-    &lt;a href="{{ route('students.create') }}" class="btn btn-primary"&gt;Tambah Mahasiswa&lt;/a&gt;
-&lt;/div&gt;
-
-&lt;div class="table-responsive"&gt;
-    &lt;table class="table table-striped"&gt;
-        &lt;thead&gt;
-            &lt;tr&gt;
-                &lt;th&gt;NIM&lt;/th&gt;
-                &lt;th&gt;Nama&lt;/th&gt;
-                &lt;th&gt;Jurusan&lt;/th&gt;
-                &lt;th&gt;Mata Kuliah&lt;/th&gt;
-                &lt;th&gt;Total SKS&lt;/th&gt;
-                &lt;th&gt;Aksi&lt;/th&gt;
-            &lt;/tr&gt;
-        &lt;/thead&gt;
-        &lt;tbody&gt;
-            @foreach($students as $student)
-            &lt;tr&gt;
-                &lt;td&gt;{{ $student-&gt;nim }}&lt;/td&gt;
-                &lt;td&gt;{{ $student-&gt;name }}&lt;/td&gt;
-                &lt;td&gt;{{ $student-&gt;major-&gt;name }}&lt;/td&gt;
-                &lt;td&gt;
-                    @foreach($student-&gt;subjects as $subject)
-                        &lt;span class="badge bg-secondary me-1"&gt;{{ $subject-&gt;name }}&lt;/span&gt;
-                    @endforeach
-                &lt;/td&gt;
-                &lt;td&gt;{{ $student-&gt;subjects-&gt;sum('sks') }}&lt;/td&gt;
-                &lt;td&gt;
-                    &lt;a href="{{ route('students.show', $student-&gt;id) }}" class="btn btn-sm btn-info"&gt;Detail&lt;/a&gt;
-                    &lt;a href="{{ route('students.edit', $student-&gt;id) }}" class="btn btn-sm btn-warning"&gt;Edit&lt;/a&gt;
-                    &lt;form action="{{ route('students.destroy', $student-&gt;id) }}" method="POST" class="d-inline"&gt;
-                        @csrf
-                        @method('DELETE')
-                        &lt;button type="submit" class="btn btn-sm btn-danger"
-                            onclick="return confirm('Yakin ingin menghapus?')"&gt;Hapus&lt;/button&gt;
-                    &lt;/form&gt;
-                &lt;/td&gt;
-            &lt;/tr&gt;
-            @endforeach
-        &lt;/tbody&gt;
-    &lt;/table&gt;
-&lt;/div&gt;
-@endsection</div>
-
-              <p class="fw-semibold mb-1" style="font-size:.88rem;">C. Create Student <code>{{-- resources/views/students/create.blade.php --}}</code></p>
-              <div class="code-block">@extends('layouts.app')
-
-@section('content')
-&lt;h2&gt;Tambah Mahasiswa&lt;/h2&gt;
-
-&lt;div class="card"&gt;
-    &lt;div class="card-body"&gt;
-        &lt;form action="{{ route('students.store') }}" method="POST"&gt;
-            @csrf
-
-            &lt;div class="mb-3"&gt;
-                &lt;label for="nim" class="form-label"&gt;NIM&lt;/label&gt;
-                &lt;input type="text" class="form-control @error('nim') is-invalid @enderror"
-                    id="nim" name="nim" value="{{ old('nim') }}"&gt;
-                @error('nim')
-                    &lt;div class="invalid-feedback"&gt;{{ $message }}&lt;/div&gt;
-                @enderror
-            &lt;/div&gt;
-
-            &lt;div class="mb-3"&gt;
-                &lt;label for="name" class="form-label"&gt;Nama&lt;/label&gt;
-                &lt;input type="text" class="form-control @error('name') is-invalid @enderror"
-                    id="name" name="name" value="{{ old('name') }}"&gt;
-                @error('name')
-                    &lt;div class="invalid-feedback"&gt;{{ $message }}&lt;/div&gt;
-                @enderror
-            &lt;/div&gt;
-
-            &lt;div class="mb-3"&gt;
-                &lt;label for="address" class="form-label"&gt;Alamat&lt;/label&gt;
-                &lt;textarea class="form-control @error('address') is-invalid @enderror"
-                    id="address" name="address" rows="3"&gt;{{ old('address') }}&lt;/textarea&gt;
-                @error('address')
-                    &lt;div class="invalid-feedback"&gt;{{ $message }}&lt;/div&gt;
-                @enderror
-            &lt;/div&gt;
-
-            &lt;div class="mb-3"&gt;
-                &lt;label for="major_id" class="form-label"&gt;Jurusan&lt;/label&gt;
-                &lt;select class="form-control @error('major_id') is-invalid @enderror"
-                    id="major_id" name="major_id"&gt;
-                    &lt;option value=""&gt;-- Pilih Jurusan --&lt;/option&gt;
-                    @foreach($majors as $major)
-                        &lt;option value="{{ $major-&gt;id }}" {{ old('major_id') == $major-&gt;id ? 'selected' : '' }}&gt;
-                            {{ $major-&gt;name }}
-                        &lt;/option&gt;
-                    @endforeach
-                &lt;/select&gt;
-                @error('major_id')
-                    &lt;div class="invalid-feedback"&gt;{{ $message }}&lt;/div&gt;
-                @enderror
-            &lt;/div&gt;
-
-            &lt;div class="mb-3"&gt;
-                &lt;label class="form-label"&gt;Mata Kuliah&lt;/label&gt;
-                @error('subjects')
-                    &lt;div class="text-danger"&gt;{{ $message }}&lt;/div&gt;
-                @enderror
-                @foreach($subjects as $subject)
-                    &lt;div class="form-check"&gt;
-                        &lt;input class="form-check-input" type="checkbox"
-                            name="subjects[]" value="{{ $subject-&gt;id }}"
-                            id="subject_{{ $subject-&gt;id }}"
-                            {{ in_array($subject-&gt;id, old('subjects', [])) ? 'checked' : '' }}&gt;
-                        &lt;label class="form-check-label" for="subject_{{ $subject-&gt;id }}"&gt;
-                            {{ $subject-&gt;name }} ({{ $subject-&gt;sks }} SKS)
-                        &lt;/label&gt;
-                    &lt;/div&gt;
-                @endforeach
-            &lt;/div&gt;
-
-            &lt;button type="submit" class="btn btn-primary"&gt;Simpan&lt;/button&gt;
-            &lt;a href="{{ route('students.index') }}" class="btn btn-secondary"&gt;Batal&lt;/a&gt;
-        &lt;/form&gt;
-    &lt;/div&gt;
-&lt;/div&gt;
-@endsection</div>
+            <!-- Hasil -->
+            <div class="sub-section">
+              <p class="sub-section-title">Hasil</p>
+              <img src="../images/p8/p8.32.png" alt="Daftar Mahasiswa" class="report-img mb-1">
+              <p class="img-caption">Gambar 32. Daftar Mahasiswa</p>
+              <img src="../images/p8/p8.33.png" alt="Tambah Mahasiswa" class="report-img mb-1">
+              <p class="img-caption">Gambar 33. Tambah Mahasiswa</p>
+              <img src="../images/p8/p8.34.png" alt="Detail Mahasiswa" class="report-img mb-1">
+              <p class="img-caption">Gambar 34. Detail Mahasiswa</p>
+              <img src="../images/p8/p8.35.png" alt="Edit Data Mahasiswa" class="report-img mb-1">
+              <p class="img-caption">Gambar 35. Edit Data Mahasiswa</p>
+              <img src="../images/p8/p8.36.png" alt="Hapus Data Mahasiswa" class="report-img mb-1">
+              <p class="img-caption">Gambar 36. Hapus Data Mahasiswa</p>
             </div>
 
           </div>
         </div>
 
-        <!-- Latihan dan Tugas -->
+        <!-- 1.4 Challenge -->
         <div class="card border shadow-sm mb-3">
           <div class="card-body">
-            <p class="section-label">Latihan dan Tugas</p>
+            <p class="section-label">1.4 Challenge — Menambahkan Jadwal Mata Kuliah</p>
 
-            <p class="fw-semibold mb-2" style="font-size:.9rem;">Latihan 1: Query dengan Relationship</p>
-            <p class="text-secondary mb-2" style="font-size:.88rem;">Buat query untuk menampilkan:</p>
-            <ol class="text-secondary mb-0" style="font-size:.88rem;">
-              <li class="mb-1">Semua mahasiswa beserta jurusan dan mata kuliahnya</li>
-              <li class="mb-1">Jurusan yang memiliki mahasiswa terbanyak</li>
-              <li class="mb-1">Mata kuliah yang diambil oleh mahasiswa tertentu</li>
-              <li class="mb-0">Total SKS yang diambil setiap mahasiswa</li>
-            </ol>
+            <div class="sub-section">
+              <p class="sub-section-title">1. Membuat Model</p>
+              <img src="../images/p8/p8.37.png" alt="Membuat Model Jadwal" class="report-img mb-1">
+              <p class="img-caption">Gambar 37. Kode Model Jadwal dengan Relasi ke Subject</p>
+            </div>
+
+            <div class="sub-section">
+              <p class="sub-section-title">2. Membuat Controller</p>
+              <img src="../images/p8/p8.38.png" alt="Membuat Controller Jadwal" class="report-img mb-1">
+              <p class="img-caption">Gambar 38. Kode JadwalController</p>
+            </div>
+
+            <div class="sub-section">
+              <p class="sub-section-title">3. Membuat Seeder</p>
+              <img src="../images/p8/p8.39.png" alt="Membuat Seeder Jadwal" class="report-img mb-1">
+              <p class="img-caption">Gambar 39. Kode JadwalSeeder dengan Data Jadwal Mata Kuliah</p>
+            </div>
+
+            <div class="sub-section">
+              <p class="sub-section-title">4. Membuat View</p>
+              <img src="../images/p8/p8.40.png" alt="Membuat View Jadwal" class="report-img mb-1">
+              <p class="img-caption">Gambar 40. Kode View Tampilan Jadwal Mata Kuliah</p>
+            </div>
+
+            <div class="sub-section">
+              <p class="sub-section-title">Hasil</p>
+              <img src="../images/p8/p8.41.png" alt="Hasil Jadwal" class="report-img mb-1">
+              <p class="img-caption">Gambar 41. Hasil Halaman Jadwal Mata Kuliah</p>
+              <img src="../images/p8/p8.42.png" alt="Jadwal terintegrasi ke Detail Mahasiswa" class="report-img mb-1">
+              <p class="img-caption">Gambar 42. Jadwal Mata Kuliah terintegrasi ke Detail Mahasiswa</p>
+            </div>
+
           </div>
         </div>
 
@@ -987,7 +582,6 @@ Route::resource('students', StudentController::class);</div>
             <p class="text-secondary mb-0" style="font-size:.88rem;">Relationship adalah konsep fundamental dalam pengembangan aplikasi web dengan database. Pemahaman yang baik tentang relationship akan membantu dalam membangun aplikasi yang efisien dan mudah di-maintain.</p>
           </div>
         </div>
-
 
 
         <!-- GitHub button -->
