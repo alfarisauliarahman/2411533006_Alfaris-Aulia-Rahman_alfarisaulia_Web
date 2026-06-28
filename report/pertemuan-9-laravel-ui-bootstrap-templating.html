@@ -1,9 +1,10 @@
 <!doctype html>
 <html lang="id">
+
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Praktikum 9 — Laravel UI Bootstrap &amp; Templating · Alfaris Aulia</title>
+  <title>Praktikum 9 — Laravel Bootstrap &amp; Templating · Alfaris Aulia</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
   <link href="../css/custom.css" rel="stylesheet" />
@@ -15,12 +16,32 @@
       padding-bottom: 1.6rem;
       color: #fff;
     }
-    .page-hero .breadcrumb-item a { color: rgba(255,255,255,.65); text-decoration: none; }
-    .page-hero .breadcrumb-item a:hover { color: #fff; }
-    .page-hero .breadcrumb-item.active { color: rgba(255,255,255,.45); }
-    .page-hero .breadcrumb-item + .breadcrumb-item::before { color: rgba(255,255,255,.35); }
-    .page-hero h1 { font-size: 1.55rem; }
-    .page-hero .sub { font-size: .82rem; color: rgba(255,255,255,.55); }
+
+    .page-hero .breadcrumb-item a {
+      color: rgba(255, 255, 255, .65);
+      text-decoration: none;
+    }
+
+    .page-hero .breadcrumb-item a:hover {
+      color: #fff;
+    }
+
+    .page-hero .breadcrumb-item.active {
+      color: rgba(255, 255, 255, .45);
+    }
+
+    .page-hero .breadcrumb-item+.breadcrumb-item::before {
+      color: rgba(255, 255, 255, .35);
+    }
+
+    .page-hero h1 {
+      font-size: 1.55rem;
+    }
+
+    .page-hero .sub {
+      font-size: .82rem;
+      color: rgba(255, 255, 255, .55);
+    }
 
     .section-label {
       font-size: .7rem;
@@ -36,7 +57,7 @@
       color: #d4d4d4;
       border-radius: .5rem;
       padding: .9rem 1.1rem;
-      font-family: 'Consolas','Courier New',monospace;
+      font-family: 'Consolas', 'Courier New', monospace;
       font-size: .8rem;
       line-height: 1.7;
       overflow-x: auto;
@@ -50,7 +71,7 @@
       border-left: 3px solid #0d6efd;
       border-radius: .4rem;
       padding: .85rem 1rem;
-      font-family: 'Consolas','Courier New',monospace;
+      font-family: 'Consolas', 'Courier New', monospace;
       font-size: .8rem;
       line-height: 1.75;
       overflow-x: auto;
@@ -66,6 +87,7 @@
       border: 1px solid #dee2e6;
       display: block;
     }
+
     .img-caption {
       font-size: .82rem;
       color: #6c757d;
@@ -74,7 +96,12 @@
       text-align: center;
     }
 
-    .nav-pertemuan { list-style: none; padding: 0; margin: 0; }
+    .nav-pertemuan {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
     .nav-pertemuan li a,
     .nav-pertemuan li span {
       display: flex;
@@ -86,13 +113,34 @@
       text-decoration: none;
       transition: background .15s;
     }
-    .nav-pertemuan li a { color: #0d6efd; }
-    .nav-pertemuan li a:hover { background: rgba(13,110,253,.07); }
-    .nav-pertemuan li a.active { background: #0d6efd; color: #fff; font-weight: 600; }
-    .nav-pertemuan li span { color: #adb5bd; cursor: default; }
-    .nav-pertemuan li + li { margin-top: .15rem; }
 
-    .sub-section { margin-top: 1.75rem; }
+    .nav-pertemuan li a {
+      color: #0d6efd;
+    }
+
+    .nav-pertemuan li a:hover {
+      background: rgba(13, 110, 253, .07);
+    }
+
+    .nav-pertemuan li a.active {
+      background: #0d6efd;
+      color: #fff;
+      font-weight: 600;
+    }
+
+    .nav-pertemuan li span {
+      color: #adb5bd;
+      cursor: default;
+    }
+
+    .nav-pertemuan li+li {
+      margin-top: .15rem;
+    }
+
+    .sub-section {
+      margin-top: 1.75rem;
+    }
+
     .sub-section-title {
       font-size: .93rem;
       font-weight: 700;
@@ -152,14 +200,16 @@
         <div class="card border shadow-sm mb-3">
           <div class="card-body">
             <p class="section-label">1.1 Tujuan Pembelajaran</p>
-            <p class="text-secondary mb-2" style="font-size:.88rem;">Setelah melakukan praktikum ini, mahasiswa diharapkan mampu:</p>
+            <p class="text-secondary mb-2" style="font-size:.88rem;">Setelah melakukan praktikum ini, mahasiswa
+              diharapkan mampu:</p>
             <ol class="text-secondary mb-0" style="font-size:.88rem;">
               <li class="mb-1">Membuat project Laravel baru dan menjalankannya secara lokal</li>
               <li class="mb-1">Mengkonfigurasi koneksi database pada file <code>.env</code></li>
               <li class="mb-1">Mengimplementasikan autentikasi menggunakan paket Laravel UI dengan Bootstrap</li>
               <li class="mb-1">Membuat custom migration untuk tabel users dengan kolom tambahan</li>
               <li class="mb-1">Melakukan seeding data admin menggunakan AdminSeeder</li>
-              <li class="mb-0">Membangun tampilan antarmuka menggunakan template Bootstrap (SB Admin 2) dengan Blade Templating</li>
+              <li class="mb-0">Membangun tampilan antarmuka menggunakan template Bootstrap (SB Admin 2) dengan Blade
+                Templating</li>
             </ol>
           </div>
         </div>
@@ -229,7 +279,8 @@
               </p>
 
               <p class="fw-semibold mb-1" style="font-size:.88rem;">Install Package Laravel/UI</p>
-              <p class="text-secondary mb-1" style="font-size:.88rem;">Ketikkan terminal perintah-perintah berikut ini:</p>
+              <p class="text-secondary mb-1" style="font-size:.88rem;">Ketikkan terminal perintah-perintah berikut ini:
+              </p>
               <div class="terminal">composer require laravel/ui</div>
               <p class="text-secondary mb-1" style="font-size:.88rem;">
                 Jika berhasil maka akan tampil seperti gambar berikut ini:
@@ -238,9 +289,11 @@
               <p class="img-caption">Gambar 3. Instalasi Package Laravel/UI</p>
 
               <p class="fw-semibold mb-1 mt-3" style="font-size:.88rem;">Authentication Scaffolding</p>
-              <p class="text-secondary mb-1" style="font-size:.88rem;">Ketikkan perintah berikut pada terminal / command prompt:</p>
+              <p class="text-secondary mb-1" style="font-size:.88rem;">Ketikkan perintah berikut pada terminal / command
+                prompt:</p>
               <div class="terminal">php artisan ui bootstrap --auth</div>
-              <p class="text-secondary mb-1" style="font-size:.88rem;">Jika berhasil maka akan tampil seperti gambar berikut ini:</p>
+              <p class="text-secondary mb-1" style="font-size:.88rem;">Jika berhasil maka akan tampil seperti gambar
+                berikut ini:</p>
               <img src="../images/p9/p9.4.png" alt="Authentication scaffolding berhasil" class="report-img mb-1">
               <p class="img-caption">Gambar 4. Authentication Scaffolding Berhasil</p>
 
@@ -273,20 +326,23 @@
 
               <p class="fw-semibold mb-1 mt-3" style="font-size:.88rem;">Halaman Login</p>
               <p class="text-secondary mb-1" style="font-size:.88rem;">
-                Akses <code>http://127.0.0.1:8000/login</code> pada browser, maka akan tampil halaman login seperti berikut:
+                Akses <code>http://127.0.0.1:8000/login</code> pada browser, maka akan tampil halaman login seperti
+                berikut:
               </p>
               <img src="../images/p9/p9.9.png" alt="Halaman Login Authentication" class="report-img mb-1">
               <p class="img-caption">Gambar 9. Halaman Login Authentication</p>
 
               <p class="fw-semibold mb-1 mt-3" style="font-size:.88rem;">Halaman Register</p>
               <p class="text-secondary mb-1" style="font-size:.88rem;">
-                Akses <code>http://127.0.0.1:8000/register</code> pada browser, maka akan tampil halaman register seperti berikut:
+                Akses <code>http://127.0.0.1:8000/register</code> pada browser, maka akan tampil halaman register
+                seperti berikut:
               </p>
               <img src="../images/p9/p9.10.png" alt="Halaman Register Authentication" class="report-img mb-1">
               <p class="img-caption">Gambar 10. Halaman Register Authentication</p>
 
               <p class="text-secondary mb-1" style="font-size:.88rem;">
-                Setelah berhasil melakukan registrasi dan lakukan login ke aplikasi, jika berhasil maka akan tampil seperti gambar berikut ini:
+                Setelah berhasil melakukan registrasi dan lakukan login ke aplikasi, jika berhasil maka akan tampil
+                seperti gambar berikut ini:
               </p>
               <img src="../images/p9/p9.11.png" alt="Halaman Dashboard" class="report-img mb-1">
               <p class="img-caption">Gambar 11. Halaman Dashboard</p>
@@ -303,7 +359,8 @@
               <p class="img-caption">Gambar 12. Struktur Table Users</p>
 
               <p class="text-secondary mb-2" style="font-size:.88rem;">
-                Dari tabel tersebut, ada beberapa field yang perlu ditambahkan ataupun diubah sesuai kebutuhan field data,
+                Dari tabel tersebut, ada beberapa field yang perlu ditambahkan ataupun diubah sesuai kebutuhan field
+                data,
                 maka perlu membuat migration baru atau custom migration. Jalankan perintah berikut:
               </p>
               <div class="terminal">php artisan make:migration custom_table_users</div>
@@ -317,7 +374,8 @@
               <p class="img-caption">Gambar 14. Kode Migration Custom Table Users</p>
 
               <p class="text-secondary mb-1" style="font-size:.88rem;">
-                Kemudian jalankan perintah <code>php artisan migrate</code>, jika berhasil maka struktur tabel users telah
+                Kemudian jalankan perintah <code>php artisan migrate</code>, jika berhasil maka struktur tabel users
+                telah
                 berubah sesuai dengan kolom yang ditambahkan:
               </p>
               <div class="terminal">php artisan migrate</div>
@@ -348,7 +406,8 @@
               <p class="img-caption">Gambar 17. Seeding User Berhasil</p>
 
               <p class="text-secondary mb-1" style="font-size:.88rem;">
-                Jika berhasil maka coba login menggunakan user data admin yang telah dibuat. Tampilan aplikasi menggunakan user data admin:
+                Jika berhasil maka coba login menggunakan user data admin yang telah dibuat. Tampilan aplikasi
+                menggunakan user data admin:
               </p>
               <img src="../images/p9/p9.18.png" alt="Hasil Login Menggunakan User Data" class="report-img mb-1">
               <p class="img-caption">Gambar 18. Hasil Login Menggunakan User Data</p>
@@ -365,15 +424,18 @@
               Authentication Laravel secara otomatis men-generate tampilan halaman dashboard aplikasi. Langkah
               selanjutnya, kita akan mengkonfigurasi template sesuai dengan template yang sesuai. Di sini ada
               satu isu di kita menggunakan template SB Admin 2 dengan template yang kita dapat dari
-              <a href="https://startbootstrap.com/themes/sb-admin-2" target="_blank" rel="noopener">startbootstrap.com/themes/sb-admin-2</a>. Kemudian
-              download template pada link tersebut, setelah itu copy paste template yang telah didownload ke dalam folder
+              <a href="https://startbootstrap.com/themes/sb-admin-2" target="_blank"
+                rel="noopener">startbootstrap.com/themes/sb-admin-2</a>. Kemudian
+              download template pada link tersebut, setelah itu copy paste template yang telah didownload ke dalam
+              folder
               public project Laravel.
             </p>
 
             <div class="sub-section">
               <p class="sub-section-title">Halaman Login Aplikasi</p>
               <p class="text-secondary mb-2" style="font-size:.88rem;">
-                Buka file <code>login.blade.php</code> pada folder <code>view/layouts</code> kemudian ganti dengan kode program
+                Buka file <code>login.blade.php</code> pada folder <code>view/layouts</code> kemudian ganti dengan kode
+                program
                 dibawah ini:
               </p>
               <img src="../images/p9/p9.19.png" alt="Kode Halaman Login bagian 1" class="report-img mb-1">
@@ -400,7 +462,8 @@
               </p>
 
               <p class="text-secondary mb-1" style="font-size:.88rem;">
-                Buka file <code>main.blade.php</code> pada folder <code>view/layouts</code> kemudian isi dengan kode program berikut:
+                Buka file <code>main.blade.php</code> pada folder <code>view/layouts</code> kemudian isi dengan kode
+                program berikut:
               </p>
               <img src="../images/p9/p9.22.png" alt="Kode main.blade.php bagian 1" class="report-img mb-1">
               <p class="img-caption">Gambar 22. Kode main.blade.php (Bagian 1)</p>
@@ -415,7 +478,8 @@
             <div class="sub-section">
               <p class="sub-section-title">Sidebar</p>
               <p class="text-secondary mb-2" style="font-size:.88rem;">
-                Buat file <code>sidebar.blade.php</code> pada folder layouts dengan nama <code>sidebar.blade.php</code> dan isi dengan kode program berikut:
+                Buat file <code>sidebar.blade.php</code> pada folder layouts dengan nama <code>sidebar.blade.php</code>
+                dan isi dengan kode program berikut:
               </p>
               <img src="../images/p9/p9.25.png" alt="Kode sidebar.blade.php" class="report-img mb-1">
               <p class="img-caption">Gambar 25. Kode sidebar.blade.php</p>
@@ -427,7 +491,8 @@
             <div class="sub-section">
               <p class="sub-section-title">Topbar</p>
               <p class="text-secondary mb-2" style="font-size:.88rem;">
-                Buat file pada di folder layouts dengan nama <code>topbar.blade.php</code> dan isi dengan kode program berikut:
+                Buat file pada di folder layouts dengan nama <code>topbar.blade.php</code> dan isi dengan kode program
+                berikut:
               </p>
               <img src="../images/p9/p9.27.png" alt="Kode topbar.blade.php" class="report-img mb-1">
               <p class="img-caption">Gambar 27. Kode topbar.blade.php</p>
@@ -443,7 +508,8 @@
               <p class="text-secondary mb-1" style="font-size:.88rem;">
                 Konfigurasi layout tersebut maka akan tampil seperti gambar berikut:
               </p>
-              <img src="../images/p9/p9.28.png" alt="Hasil tampilan layout dashboard SB Admin 2" class="report-img mb-1">
+              <img src="../images/p9/p9.28.png" alt="Hasil tampilan layout dashboard SB Admin 2"
+                class="report-img mb-1">
               <p class="img-caption">Gambar 28. Hasil Tampilan Layout Dashboard dengan SB Admin 2</p>
             </div>
 
@@ -467,7 +533,8 @@
             <p class="img-caption">Gambar 29. Kode Routes Manajemen Users dengan Middleware Auth</p>
 
             <p class="text-secondary mb-1" style="font-size:.88rem;">
-              Selanjutnya bila dilakukan perintah <code>php artisan route:list</code>, maka tampak seperti gambar berikut ini:
+              Selanjutnya bila dilakukan perintah <code>php artisan route:list</code>, maka tampak seperti gambar
+              berikut ini:
             </p>
             <img src="../images/p9/p9.30.png" alt="File UserController Resource" class="report-img mb-1">
             <p class="img-caption">Gambar 30. File UserController Resource</p>
@@ -585,7 +652,8 @@
               <p class="img-caption">Gambar 45. Pop-up Dialog Konfirmasi Hapus Data User</p>
 
               <p class="text-secondary mb-1" style="font-size:.88rem;">
-                Jika kita tekan OK maka data akan dihapus, jika data berhasil dihapus maka akan muncul pesan seperti gambar berikut:
+                Jika kita tekan OK maka data akan dihapus, jika data berhasil dihapus maka akan muncul pesan seperti
+                gambar berikut:
               </p>
               <img src="../images/p9/p9.46.png" alt="Pesan berhasil dihapus" class="report-img mb-1">
               <p class="img-caption">Gambar 46. Tampilan Pesan "User Berhasil Dihapus"</p>
@@ -616,17 +684,23 @@
             <p class="section-label">Kesimpulan</p>
             <p class="text-secondary mb-2" style="font-size:.88rem;">Dalam modul ini, mahasiswa telah mempelajari:</p>
             <ol class="text-secondary mb-3" style="font-size:.88rem;">
-              <li class="mb-1">Cara membuat project Laravel baru dan menjalankannya dengan <code>php artisan serve</code></li>
+              <li class="mb-1">Cara membuat project Laravel baru dan menjalankannya dengan
+                <code>php artisan serve</code></li>
               <li class="mb-1">Konfigurasi database pada file <code>.env</code> untuk koneksi ke MySQL</li>
-              <li class="mb-1">Implementasi fitur autentikasi menggunakan package Laravel UI dengan scaffolding Bootstrap</li>
+              <li class="mb-1">Implementasi fitur autentikasi menggunakan package Laravel UI dengan scaffolding
+                Bootstrap</li>
               <li class="mb-1">Pembuatan custom migration untuk menambah kolom baru pada tabel users</li>
               <li class="mb-1">Penggunaan seeder (AdminSeeder) untuk memasukkan data user admin secara otomatis</li>
-              <li class="mb-1">Penerapan Blade Templating dengan layout <code>main.blade.php</code>, partial sidebar &amp; topbar, dan direktif <code>@yield</code> / <code>@include</code></li>
-              <li class="mb-0">Pembuatan fitur CRUD Manajemen Users menggunakan Resource Controller dengan proteksi middleware <code>auth</code></li>
+              <li class="mb-1">Penerapan Blade Templating dengan layout <code>main.blade.php</code>, partial sidebar
+                &amp; topbar, dan direktif <code>@yield</code> / <code>@include</code></li>
+              <li class="mb-0">Pembuatan fitur CRUD Manajemen Users menggunakan Resource Controller dengan proteksi
+                middleware <code>auth</code></li>
             </ol>
             <p class="text-secondary mb-0" style="font-size:.88rem;">
-              Fitur authentication pada Laravel secara otomatis men-generate controller, model, view, dan route authentication
-              sehingga otomatis, selain itu juga men-generate view custom dengan menggunakan framework bootstrap sehingga
+              Fitur authentication pada Laravel secara otomatis men-generate controller, model, view, dan route
+              authentication
+              sehingga otomatis, selain itu juga men-generate view custom dengan menggunakan framework bootstrap
+              sehingga
               authentication akan terstruktur dengan baik. Dengan memanfaatkan template SB Admin 2 dan Blade Templating,
               tampilan aplikasi menjadi lebih profesional dan mudah dikustomisasi.
             </p>
@@ -635,7 +709,8 @@
 
         <!-- GitHub button -->
         <div class="d-grid d-md-flex mb-4">
-          <a href="https://github.com/alfarisauliarahman/laravel-sisfo" target="_blank" rel="noopener" class="btn btn-dark btn-lg px-4">
+          <a href="https://github.com/alfarisauliarahman/laravel-sisfo" target="_blank" rel="noopener"
+            class="btn btn-dark btn-lg px-4">
             <i class="bi bi-github me-2"></i>Repository GitHub
           </a>
         </div>
@@ -648,11 +723,26 @@
           <div class="card-body">
             <p class="section-label">Informasi</p>
             <table class="table table-sm table-borderless mb-0" style="font-size:.88rem;">
-              <tr><td class="text-muted ps-0">Mata Kuliah</td><td class="fw-semibold">Desain Web</td></tr>
-              <tr><td class="text-muted ps-0">Pertemuan</td><td class="fw-semibold">9</td></tr>
-              <tr><td class="text-muted ps-0">Nama</td><td class="fw-semibold">Alfaris Aulia Rahman</td></tr>
-              <tr><td class="text-muted ps-0">NIM</td><td class="fw-semibold">2411533006</td></tr>
-              <tr><td class="text-muted ps-0">Status</td><td><span class="badge bg-success">Selesai</span></td></tr>
+              <tr>
+                <td class="text-muted ps-0">Mata Kuliah</td>
+                <td class="fw-semibold">Desain Web</td>
+              </tr>
+              <tr>
+                <td class="text-muted ps-0">Pertemuan</td>
+                <td class="fw-semibold">9</td>
+              </tr>
+              <tr>
+                <td class="text-muted ps-0">Nama</td>
+                <td class="fw-semibold">Alfaris Aulia Rahman</td>
+              </tr>
+              <tr>
+                <td class="text-muted ps-0">NIM</td>
+                <td class="fw-semibold">2411533006</td>
+              </tr>
+              <tr>
+                <td class="text-muted ps-0">Status</td>
+                <td><span class="badge bg-success">Selesai</span></td>
+              </tr>
             </table>
           </div>
         </div>
@@ -701,9 +791,12 @@
           <h5 class="fw-bold text-white">Alfaris Aulia</h5>
           <p class="mb-3">Website portofolio untuk dokumentasi pembelajaran Web, Java, Design, dan Music.</p>
           <div class="d-flex gap-2">
-            <a class="btn btn-outline-light btn-sm" href="https://instagram.com/faisrahman02" target="_blank" rel="noopener"><i class="bi bi-instagram"></i></a>
-            <a class="btn btn-outline-light btn-sm" href="https://github.com/alfarisauliarahman" target="_blank" rel="noopener"><i class="bi bi-github"></i></a>
-            <a class="btn btn-outline-light btn-sm" href="https://www.linkedin.com/in/alfaris-aulia-rahman-50425a312/" target="_blank" rel="noopener"><i class="bi bi-linkedin"></i></a>
+            <a class="btn btn-outline-light btn-sm" href="https://instagram.com/faisrahman02" target="_blank"
+              rel="noopener"><i class="bi bi-instagram"></i></a>
+            <a class="btn btn-outline-light btn-sm" href="https://github.com/alfarisauliarahman" target="_blank"
+              rel="noopener"><i class="bi bi-github"></i></a>
+            <a class="btn btn-outline-light btn-sm" href="https://www.linkedin.com/in/alfaris-aulia-rahman-50425a312/"
+              target="_blank" rel="noopener"><i class="bi bi-linkedin"></i></a>
           </div>
         </div>
         <div class="col-6 col-lg-2">
@@ -726,11 +819,14 @@
         </div>
       </div>
       <hr class="my-4 border-secondary" />
-      <div class="text-center"><p class="mb-0">&copy; 2026 Alfaris Aulia. All rights reserved.</p></div>
+      <div class="text-center">
+        <p class="mb-0">&copy; 2026 Alfaris Aulia. All rights reserved.</p>
+      </div>
     </div>
   </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <script src="../js/main.js"></script>
 </body>
+
 </html>
