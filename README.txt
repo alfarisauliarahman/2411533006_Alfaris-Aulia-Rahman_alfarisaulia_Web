@@ -1,20 +1,52 @@
-Deskripsi Website Portofolio
+# Personal Portfolio Website
 
-Nama	: Alfaris Aulia Rahman
-NIM	: 2411533006
+A responsive personal portfolio website built with HTML, Bootstrap 5, custom CSS, and JavaScript. It presents a personal profile, background, portfolio of work, and a contact section.
 
-Website ini merupakan media portofolio berbasis web yang dikembangkan sebagai bagian dari tugas mata kuliah Desain Web. Pengembangan website dilakukan menggunakan HTML serta Bootstrap 5 untuk mendukung tampilan yang responsif dan konsisten di berbagai perangkat. Website ini memuat informasi mengenai profil pribadi, latar belakang singkat, dokumentasi karya, serta sarana untuk menghubungi pemilik website (saya).
+The project serves as coursework for two courses:
 
-1. Home
-Halaman pembuka yang menampilkan pengenalan singkat, tampilan visual utama, serta beberapa elemen pendukung seperti grid fitur dan slider gambar.
+- **Web Design (semester 3)** for the front-end design and layout.
+- **Web Programming (semester 4)** for the practicum reports section.
 
-2. Tentang Saya (About)
-Menyajikan informasi profil secara lebih detail, termasuk riwayat pendidikan dan pengalaman, yang disusun menggunakan komponen accordion agar informasi tersaji ringkas dan terstruktur.
+The site is deployed to Hostinger through an automated GitHub Actions workflow.
 
-3. Portofolio
-Menampilkan kumpulan karya atau proyek yang pernah dibuat. Setiap item dapat difilter berdasarkan kategori dan dilihat detailnya melalui tampilan modal.
+**Live site:** http://alfarisaulia.ifportofolio.com/
 
-4. Kontak
-Digunakan sebagai sarana komunikasi melalui formulir kontak dengan validasi input di sisi klien, dilengkapi peta lokasi menggunakan Google Maps.
+## Pages
 
-Link: http://alfarisaulia.ifportofolio.com/
+- **Home** — introduction, main visual, feature grid, and image slider
+- **About** — detailed profile, education, and experience, organized with accordion components
+- **Portofolio** — showcase of works that can be filtered by category, with details shown in a modal
+- **Gallery** — image gallery
+- **Report** — Web Programming practicum reports (meetings 6 to 9: Laravel configuration, migration and routing, Eloquent relationships, and Laravel UI)
+- **Contact** — contact form with client-side validation and a Google Maps location embed
+
+## Tech Stack
+
+- HTML
+- Bootstrap 5
+- Custom CSS
+- JavaScript
+- GitHub Actions (automated deployment to Hostinger)
+
+## Project Structure
+
+```
+index.html          Home
+portofolio.html     Portfolio
+about.html          About
+gallery.html        Gallery
+kontak.html         Contact
+report/             Web Programming practicum reports
+css/custom.css      Custom styles
+js/main.js          Scripts
+.github/workflows/deploy_alfarisaulia.yml   Deployment pipeline
+```
+
+## Deployment
+
+Pushing to the main branch triggers the GitHub Actions workflow, which deploys the site to Hostinger automatically.
+
+## Author
+
+- **Name:** Alfaris Aulia Rahman
+- **NIM:** 2411533006
