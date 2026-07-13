@@ -2,5 +2,7 @@
 admin.html
 js/admin.js
 js/admin-imgeditor.js
-supabase/admin-setup.sql
 SETUP-ADMIN.md
+
+# Semua SQL backend Supabase — LOKAL saja
+supabase/
