@@ -1,6 +1,6 @@
 # Personal Portfolio Website
 
-A responsive personal portfolio website built with HTML, Bootstrap 5, custom CSS, and JavaScript. It presents a personal profile, background, portfolio of work, and a contact section.
+A responsive personal portfolio website built with HTML, Bootstrap 5, custom CSS, and JavaScript, with dynamic content served from Supabase. It presents a personal profile, background, portfolio of work, and a contact section.
 
 The project serves as coursework for two courses:
 
@@ -26,6 +26,7 @@ The site is deployed to Hostinger through an automated GitHub Actions workflow.
 - Bootstrap 5
 - Custom CSS
 - JavaScript
+- Supabase (backend for dynamic portfolio, skills, gallery data, and the contact form)
 - GitHub Actions (automated deployment to Hostinger)
 
 ## Project Structure
