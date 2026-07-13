@@ -1,0 +1,6 @@
+# Panel admin — LOKAL saja, jangan pernah dipush ke GitHub / dideploy
+admin.html
+js/admin.js
+js/admin-imgeditor.js
+supabase/admin-setup.sql
+SETUP-ADMIN.md
