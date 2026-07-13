@@ -15,6 +15,13 @@
       .replaceAll("<", "&lt;")
       .replaceAll(">", "&gt;");
 
+  // Tolak skema berbahaya pada URL (javascript:, data:, vbscript:).
+  // Selain itu (http/https, path relatif) dibiarkan apa adanya.
+  const safeUrl = (v) => {
+    const s = String(v == null ? "" : v).trim();
+    return /^(javascript|data|vbscript):/i.test(s) ? "" : s;
+  };
+
   const IFRAME_ALLOW =
     "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
 
@@ -37,8 +44,8 @@
     const capClass = "carousel-caption" + (s.pos ? " caption-" + esc(s.pos) : "");
     const media =
       s.type === "video"
-        ? `<div class="ratio ratio-16x9"><iframe src="${esc(s.src)}" title="YouTube video player" frameborder="0" allow="${IFRAME_ALLOW}" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>`
-        : `<div class="gallery-img-wrap"><img src="${esc(s.src)}" alt="${esc(s.h5)}" loading="lazy" decoding="async"></div>`;
+        ? `<div class="ratio ratio-16x9"><iframe src="${esc(safeUrl(s.src))}" title="YouTube video player" frameborder="0" allow="${IFRAME_ALLOW}" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>`
+        : `<div class="gallery-img-wrap"><img src="${esc(safeUrl(s.src))}" alt="${esc(s.h5)}" loading="lazy" decoding="async"></div>`;
     return `
       <div class="carousel-item${active}">
         ${media}

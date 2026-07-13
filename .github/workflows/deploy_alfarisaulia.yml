@@ -21,3 +21,12 @@ jobs:
           password: ${{ secrets.FTP_PASSWORD }}
           server-dir: ./alfarisaulia/
           dangerous-clean-slate: true
+          # Jangan unggah panel admin ke server publik (dipakai lokal saja).
+          exclude: |
+            **/.git*
+            **/.git*/**
+            **/node_modules/**
+            admin.html
+            js/admin.js
+            supabase/**
+            **/*.md

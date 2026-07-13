@@ -79,7 +79,15 @@
         if (modalInner) {
           const item = document.createElement("div");
           item.className = "carousel-item" + (i === 0 ? " active" : "");
-          item.innerHTML = `<img src="${src}" class="modal-portfolio-img" alt="Portfolio image ${i + 1}" loading="lazy" decoding="async">`;
+          // pakai DOM API + setAttribute supaya nilai src tidak bisa
+          // "keluar" jadi HTML (mencegah XSS lewat data gambar).
+          const img = document.createElement("img");
+          img.className = "modal-portfolio-img";
+          img.alt = "Portfolio image " + (i + 1);
+          img.loading = "lazy";
+          img.decoding = "async";
+          img.setAttribute("src", src);
+          item.appendChild(img);
           modalInner.appendChild(item);
         }
       });
