@@ -9,24 +9,29 @@
     if (href && current === href) a.classList.add("active");
   });
 
-  // portofolio: filter projek
+  // portofolio: filter projek (aman untuk kartu yang dirender async)
   const tabs = document.querySelectorAll("#portfolioTabs .nav-link");
-  const items = document.querySelectorAll(".portfolio-item");
 
-  if (tabs.length && items.length) {
+  if (tabs.length) {
+    const applyFilter = () => {
+      const active = document.querySelector("#portfolioTabs .nav-link.active");
+      const filter = (active?.getAttribute("data-filter") || "all").toLowerCase();
+      document.querySelectorAll(".portfolio-item").forEach((item) => {
+        const cat = (item.getAttribute("data-category") || "").toLowerCase();
+        item.classList.toggle("is-hidden", !(filter === "all" || cat === filter));
+      });
+    };
+
     tabs.forEach((btn) => {
       btn.addEventListener("click", () => {
         tabs.forEach((b) => b.classList.remove("active"));
         btn.classList.add("active");
-
-        const filter = (btn.getAttribute("data-filter") || "all").toLowerCase();
-        items.forEach((item) => {
-          const cat = (item.getAttribute("data-category") || "").toLowerCase();
-          const show = filter === "all" || cat === filter;
-          item.classList.toggle("is-hidden", !show);
-        });
+        applyFilter();
       });
     });
+
+    // kartu bisa muncul setelah data async (Supabase) selesai
+    document.addEventListener("portfolio:rendered", applyFilter);
   }
 
   // portofolio: modal
@@ -106,32 +111,50 @@
       });
     });
 
-    form.addEventListener("submit", (e) => {
+    form.addEventListener("submit", async (e) => {
       e.preventDefault();
       e.stopPropagation();
 
       alertSuccess?.classList.add("d-none");
       alertError?.classList.add("d-none");
-
       form.classList.add("was-validated");
 
-      if (form.checkValidity()) {
-        alertSuccess?.classList.remove("d-none");
-
-        form.reset();
-        form.classList.remove("was-validated");
-        alertWarn?.classList.add("d-none");
-
-        if (submitBtn) submitBtn.disabled = false;
-      } else {
+      if (!form.checkValidity()) {
         alertError?.classList.remove("d-none");
+        return;
       }
+
+      const payload = {
+        name: (document.getElementById("name")?.value || "").trim(),
+        email: (document.getElementById("email")?.value || "").trim(),
+        phone: (document.getElementById("phone")?.value || "").trim(),
+        message: (document.getElementById("message")?.value || "").trim(),
+      };
+
+      // Simpan ke Supabase kalau dikonfigurasi
+      if (typeof supabaseClient !== "undefined" && supabaseClient) {
+        if (submitBtn) submitBtn.disabled = true;
+        const { error } = await supabaseClient.from("messages").insert(payload);
+        if (submitBtn) submitBtn.disabled = false;
+        if (error) {
+          console.warn("Gagal menyimpan pesan:", error);
+          alertError?.classList.remove("d-none");
+          return;
+        }
+      }
+
+      alertSuccess?.classList.remove("d-none");
+      form.reset();
+      form.classList.remove("was-validated");
+      alertWarn?.classList.add("d-none");
     });
   }
   // touch swipe support untuk semua carousel (gallery & portofolio)
   function addSwipeSupport(carouselEl) {
     const inner = carouselEl.querySelector(".carousel-inner");
     if (!inner) return;
+    if (carouselEl.dataset.swipeBound) return; // hindari pasang dobel
+    carouselEl.dataset.swipeBound = "1";
 
     let startX = 0;
     let startY = 0;
@@ -172,4 +195,8 @@
 
   // apply ke semua carousel yang ada di halaman
   document.querySelectorAll(".carousel").forEach(addSwipeSupport);
+  // gallery bisa dirender async (Supabase) -> pasang swipe ke carousel baru
+  document.addEventListener("gallery:rendered", () => {
+    document.querySelectorAll(".carousel").forEach(addSwipeSupport);
+  });
 })();

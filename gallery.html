@@ -48,191 +48,14 @@
   <section class="py-4">
     <div class="container">
       <div class="gallery-grid" id="galleryGrid">
-        
-        <!-- Album 1: Teater Musikal Kontemporer -->
-        <div class="gallery-item" data-bs-toggle="modal" data-bs-target="#galleryModal1">
-          <div class="gallery-item-inner">
-            <img src="images/theather_1.jpg" alt="Teater Musikal Kontemporer" class="gallery-img">
-            <div class="gallery-overlay"></div>
-          </div>
-          <div class="gallery-caption">
-            <h6 class="mb-1">Teater Musikal Kontemporer</h6>
-            <small class="text-muted">1 video + 6 foto</small>
-          </div>
-        </div>
 
-        <!-- Album 2: Senandung Anak Menara -->
-        <div class="gallery-item" data-bs-toggle="modal" data-bs-target="#galleryModal2">
-          <div class="gallery-item-inner">
-            <img src="https://img.youtube.com/vi/2iJZNwUmFws/maxresdefault.jpg" alt="Senandung Anak Menara" class="gallery-img">
-            <div class="gallery-overlay"></div>
-          </div>
-          <div class="gallery-caption">
-            <h6 class="mb-1">Senandung Anak Menara</h6>
-            <small class="text-muted">1 video + 1 foto</small>
-          </div>
-        </div>
-
+        <!-- Kartu galeri di-render oleh js/render-gallery.js dari data -->
 
       </div>
     </div>
   </section>
 
-  <!-- Modal 1: Teater Musikal Kontemporer -->
-  <div class="modal fade" id="galleryModal1" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-xl">
-      <div class="modal-content bg-dark">
-        <div class="modal-header border-0">
-          <h5 class="text-white">Teater Musikal Kontemporer</h5>
-          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body p-0">
-          <div id="carousel1" class="carousel slide" data-bs-ride="false">
-            <div class="carousel-inner">
-              <!-- Slide 1: Video YouTube -->
-              <div class="carousel-item active">
-                <div class="ratio ratio-16x9">
-                  <iframe src="https://www.youtube.com/embed/KMWPxp8oL8U?si=RdOrDQdMsfPCHMYm" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                </div>
-                <div class="carousel-caption caption-center">
-                  <h5>Teater Musikal Kontemporer</h5>
-                  <p>'INI AKU'</p>
-                </div>
-              </div>
-              <!-- Slide 2: Theater 1 -->
-              <div class="carousel-item">
-                <div class="gallery-img-wrap">
-                  <img src="images/theather_1.jpg" alt="Theater 1">
-                </div>
-                <div class="carousel-caption caption-left">
-                  <h5>Photo 1</h5>
-                  <p>class photogroup!</p>
-                </div>
-              </div>
-              <!-- Slide 3: Theater 2 -->
-              <div class="carousel-item">
-                <div class="gallery-img-wrap">
-                  <img src="images/theather_2.jpg" alt="Theater 2">
-                </div>
-                <div class="carousel-caption caption-center">
-                  <h5>Photo 2</h5>
-                  <p>dancer!</p>
-                </div>
-              </div>
-              <!-- Slide 4: Theater 3 -->
-              <div class="carousel-item">
-                <div class="gallery-img-wrap">
-                  <img src="images/theather_3.jpg" alt="Theater 3">
-                </div>
-                <div class="carousel-caption caption-right">
-                  <h5>Photo 3</h5>
-                  <p>idk what's this</p>
-                </div>
-              </div>
-              <!-- Slide 5: Theater 4 -->
-              <div class="carousel-item">
-                <div class="gallery-img-wrap">
-                  <img src="images/theather_4.jpg" alt="Theater 4">
-                </div>
-                <div class="carousel-caption caption-left">
-                  <h5>Photo 4</h5>
-                  <p>inti!</p>
-                </div>
-              </div>
-              <!-- Slide 6: Theater 6 -->
-              <div class="carousel-item">
-                <div class="gallery-img-wrap">
-                  <img src="images/theather_6.jpg" alt="Theater 6">
-                </div>
-                <div class="carousel-caption caption-center">
-                  <h5>Photo 5</h5>
-                  <p>again!</p>
-                </div>
-              </div>
-              <!-- Slide 7: Theater 7 -->
-              <div class="carousel-item">
-                <div class="gallery-img-wrap">
-                  <img src="images/theather_7.jpg" alt="Theater 7">
-                </div>
-                <div class="carousel-caption caption-right">
-                  <h5>Photo 6</h5>
-                  <p>menunjuk</p>
-                </div>
-              </div>
-            </div>
-            <div class="carousel-indicators">
-              <button type="button" data-bs-target="#carousel1" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-              <button type="button" data-bs-target="#carousel1" data-bs-slide-to="1" aria-label="Slide 2"></button>
-              <button type="button" data-bs-target="#carousel1" data-bs-slide-to="2" aria-label="Slide 3"></button>
-              <button type="button" data-bs-target="#carousel1" data-bs-slide-to="3" aria-label="Slide 4"></button>
-              <button type="button" data-bs-target="#carousel1" data-bs-slide-to="4" aria-label="Slide 5"></button>
-              <button type="button" data-bs-target="#carousel1" data-bs-slide-to="5" aria-label="Slide 6"></button>
-              <button type="button" data-bs-target="#carousel1" data-bs-slide-to="6" aria-label="Slide 7"></button>
-            </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#carousel1" data-bs-slide="prev">
-              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-              <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carousel1" data-bs-slide="next">
-              <span class="carousel-control-next-icon" aria-hidden="true"></span>
-              <span class="visually-hidden">Next</span>
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Modal 2: Kuliah & Kampus -->
-  <div class="modal fade" id="galleryModal2" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-xl">
-      <div class="modal-content bg-dark">
-        <div class="modal-header border-0">
-          <h5 class="text-white">Senandung Anak Menara</h5>
-          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body p-0">
-          <div id="carousel2" class="carousel slide" data-bs-ride="false">
-            <div class="carousel-inner">
-              <!-- Slide 1: Video YouTube -->
-              <div class="carousel-item active">
-                <div class="ratio ratio-16x9">
-                  <iframe src="https://www.youtube.com/embed/2iJZNwUmFws?si=rTJbm5tPIf-n0__p" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                </div>
-                <div class="carousel-caption">
-                  <h5>Senandung Anak Menara</h5>
-                  <p>Anak Indonesia</p>
-                </div>
-              </div>
-              <!-- Slide 2: AAI 1 -->
-              <div class="carousel-item">
-                <div class="gallery-img-wrap">
-                  <img src="images/aai_1.jpg" alt="AAI 1">
-                </div>
-                <div class="carousel-caption caption-left">
-                  <h5>Photo 1</h5>
-                  <p>tim produksi😆</p>
-                </div>
-              </div>
-            </div>
-            <div class="carousel-indicators">
-              <button type="button" data-bs-target="#carousel2" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-              <button type="button" data-bs-target="#carousel2" data-bs-slide-to="1" aria-label="Slide 2"></button>
-            </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#carousel2" data-bs-slide="prev">
-              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-              <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carousel2" data-bs-slide="next">
-              <span class="carousel-control-next-icon" aria-hidden="true"></span>
-              <span class="visually-hidden">Next</span>
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
+  <div id="galleryModals"></div>
 
   <footer class="py-5">
     <div class="container">
@@ -294,6 +117,10 @@
   </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/supabase-config.js"></script>
+  <script src="js/gallery-data.js"></script>
+  <script src="js/render-gallery.js"></script>
   <script src="js/main.js"></script>
 </body>
 </html>
