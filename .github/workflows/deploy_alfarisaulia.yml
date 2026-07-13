@@ -28,5 +28,6 @@ jobs:
             **/node_modules/**
             admin.html
             js/admin.js
+            js/admin-imgeditor.js
             supabase/**
             **/*.md
