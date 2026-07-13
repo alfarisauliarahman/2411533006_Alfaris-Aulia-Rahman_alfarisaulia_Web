@@ -33,7 +33,7 @@
     return `
       <div class="col-md-6 col-lg-4 portfolio-item" data-category="${esc(p.filter)}">
         <div class="card portfolio-card h-100">
-          <img src="${esc(p.image)}" class="portfolio-thumb w-100" alt="${esc(p.title)}">
+          <img src="${esc(p.image)}" class="portfolio-thumb w-100" alt="${esc(p.title)}" loading="lazy" decoding="async">
           <div class="card-body">
             <div class="d-flex justify-content-between align-items-start gap-2">
               <h5 class="fw-semibold mb-1">${esc(p.title)}</h5>

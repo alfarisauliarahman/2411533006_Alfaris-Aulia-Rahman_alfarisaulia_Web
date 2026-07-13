@@ -22,7 +22,7 @@
     return `
       <div class="gallery-item" data-bs-toggle="modal" data-bs-target="#galleryModal${esc(a.id)}">
         <div class="gallery-item-inner">
-          <img src="${esc(a.thumb)}" alt="${esc(a.title)}" class="gallery-img">
+          <img src="${esc(a.thumb)}" alt="${esc(a.title)}" class="gallery-img" loading="lazy" decoding="async">
           <div class="gallery-overlay"></div>
         </div>
         <div class="gallery-caption">
@@ -38,7 +38,7 @@
     const media =
       s.type === "video"
         ? `<div class="ratio ratio-16x9"><iframe src="${esc(s.src)}" title="YouTube video player" frameborder="0" allow="${IFRAME_ALLOW}" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>`
-        : `<div class="gallery-img-wrap"><img src="${esc(s.src)}" alt="${esc(s.h5)}"></div>`;
+        : `<div class="gallery-img-wrap"><img src="${esc(s.src)}" alt="${esc(s.h5)}" loading="lazy" decoding="async"></div>`;
     return `
       <div class="carousel-item${active}">
         ${media}

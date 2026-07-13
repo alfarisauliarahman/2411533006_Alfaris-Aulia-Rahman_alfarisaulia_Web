@@ -79,7 +79,7 @@
         if (modalInner) {
           const item = document.createElement("div");
           item.className = "carousel-item" + (i === 0 ? " active" : "");
-          item.innerHTML = `<img src="${src}" class="modal-portfolio-img" alt="Portfolio image ${i + 1}">`;
+          item.innerHTML = `<img src="${src}" class="modal-portfolio-img" alt="Portfolio image ${i + 1}" loading="lazy" decoding="async">`;
           modalInner.appendChild(item);
         }
       });
