@@ -24,7 +24,7 @@
 
   const skills = await getSkills();
   grid.innerHTML = skills.map((s) => `
-      <div class="col-6 col-md-4 col-lg-3">
+      <div class="col-6 col-md-4 col-lg-3 reveal">
         <div class="card feature-card h-100 text-center">
           <div class="card-body">
             <div class="icon-badge mx-auto mb-3"><i class="bi ${esc(s.icon)} fs-5"></i></div>
@@ -33,4 +33,6 @@
           </div>
         </div>
       </div>`).join("");
+
+  document.dispatchEvent(new CustomEvent("skills:rendered"));
 })();

@@ -9,6 +9,49 @@
     if (href && current === href) a.classList.add("active");
   });
 
+  // ===== Dark mode toggle (tema tersimpan di localStorage) =====
+  (() => {
+    const root = document.documentElement;
+    const navUl = document.querySelector(".navbar-nav");
+    if (!navUl) return;
+    const li = document.createElement("li");
+    li.className = "nav-item d-flex align-items-center ms-lg-2 mt-2 mt-lg-0";
+    const btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "btn btn-sm btn-outline-light rounded-circle theme-toggle";
+    btn.setAttribute("aria-label", "Ganti tema terang/gelap");
+    const paint = () => {
+      const dark = root.getAttribute("data-bs-theme") === "dark";
+      btn.innerHTML = dark ? '<i class="bi bi-sun-fill"></i>' : '<i class="bi bi-moon-stars"></i>';
+    };
+    paint();
+    btn.addEventListener("click", () => {
+      const next = root.getAttribute("data-bs-theme") === "dark" ? "light" : "dark";
+      root.setAttribute("data-bs-theme", next);
+      try { localStorage.setItem("theme", next); } catch (e) {}
+      paint();
+    });
+    li.appendChild(btn);
+    navUl.appendChild(li);
+  })();
+
+  // ===== Reveal saat discroll (animasi halus) =====
+  (() => {
+    if (!("IntersectionObserver" in window)) return;
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting) { e.target.classList.add("in-view"); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.08, rootMargin: "0px 0px -40px 0px" });
+    const observe = () =>
+      document.querySelectorAll(".reveal:not(.in-view)").forEach((el) => io.observe(el));
+    observe();
+    // kartu yang dirender async (Supabase) ikut diamati
+    document.addEventListener("portfolio:rendered", observe);
+    document.addEventListener("gallery:rendered", observe);
+    document.addEventListener("skills:rendered", observe);
+  })();
+
   // Filter portofolio ditangani di js/render-projects.js (tombol dibuat
   // otomatis dari kategori project), jadi tidak di sini lagi.
 

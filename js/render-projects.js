@@ -16,9 +16,9 @@
 
   function comingSoonCard(p) {
     return `
-      <div class="col-md-6 col-lg-4 portfolio-item" data-category="${esc(p.filter)}">
+      <div class="col-md-6 col-lg-4 portfolio-item reveal" data-category="${esc(p.filter)}">
         <div class="card portfolio-card h-100 text-center">
-          <div class="d-flex align-items-center justify-content-center" style="height:190px; background:#f1f3f5;">
+          <div class="cs-ph d-flex align-items-center justify-content-center" style="height:190px;">
             <span class="fw-semibold text-secondary">Coming Soon</span>
           </div>
           <div class="card-body">
@@ -31,7 +31,7 @@
 
   function projectCard(p) {
     return `
-      <div class="col-md-6 col-lg-4 portfolio-item" data-category="${esc(p.filter)}">
+      <div class="col-md-6 col-lg-4 portfolio-item reveal" data-category="${esc(p.filter)}">
         <div class="card portfolio-card h-100">
           <img src="${esc(p.image)}" class="portfolio-thumb w-100" alt="${esc(p.title)}" loading="lazy" decoding="async">
           <div class="card-body">

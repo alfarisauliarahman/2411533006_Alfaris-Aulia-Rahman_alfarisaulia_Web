@@ -608,3 +608,39 @@ footer ul li i {
 #galleryModal4 .carousel-control-next:hover {
   opacity: 1;
 }
+
+/* ===================== DARK MODE ===================== */
+.cs-ph { background: #f1f3f5; }
+
+[data-bs-theme="dark"] body { background: #0f141c; }
+[data-bs-theme="dark"] .bg-white { background-color: #1b2431 !important; }
+[data-bs-theme="dark"] .portfolio-card { border-color: rgba(255, 255, 255, 0.08); }
+[data-bs-theme="dark"] .portfolio-thumb { background: #0f141c; }
+[data-bs-theme="dark"] .cs-ph { background: #222c39; }
+[data-bs-theme="dark"] .badge-soft {
+  background: rgba(13, 110, 253, 0.20);
+  color: #6ea8fe;
+  border-color: rgba(13, 110, 253, 0.35);
+}
+[data-bs-theme="dark"] .modal-portfolio-img,
+[data-bs-theme="dark"] .thumb-preview { background: #0f141c; }
+
+/* tombol tema di navbar */
+.theme-toggle {
+  width: 36px; height: 36px; padding: 0;
+  display: flex; align-items: center; justify-content: center;
+}
+
+/* ===================== REVEAL ON SCROLL ===================== */
+.reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity .55s ease, transform .55s ease;
+}
+.reveal.in-view {
+  opacity: 1;
+  transform: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1 !important; transform: none !important; transition: none !important; }
+}

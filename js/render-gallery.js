@@ -27,7 +27,7 @@
 
   function galleryCard(a) {
     return `
-      <div class="gallery-item" data-bs-toggle="modal" data-bs-target="#galleryModal${esc(a.id)}">
+      <div class="gallery-item reveal" data-bs-toggle="modal" data-bs-target="#galleryModal${esc(a.id)}">
         <div class="gallery-item-inner">
           <img src="${esc(a.thumb)}" alt="${esc(a.title)}" class="gallery-img" loading="lazy" decoding="async">
           <div class="gallery-overlay"></div>
