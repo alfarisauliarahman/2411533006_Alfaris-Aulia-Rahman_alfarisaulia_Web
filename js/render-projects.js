@@ -68,6 +68,54 @@
     .map((p) => (p.coming_soon ? comingSoonCard(p) : projectCard(p)))
     .join("");
 
-  // Kartu bisa muncul setelah data async; beri tahu filter untuk menyegarkan.
-  document.dispatchEvent(new CustomEvent("portfolio:rendered"));
+  buildFilters(projects);
+
+  // ---- Tombol filter dibuat OTOMATIS dari kategori project yang ada ----
+  function buildFilters(items) {
+    const tabs = document.getElementById("portfolioTabs");
+    if (!tabs) return;
+
+    // kategori unik, urut sesuai kemunculan (data sudah diurut 'sort')
+    const cats = [];
+    items.forEach((p) => {
+      const c = (p.filter || "").trim().toLowerCase();
+      if (c && !cats.includes(c)) cats.push(c);
+    });
+
+    const cap = (s) => s.charAt(0).toUpperCase() + s.slice(1);
+    const makeBtn = (val, label, active) => {
+      const li = document.createElement("li");
+      li.className = "nav-item";
+      const b = document.createElement("button");
+      b.type = "button";
+      b.className = "nav-link" + (active ? " active" : "");
+      b.dataset.filter = val;
+      b.textContent = label;
+      li.appendChild(b);
+      return li;
+    };
+
+    tabs.innerHTML = "";
+    tabs.appendChild(makeBtn("all", "All", true));
+    cats.forEach((c) => tabs.appendChild(makeBtn(c, cap(c), false)));
+
+    const apply = () => {
+      const active = tabs.querySelector(".nav-link.active");
+      const f = (active?.dataset.filter || "all").toLowerCase();
+      document.querySelectorAll(".portfolio-item").forEach((item) => {
+        const cat = (item.getAttribute("data-category") || "").toLowerCase();
+        item.classList.toggle("is-hidden", !(f === "all" || cat === f));
+      });
+    };
+
+    tabs.querySelectorAll(".nav-link").forEach((btn) =>
+      btn.addEventListener("click", () => {
+        tabs.querySelectorAll(".nav-link").forEach((b) => b.classList.remove("active"));
+        btn.classList.add("active");
+        apply();
+      })
+    );
+
+    apply();
+  }
 })();

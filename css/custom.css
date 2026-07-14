@@ -134,8 +134,9 @@ a {
 }
 
 .portfolio-thumb {
-  height: 190px;
-  object-fit: cover;
+  width: 100%;
+  height: auto;
+  display: block;
 }
 
 .badge-soft {
@@ -201,9 +202,13 @@ footer ul li i {
 }
 
 .modal-portfolio-img {
-  width: 100%;
-  height: 360px;
-  object-fit: cover;
+  display: block;
+  max-width: 100%;
+  max-height: 72vh;
+  width: auto;
+  height: auto;
+  margin: 0 auto;
+  object-fit: contain;
   border-radius: 14px;
 }
 
@@ -293,7 +298,8 @@ footer ul li i {
   }
   
   .modal-portfolio-img {
-    height: 240px !important;
+    max-height: 60vh !important;
+    height: auto !important;
   }
 }
 

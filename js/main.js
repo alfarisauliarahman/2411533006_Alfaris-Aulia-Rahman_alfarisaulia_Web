@@ -9,30 +9,8 @@
     if (href && current === href) a.classList.add("active");
   });
 
-  // portofolio: filter projek (aman untuk kartu yang dirender async)
-  const tabs = document.querySelectorAll("#portfolioTabs .nav-link");
-
-  if (tabs.length) {
-    const applyFilter = () => {
-      const active = document.querySelector("#portfolioTabs .nav-link.active");
-      const filter = (active?.getAttribute("data-filter") || "all").toLowerCase();
-      document.querySelectorAll(".portfolio-item").forEach((item) => {
-        const cat = (item.getAttribute("data-category") || "").toLowerCase();
-        item.classList.toggle("is-hidden", !(filter === "all" || cat === filter));
-      });
-    };
-
-    tabs.forEach((btn) => {
-      btn.addEventListener("click", () => {
-        tabs.forEach((b) => b.classList.remove("active"));
-        btn.classList.add("active");
-        applyFilter();
-      });
-    });
-
-    // kartu bisa muncul setelah data async (Supabase) selesai
-    document.addEventListener("portfolio:rendered", applyFilter);
-  }
+  // Filter portofolio ditangani di js/render-projects.js (tombol dibuat
+  // otomatis dari kategori project), jadi tidak di sini lagi.
 
   // portofolio: modal
   const modalEl = document.getElementById("portfolioModal");
