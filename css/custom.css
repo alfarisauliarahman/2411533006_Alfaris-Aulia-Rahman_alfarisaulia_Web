@@ -203,12 +203,8 @@ footer ul li i {
 
 .modal-portfolio-img {
   display: block;
-  max-width: 100%;
-  max-height: 72vh;
-  width: auto;
+  width: 100%;
   height: auto;
-  margin: 0 auto;
-  object-fit: contain;
   border-radius: 14px;
 }
 
@@ -298,8 +294,7 @@ footer ul li i {
   }
   
   .modal-portfolio-img {
-    max-height: 60vh !important;
-    height: auto !important;
+    height: auto;
   }
 }
 
