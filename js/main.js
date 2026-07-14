@@ -12,6 +12,12 @@
   // ===== Dark mode toggle (tema tersimpan di localStorage) =====
   (() => {
     const root = document.documentElement;
+    // Halaman Report punya banyak komponen custom yang belum siap dark mode,
+    // jadi dipaksa terang & tanpa tombol tema (biar tetap rapi & terbaca).
+    if (location.pathname.includes("/report/")) {
+      root.setAttribute("data-bs-theme", "light");
+      return;
+    }
     const navUl = document.querySelector(".navbar-nav");
     if (!navUl) return;
     const li = document.createElement("li");
