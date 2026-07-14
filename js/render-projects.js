@@ -70,6 +70,9 @@
 
   buildFilters(projects);
 
+  // beri tahu main.js: kartu sudah ada (untuk animasi reveal)
+  document.dispatchEvent(new CustomEvent("portfolio:rendered"));
+
   // ---- Tombol filter dibuat OTOMATIS dari kategori project yang ada ----
   function buildFilters(items) {
     const tabs = document.getElementById("portfolioTabs");

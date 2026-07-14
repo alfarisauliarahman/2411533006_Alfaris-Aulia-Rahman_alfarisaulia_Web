@@ -37,7 +37,10 @@
 
   // ===== Reveal saat discroll (animasi halus) =====
   (() => {
-    if (!("IntersectionObserver" in window)) return;
+    const showAll = () =>
+      document.querySelectorAll(".reveal:not(.in-view)").forEach((el) => el.classList.add("in-view"));
+    // fallback: kalau IntersectionObserver tak ada, langsung tampilkan semua
+    if (!("IntersectionObserver" in window)) { showAll(); return; }
     const io = new IntersectionObserver((entries) => {
       entries.forEach((e) => {
         if (e.isIntersecting) { e.target.classList.add("in-view"); io.unobserve(e.target); }
@@ -50,6 +53,8 @@
     document.addEventListener("portfolio:rendered", observe);
     document.addEventListener("gallery:rendered", observe);
     document.addEventListener("skills:rendered", observe);
+    // jaring pengaman: jangan sampai ada konten yang stuck tersembunyi
+    setTimeout(showAll, 2500);
   })();
 
   // Filter portofolio ditangani di js/render-projects.js (tombol dibuat
