@@ -652,6 +652,13 @@ footer ul li i {
 [data-bs-theme="dark"] .nav-pertemuan li span { color: #6c757d; }
 [data-bs-theme="dark"] .erd-table th { background: #10151f; }
 
+/* Bootstrap dark theme bikin caption/panah/indikator carousel jadi hitam;
+   di atas foto itu nggak kebaca — balikin ke putih seperti tema terang. */
+[data-bs-theme="dark"] .carousel .carousel-caption { color: #fff; }
+[data-bs-theme="dark"] .carousel .carousel-control-prev-icon,
+[data-bs-theme="dark"] .carousel .carousel-control-next-icon { filter: none; }
+[data-bs-theme="dark"] .carousel .carousel-indicators [data-bs-target] { background-color: #fff; }
+
 /* tombol tema di navbar */
 .theme-toggle {
   width: 36px; height: 36px; padding: 0;
