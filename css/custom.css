@@ -625,6 +625,33 @@ footer ul li i {
 [data-bs-theme="dark"] .modal-portfolio-img,
 [data-bs-theme="dark"] .thumb-preview { background: #0f141c; }
 
+/* dark mode untuk komponen custom halaman Report */
+[data-bs-theme="dark"] .req-badge {
+  background: #1b2431;
+  border-color: rgba(255, 255, 255, 0.12);
+  color: #cfd8e3;
+}
+[data-bs-theme="dark"] .code-block {
+  background: #161c26;
+  border-color: rgba(255, 255, 255, 0.12);
+  border-left-color: #0d6efd;
+  color: #d4d4d4;
+}
+[data-bs-theme="dark"] .rel-badge {
+  background: rgba(13, 110, 253, 0.18);
+  border-color: rgba(13, 110, 253, 0.4);
+  color: #6ea8fe;
+}
+[data-bs-theme="dark"] .report-img {
+  border-color: rgba(255, 255, 255, 0.15);
+  background: #fff; /* screenshot laporan berlatar terang, biar tepinya rapi */
+}
+[data-bs-theme="dark"] .img-caption { color: #9aa4b2; }
+[data-bs-theme="dark"] .sub-section-title { border-bottom-color: rgba(255, 255, 255, 0.12); }
+[data-bs-theme="dark"] .nav-pertemuan li a:hover { background: rgba(13, 110, 253, 0.18); }
+[data-bs-theme="dark"] .nav-pertemuan li span { color: #6c757d; }
+[data-bs-theme="dark"] .erd-table th { background: #10151f; }
+
 /* tombol tema di navbar */
 .theme-toggle {
   width: 36px; height: 36px; padding: 0;
