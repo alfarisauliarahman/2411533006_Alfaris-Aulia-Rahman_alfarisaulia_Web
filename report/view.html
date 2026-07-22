@@ -113,12 +113,20 @@
   <script>
     (async function () {
       const body = document.getElementById("reportBody");
+      const backBtn = '<a href="report.html" class="btn btn-sm btn-primary mt-2"><i class="bi bi-arrow-left me-1"></i>Kembali ke daftar laporan</a>';
+      const fail = (type, msg) => { body.innerHTML = `<div class="alert alert-${type}">${msg}</div>${backBtn}`; };
       const id = new URLSearchParams(location.search).get("id");
-      if (!id) { body.innerHTML = '<div class="alert alert-warning">ID laporan tidak ada.</div>'; return; }
-      if (!supabaseClient) { body.innerHTML = '<div class="alert alert-danger">Supabase belum dikonfigurasi.</div>'; return; }
+      if (!id) { fail("warning", "ID laporan tidak ada di alamat."); return; }
+      if (!supabaseClient) { fail("danger", "Koneksi database belum siap. Coba muat ulang halaman."); return; }
 
-      const { data, error } = await supabaseClient.from("reports").select("*").eq("id", id).single();
-      if (error || !data) { body.innerHTML = '<div class="alert alert-danger">Laporan tidak ditemukan.</div>'; return; }
+      let data, error;
+      try {
+        ({ data, error } = await supabaseClient.from("reports").select("*").eq("id", id).single());
+      } catch (e) { error = e; }
+      if (error || !data) {
+        fail("danger", "Laporan tidak bisa dimuat (server tidak terjangkau atau laporan tak ada). Cek koneksi lalu coba lagi.");
+        return;
+      }
 
       document.getElementById("metaLine").textContent = data.meeting_no || "Laporan Praktikum";
       document.getElementById("titleLine").textContent = data.title || "Laporan";
