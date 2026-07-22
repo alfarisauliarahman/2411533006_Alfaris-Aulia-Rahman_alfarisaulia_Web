@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Laporan — Alfaris Aulia</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <link href="../css/custom.css?v=7" rel="stylesheet" />
+  <script>try{document.documentElement.setAttribute("data-bs-theme",localStorage.getItem("theme")||"light")}catch(e){}</script>
+  <style>
+    .page-hero {
+      background: linear-gradient(135deg, #1a1f35 0%, #2d3548 100%);
+      margin-top: -70px; padding-top: calc(70px + 1.4rem); padding-bottom: 1.6rem; color: #fff;
+    }
+    .page-hero h1 { font-size: 1.6rem; }
+    .page-hero .sub { font-size: .82rem; color: rgba(255,255,255,.60); }
+    .report-body { max-width: 820px; }
+    .report-body img { max-width: 100%; height: auto; border-radius: 8px; }
+    .report-body pre { background: var(--bs-tertiary-bg); padding: 1rem; border-radius: 8px; overflow-x: auto; }
+    .report-body table { width: 100%; }
+    .report-body h2, .report-body h3 { margin-top: 1.6rem; }
+
+    /* ---- kelas dari laporan HTML yang dimigrasi (P6-P9) ---- */
+    .section-label { font-size: .7rem; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: #0d6efd; margin-bottom: .6rem; }
+    .terminal { background: #1e1e1e; color: #d4d4d4; border-radius: .5rem; padding: .9rem 1.1rem; font-family: 'Consolas','Courier New',monospace; font-size: .8rem; line-height: 1.7; overflow-x: auto; white-space: pre; margin-bottom: .75rem; }
+    .c-blue { color: #9cdcfe; } .c-green { color: #4ec9b0; } .c-yellow { color: #dcdcaa; } .c-gray { color: #6a9955; } .c-orange { color: #ce9178; }
+    .code-block { background: #f8f9fa; border: 1px solid #dee2e6; border-left: 3px solid #0d6efd; border-radius: .4rem; padding: .85rem 1rem; font-family: 'Consolas','Courier New',monospace; font-size: .8rem; line-height: 1.75; overflow-x: auto; white-space: pre; color: #212529; margin-bottom: .75rem; }
+    .req-badge { font-size: .78rem; background: #f8f9fa; border: 1px solid #dee2e6; border-radius: .35rem; padding: .25rem .5rem; display: block; }
+    .report-img { width: 100%; height: auto; border-radius: .5rem; border: 1px solid #dee2e6; display: block; }
+    .img-caption { font-size: .82rem; color: #6c757d; margin-top: .4rem; margin-bottom: 1rem; text-align: center; }
+    .sub-section { margin-top: 1.75rem; }
+    .sub-section-title { font-size: .93rem; font-weight: 700; padding-bottom: .5rem; border-bottom: 1px solid #dee2e6; margin-bottom: .9rem; }
+    .rel-badge { display: inline-flex; align-items: center; gap: .4rem; background: #e7f1ff; border: 1px solid #b6d4fe; color: #084298; border-radius: .35rem; padding: .3rem .6rem; font-size: .8rem; font-family: 'Consolas','Courier New',monospace; margin-bottom: .4rem; }
+    .erd-table th { background: #2d3548; color: #fff; font-size: .78rem; letter-spacing: .04em; }
+    .erd-table td { font-size: .82rem; font-family: 'Consolas','Courier New',monospace; }
+    .erd-pk { color: #dc3545; font-weight: 700; } .erd-fk { color: #0d6efd; }
+  </style>
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top shadow-sm">
+    <div class="container">
+      <a class="navbar-brand fw-semibold" href="../index.html">Alfaris Aulia</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="mainNav">
+        <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-1">
+          <li class="nav-item"><a class="nav-link" href="../index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="../portofolio.html">Portofolio</a></li>
+          <li class="nav-item"><a class="nav-link active" href="report.html">Report</a></li>
+          <li class="nav-item"><a class="nav-link" href="../kontak.html">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="page-hero">
+    <div class="container">
+      <p class="sub mb-1" id="metaLine">Laporan Praktikum</p>
+      <h1 class="fw-bold mb-0" id="titleLine">Memuat…</h1>
+    </div>
+  </div>
+
+  <div class="container py-4">
+    <a href="report.html" class="btn btn-sm btn-outline-secondary mb-3"><i class="bi bi-arrow-left me-1"></i>Kembali</a>
+    <div id="reportBody" class="report-body"></div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="https://cdn.jsdelivr.net/npm/marked@12/marked.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/dompurify@3/dist/purify.min.js"></script>
+  <script src="../js/supabase-config.js"></script>
+  <script src="../js/main.js?v=7"></script>
+  <script>
+    (async function () {
+      const body = document.getElementById("reportBody");
+      const id = new URLSearchParams(location.search).get("id");
+      if (!id) { body.innerHTML = '<div class="alert alert-warning">ID laporan tidak ada.</div>'; return; }
+      if (!supabaseClient) { body.innerHTML = '<div class="alert alert-danger">Supabase belum dikonfigurasi.</div>'; return; }
+
+      const { data, error } = await supabaseClient.from("reports").select("*").eq("id", id).single();
+      if (error || !data) { body.innerHTML = '<div class="alert alert-danger">Laporan tidak ditemukan.</div>'; return; }
+
+      document.getElementById("metaLine").textContent = data.meeting_no || "Laporan Praktikum";
+      document.getElementById("titleLine").textContent = data.title || "Laporan";
+      document.title = (data.title || "Laporan") + " — Alfaris Aulia";
+
+      if (data.link_type !== "content" || !data.body_md) {
+        // kalau ternyata jenis 'file', arahkan ke file statisnya
+        if (data.url) { location.replace(data.url); return; }
+        body.innerHTML = '<div class="alert alert-info">Laporan ini belum punya isi.</div>';
+        return;
+      }
+
+      // Konten bisa berupa HTML (hasil migrasi) atau Markdown (ditulis di admin).
+      // Kalau mulai dengan tag "<", perlakukan sebagai HTML; selain itu render Markdown.
+      // Dua-duanya DISANITASI DOMPurify (anti-XSS) sebelum masuk DOM.
+      const md = data.body_md;
+      const rawHtml = /^\s*</.test(md) ? md : marked.parse(md);
+      body.innerHTML = DOMPurify.sanitize(rawHtml);
+    })();
+  </script>
+</body>
+</html>
