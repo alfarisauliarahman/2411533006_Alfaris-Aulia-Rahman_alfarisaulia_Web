@@ -169,6 +169,18 @@
       const md = data.body_md;
       const rawHtml = /^\s*</.test(md) ? md : marked.parse(md);
       body.innerHTML = DOMPurify.sanitize(rawHtml);
+
+      // Data laporan lama di Supabase masih memakai path images/p3, images/p6,
+      // dan seterusnya. Normalisasi di sini supaya laporan dynamic tetap cocok
+      // dengan struktur asset website yang sekarang.
+      body.querySelectorAll("img[src]").forEach((img) => {
+        const src = img.getAttribute("src") || "";
+        const match = src.match(/^(?:\.\.\/)*images\/(p3|p6|p7|p8|p9)\/(.+)$/);
+        if (!match) return;
+
+        const folder = match[1] === "p3" ? "aplikasi-mobile" : "pemrograman-web";
+        img.setAttribute("src", `../images/${folder}/${match[1]}/${match[2]}`);
+      });
     })();
   </script>
 </body>
