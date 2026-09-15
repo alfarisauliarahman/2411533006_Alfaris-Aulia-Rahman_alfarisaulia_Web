@@ -40,8 +40,7 @@
               <span class="badge badge-soft">${esc(p.badge)}</span>
             </div>
             <p class="text-secondary mb-3">${esc(p.short_desc)}</p>
-            <div class="d-flex gap-2">
-            <button class="btn btn-outline-primary flex-grow-1"
+            <button class="btn btn-outline-primary w-100"
               data-bs-toggle="modal" data-bs-target="#portfolioModal"
               data-title="${esc(p.modal_title)}"
               data-category="${esc(p.modal_category)}"
@@ -50,8 +49,6 @@
               data-images="${esc(p.images)}">
               Detail
             </button>
-            ${p.github_url ? `<a class="btn btn-dark" href="${esc(p.github_url)}" target="_blank" rel="noopener" aria-label="Buka repository GitHub"><i class="bi bi-github"></i></a>` : ""}
-            </div>
           </div>
         </div>
       </div>`;
@@ -60,12 +57,7 @@
   async function getProjects() {
     if (typeof supabaseClient !== "undefined" && supabaseClient) {
       const { data, error } = await supabaseClient.from("projects").select("*").order("sort");
-      if (!error && data) {
-        const localExtras = (typeof PROJECTS !== "undefined" ? PROJECTS : []).filter(
-          (local) => local.github_url && !data.some((remote) => remote.github_url === local.github_url)
-        );
-        return [...data, ...localExtras];
-      }
+      if (!error && data) return data;
       console.warn("Supabase gagal, pakai data lokal:", error);
     }
     return typeof PROJECTS !== "undefined" ? PROJECTS : [];
