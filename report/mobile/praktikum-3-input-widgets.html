@@ -1,0 +1,260 @@
+<!doctype html>
+<html lang="id">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Praktikum 3 Lengkap — Input Widgets dan Basic Form · Alfaris Aulia</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <link href="../../css/custom.css?v=7" rel="stylesheet" />
+  <script>try{document.documentElement.setAttribute("data-bs-theme",localStorage.getItem("theme")||"light")}catch(e){}</script>
+  <style>
+    .page-hero { background: linear-gradient(135deg,#1a1f35 0%,#2d3548 100%); margin-top:-70px; padding-top:calc(70px + 1.4rem); padding-bottom:1.6rem; color:#fff; }
+    .page-hero .breadcrumb-item a { color:rgba(255,255,255,.7); text-decoration:none; }
+    .page-hero .breadcrumb-item a:hover { color:#fff; }
+    .page-hero .breadcrumb-item.active { color:rgba(255,255,255,.5); }
+    .page-hero .breadcrumb-item+.breadcrumb-item::before { color:rgba(255,255,255,.35); }
+    .page-hero h1 { font-size:1.55rem; }
+    .page-hero .sub { font-size:.82rem; color:rgba(255,255,255,.6); }
+    .section-label { font-size:.7rem; font-weight:700; text-transform:uppercase; letter-spacing:.08em; color:#0d6efd; margin-bottom:.6rem; }
+    .sub-section { margin-top:1.7rem; }
+    .sub-section-title { font-size:.95rem; font-weight:700; padding-bottom:.5rem; border-bottom:1px solid #dee2e6; margin-bottom:.9rem; }
+    .code-block { background:#f8f9fa; border:1px solid #dee2e6; border-left:3px solid #0d6efd; border-radius:.4rem; padding:.85rem 1rem; font-family:'Consolas','Courier New',monospace; font-size:.8rem; line-height:1.7; overflow-x:auto; white-space:pre; color:#212529; margin:.75rem 0; }
+    .report-img { width:100%; height:auto; border-radius:.5rem; border:1px solid #dee2e6; display:block; }
+    .device-shot { max-height:720px; object-fit:contain; background:#f8f9fa; }
+    .img-caption { font-size:.82rem; color:#6c757d; margin-top:.4rem; margin-bottom:1rem; text-align:center; }
+    .req-badge { font-size:.8rem; background:#f8f9fa; border:1px solid #dee2e6; border-radius:.35rem; padding:.35rem .55rem; display:block; }
+    .report-sidebar { position:sticky; top:90px; }
+    .nav-pertemuan { list-style:none; padding:0; margin:0; }
+    .nav-pertemuan li a { display:flex; align-items:center; gap:.55rem; padding:.45rem .5rem; border-radius:.4rem; font-size:.86rem; color:#0d6efd; text-decoration:none; }
+    .nav-pertemuan li a:hover { background:rgba(13,110,253,.07); }
+    @media (max-width:991.98px) { .report-sidebar { position:static; } }
+  </style>
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top shadow-sm">
+    <div class="container">
+      <a class="navbar-brand fw-semibold" href="../../index.html">Alfaris Aulia</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav"><span class="navbar-toggler-icon"></span></button>
+      <div class="collapse navbar-collapse" id="mainNav">
+        <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-1">
+          <li class="nav-item"><a class="nav-link" href="../../index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="../../portofolio.html">Portofolio</a></li>
+          <li class="nav-item"><a class="nav-link" href="../../about.html">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="../../gallery.html">Gallery</a></li>
+          <li class="nav-item"><a class="nav-link active" href="../report.html#mobileReports">Report</a></li>
+          <li class="nav-item"><a class="nav-link" href="../../kontak.html">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="page-hero">
+    <div class="container">
+      <nav aria-label="breadcrumb" class="mb-2">
+        <ol class="breadcrumb mb-0" style="font-size:.8rem;">
+          <li class="breadcrumb-item"><a href="../report.html#mobileReports">Report</a></li>
+          <li class="breadcrumb-item"><a href="../report.html#mobileReports">Praktikum 3</a></li>
+          <li class="breadcrumb-item active">Praktikum 3</li>
+        </ol>
+      </nav>
+      <div class="d-flex align-items-start justify-content-between flex-wrap gap-2 mt-1">
+        <div>
+          <h1 class="fw-bold mb-1">Input Widgets dan Basic Form</h1>
+          <p class="sub mb-0">Mata Kuliah Aplikasi Mobile &mdash; Flutter</p>
+        </div>
+        <span class="badge bg-success px-3 py-2 align-self-center" style="font-size:.85rem;">Selesai</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="container py-4">
+    <div class="row g-4">
+      <main class="col-lg-8">
+        <div class="card border shadow-sm mb-3">
+          <div class="card-body">
+            <p class="section-label">1.1 Tujuan</p>
+            <p class="text-secondary" style="font-size:.88rem;">Praktikum ini bertujuan untuk memahami cara membuat form dasar pada Flutter, menerima input dari keyboard, membaca nilai input, serta melakukan validasi data sebelum diproses.</p>
+            <ol class="text-secondary mb-0" style="font-size:.88rem;">
+              <li class="mb-1">Membuat beberapa input widget seperti <code>TextField</code> dan <code>TextFormField</code>.</li>
+              <li class="mb-1">Mengontrol input pengguna menggunakan <code>TextEditingController</code>.</li>
+              <li class="mb-1">Membuat form dengan validasi menggunakan <code>Form</code> dan <code>GlobalKey&lt;FormState&gt;</code>.</li>
+              <li class="mb-0">Membuat aplikasi kalkulator dengan dua input angka dan operasi kabataku.</li>
+            </ol>
+          </div>
+        </div>
+
+        <div class="card border shadow-sm mb-3">
+          <div class="card-body">
+            <p class="section-label">1.2 Alat</p>
+            <ul class="text-secondary mb-0" style="font-size:.88rem;">
+              <li>Komputer atau laptop.</li>
+              <li>Flutter SDK dan Dart SDK.</li>
+              <li>Visual Studio Code atau IDE sejenis.</li>
+              <li>Android Emulator dan iPhone Simulator untuk pengujian lintas platform.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="card border shadow-sm mb-3">
+          <div class="card-body">
+            <p class="section-label">1.3 Dasar Teori</p>
+            <div class="sub-section">
+              <h2 class="sub-section-title">Basic Form</h2>
+              <p class="text-secondary" style="font-size:.88rem;">Form merupakan komponen antarmuka yang digunakan untuk menerima dan mengelola input pengguna. Dalam Flutter, form dapat berisi berbagai input widget seperti TextField, TextFormField, checkbox, switch, dropdown, radio, dan tombol.</p>
+            </div>
+            <div class="sub-section">
+              <h2 class="sub-section-title">TextField</h2>
+              <p class="text-secondary" style="font-size:.88rem;">TextField digunakan untuk menerima input teks secara langsung. Nilainya dapat dibaca menggunakan controller, sedangkan <code>InputDecoration</code> digunakan untuk mengatur label, hint, border, dan icon.</p>
+            </div>
+            <div class="sub-section">
+              <h2 class="sub-section-title">TextFormField dan Validator</h2>
+              <p class="text-secondary" style="font-size:.88rem;">TextFormField memiliki kemampuan validasi melalui fungsi <code>validator</code>. Jika data tidak sesuai, validator mengembalikan pesan error. Jika data valid, validator mengembalikan <code>null</code>.</p>
+            </div>
+            <div class="sub-section">
+              <h2 class="sub-section-title">Controller, FormState, dan State</h2>
+              <p class="text-secondary" style="font-size:.88rem;"><code>TextEditingController</code> membaca nilai input, <code>GlobalKey&lt;FormState&gt;</code> mengakses status form, dan <code>validate()</code> menjalankan seluruh validator. Karena input dapat berubah, form dibuat menggunakan <code>StatefulWidget</code> dan dibersihkan melalui <code>dispose()</code>.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="card border shadow-sm mb-3">
+          <div class="card-body">
+            <p class="section-label">1.4 Langkah-Langkah dan Implementasi</p>
+
+            <div class="sub-section">
+              <h2 class="sub-section-title">A. Membuat project dan file contoh</h2>
+              <p class="text-secondary" style="font-size:.88rem;">Project Flutter digunakan sebagai dasar pengerjaan. Contoh input dibuat dalam file terpisah agar setiap form dapat dijalankan dan diuji secara mandiri.</p>
+              <span class="req-badge"><code>lib/form-textfield.dart</code> — contoh input tanpa validasi Form.</span>
+              <span class="req-badge mt-2"><code>lib/form-textformfield.dart</code> — contoh input dengan validasi Form.</span>
+              <span class="req-badge mt-2"><code>lib/calculator.dart</code> — tugas Kelas A.</span>
+            </div>
+
+            <div class="sub-section">
+              <h2 class="sub-section-title">B. Implementasi TextField</h2>
+              <ol class="text-secondary" style="font-size:.88rem;">
+                <li class="mb-1">Buat <code>StatefulWidget</code> untuk menampung form.</li>
+                <li class="mb-1">Tambahkan <code>TextEditingController</code> pada state.</li>
+                <li class="mb-1">Pasang controller pada TextField.</li>
+                <li class="mb-1">Tambahkan tombol ElevatedButton.</li>
+                <li>Ambil nilai controller dan tampilkan menggunakan SnackBar.</li>
+              </ol>
+              <img src="../../images/aplikasi%20mobile/p3/p3.1.png" alt="Kode TextField Flutter dari Carbon Now" class="report-img">
+              <p class="img-caption">Gambar 1. Kode TextField dan tombol untuk menampilkan nama</p>
+            </div>
+
+            <div class="sub-section">
+              <h2 class="sub-section-title">C. Menguji TextField</h2>
+              <p class="text-secondary" style="font-size:.88rem;">Pada pengujian, aplikasi menampilkan form Basic Form. Setelah nama diisi dan tombol ditekan, nilai nama muncul pada SnackBar.</p>
+              <div class="row g-3">
+                <div class="col-md-6"><img src="../../images/aplikasi%20mobile/p3/p3.3.png" alt="Basic Form Android" class="report-img device-shot"><p class="img-caption">Gambar 2. Tampilan awal pada Android Emulator</p></div>
+                <div class="col-md-6"><img src="../../images/aplikasi%20mobile/p3/p3.4.png" alt="SnackBar nama Android" class="report-img device-shot"><p class="img-caption">Gambar 3. SnackBar hasil input nama</p></div>
+                <div class="col-md-6"><img src="../../images/aplikasi%20mobile/p3/p3.5.png" alt="Basic Form iPhone" class="report-img device-shot"><p class="img-caption">Gambar 4. Tampilan awal pada iPhone Simulator</p></div>
+              </div>
+            </div>
+
+            <div class="sub-section">
+              <h2 class="sub-section-title">D. Implementasi TextFormField</h2>
+              <ol class="text-secondary" style="font-size:.88rem;">
+                <li class="mb-1">Buat <code>GlobalKey&lt;FormState&gt;</code>.</li>
+                <li class="mb-1">Buat controller untuk nama dan email.</li>
+                <li class="mb-1">Bungkus input dengan widget <code>Form</code>.</li>
+                <li class="mb-1">Tambahkan validator nama agar tidak kosong.</li>
+                <li class="mb-1">Tambahkan validator email agar tidak kosong dan mengandung <code>@</code>.</li>
+                <li>Jalankan validasi melalui <code>_formKey.currentState!.validate()</code>.</li>
+              </ol>
+              <img src="../../images/aplikasi%20mobile/p3/p3.2.png" alt="Kode validasi TextFormField dari Carbon Now" class="report-img">
+              <p class="img-caption">Gambar 5. Kode controller dan validasi TextFormField</p>
+            </div>
+
+            <div class="sub-section">
+              <h2 class="sub-section-title">E. Menguji TextFormField</h2>
+              <p class="text-secondary" style="font-size:.88rem;">Jika tombol Submit ditekan ketika field kosong, Flutter menampilkan pesan validasi. Setelah nama dan email diisi dengan benar, SnackBar keberhasilan ditampilkan.</p>
+              <div class="row g-3">
+                <div class="col-md-6"><img src="../../images/aplikasi%20mobile/p3/p3.9.png" alt="TextFormField Android" class="report-img device-shot"><p class="img-caption">Gambar 6. Tampilan awal TextFormField</p></div>
+                <div class="col-md-6"><img src="../../images/aplikasi%20mobile/p3/p3.10.png" alt="Validasi kosong Android" class="report-img device-shot"><p class="img-caption">Gambar 7. Validasi ketika input kosong</p></div>
+                <div class="col-md-6"><img src="../../images/aplikasi%20mobile/p3/p3.11.png" alt="Validasi berhasil Android" class="report-img device-shot"><p class="img-caption">Gambar 8. Validasi berhasil dengan data praktikan</p></div>
+                <div class="col-md-6"><img src="../../images/aplikasi%20mobile/p3/p3.12.png" alt="TextFormField iPhone" class="report-img device-shot"><p class="img-caption">Gambar 9. TextFormField pada iPhone Simulator</p></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card border shadow-sm mb-3">
+          <div class="card-body">
+            <p class="section-label">1.5 Latihan / Tugas Kelas A</p>
+            <p class="text-secondary" style="font-size:.88rem;">Tugas Kelas A adalah membuat aplikasi kalkulator yang menerima dua input angka, menyediakan operasi penjumlahan, pengurangan, perkalian, dan pembagian, serta menampilkan hasilnya menggunakan widget Text.</p>
+            <div class="row g-2 text-secondary mb-3" style="font-size:.88rem;">
+              <div class="col-md-6"><span class="req-badge">Input 1 dan Input 2 menggunakan TextField.</span></div>
+              <div class="col-md-6"><span class="req-badge">Operasi dijalankan dengan ElevatedButton.</span></div>
+              <div class="col-md-6"><span class="req-badge">Hasil ditampilkan pada Card menggunakan Text.</span></div>
+              <div class="col-md-6"><span class="req-badge">Input tidak valid dan pembagian nol ditangani.</span></div>
+            </div>
+            <img src="../../images/aplikasi%20mobile/p3/p3.13.png" alt="Kode kalkulator Flutter dari Carbon Now" class="report-img">
+            <p class="img-caption">Gambar 10. Fungsi kalkulator Kelas A</p>
+            <div class="row g-3 mt-1">
+              <div class="col-md-6"><img src="../../images/aplikasi%20mobile/p3/p3.6.png" alt="Tampilan awal kalkulator Android" class="report-img device-shot"><p class="img-caption">Gambar 11. Tampilan awal kalkulator</p></div>
+              <div class="col-md-6"><img src="../../images/aplikasi%20mobile/p3/p3.7.png" alt="Hasil kalkulator 12 kali 3" class="report-img device-shot"><p class="img-caption">Gambar 12. Hasil 12 × 3 = 36</p></div>
+              <div class="col-md-6"><img src="../../images/aplikasi%20mobile/p3/p3.8.png" alt="Kalkulator iPhone" class="report-img device-shot"><p class="img-caption">Gambar 13. Tampilan kalkulator pada iPhone Simulator</p></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card border shadow-sm mb-3">
+          <div class="card-body">
+            <p class="section-label">1.6 Analisis Hasil Pengujian</p>
+            <div class="table-responsive">
+              <table class="table table-bordered align-middle small mb-0">
+                <thead><tr><th>Pengujian</th><th>Input</th><th>Hasil</th></tr></thead>
+                <tbody>
+                  <tr><td>TextField</td><td>Alfaris Aulia</td><td>Nama tampil pada SnackBar.</td></tr>
+                  <tr><td>TextFormField kosong</td><td>Nama dan email kosong</td><td>Pesan validasi tampil di bawah field.</td></tr>
+                  <tr><td>TextFormField valid</td><td>Nama dan email valid</td><td>SnackBar validasi berhasil tampil.</td></tr>
+                  <tr><td>Kalkulator</td><td>12 dan 3, operasi ×</td><td>Hasil yang tampil adalah 36.</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <div class="card border shadow-sm">
+          <div class="card-body">
+            <p class="section-label">1.7 Kesimpulan</p>
+            <p class="text-secondary mb-0" style="font-size:.88rem;">Praktikum berhasil menerapkan input widget Flutter, controller, validasi Form, SnackBar, dan operasi kalkulator. TextField digunakan untuk input sederhana, TextFormField digunakan untuk validasi terstruktur, sedangkan kalkulator Kelas A menunjukkan penggunaan input dan event tombol untuk menghasilkan perhitungan.</p>
+          </div>
+        </div>
+      </main>
+
+      <aside class="col-lg-4">
+        <div class="report-sidebar">
+          <div class="card border shadow-sm mb-3">
+            <div class="card-body">
+              <p class="section-label">Informasi</p>
+              <table class="table table-sm table-borderless mb-0" style="font-size:.88rem;">
+                <tr><td class="text-muted ps-0">Mata Kuliah</td><td class="fw-semibold">Aplikasi Mobile</td></tr>
+                <tr><td class="text-muted ps-0">Praktikum</td><td class="fw-semibold">3</td></tr>
+                <tr><td class="text-muted ps-0">Nama</td><td class="fw-semibold">Alfaris Aulia Rahman</td></tr>
+                <tr><td class="text-muted ps-0">NIM</td><td class="fw-semibold">2411533006</td></tr>
+                <tr><td class="text-muted ps-0">Status</td><td><span class="badge bg-success">Selesai</span></td></tr>
+              </table>
+            </div>
+          </div>
+          <div class="card border shadow-sm">
+            <div class="card-body">
+              <p class="section-label">Navigasi</p>
+              <a href="../report.html#mobileReports" class="btn btn-sm btn-outline-primary w-100"><i class="bi bi-arrow-left me-1"></i>Kembali ke daftar report</a>
+            </div>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </div>
+
+  <footer class="pt-5 pb-4"><div class="container"><div class="text-center"><p class="mb-0">&copy; 2026 Alfaris Aulia. All rights reserved.</p></div></div></footer>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../../js/main.js?v=7"></script>
+</body>
+</html>
