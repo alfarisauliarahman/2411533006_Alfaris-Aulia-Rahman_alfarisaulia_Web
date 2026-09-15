@@ -1,5 +1,10 @@
 RewriteEngine On
 
+# Jika URL lama dengan .html dibuka, arahkan address bar ke URL bersih.
+# THE_REQUEST dipakai agar rewrite internal di bawah tidak terkena redirect berulang.
+RewriteCond %{THE_REQUEST} \s/+(.+?)\.html(?:[?\s]) [NC]
+RewriteRule ^(.+)\.html$ /$1 [R=301,L,NE]
+
 # Halaman daftar report memakai file report/report.html.
 RewriteRule ^report/?$ report/report.html [L]
 
