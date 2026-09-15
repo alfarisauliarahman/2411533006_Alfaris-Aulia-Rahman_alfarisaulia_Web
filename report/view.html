@@ -55,16 +55,16 @@
 <body>
   <nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top shadow-sm">
     <div class="container">
-      <a class="navbar-brand fw-semibold" href="../index.html">Alfaris Aulia</a>
+      <a class="navbar-brand fw-semibold" href="../index">Alfaris Aulia</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="mainNav">
         <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-1">
-          <li class="nav-item"><a class="nav-link" href="../index.html">Home</a></li>
-          <li class="nav-item"><a class="nav-link" href="../portofolio.html">Portofolio</a></li>
-          <li class="nav-item"><a class="nav-link active" href="report.html">Report</a></li>
-          <li class="nav-item"><a class="nav-link" href="../kontak.html">Contact</a></li>
+          <li class="nav-item"><a class="nav-link" href="../index">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="../portofolio">Portofolio</a></li>
+          <li class="nav-item"><a class="nav-link active" href="report">Report</a></li>
+          <li class="nav-item"><a class="nav-link" href="../kontak">Contact</a></li>
         </ul>
       </div>
     </div>
@@ -78,7 +78,7 @@
   </div>
 
   <div class="container py-4">
-    <a href="report.html" class="btn btn-sm btn-outline-secondary mb-3"><i class="bi bi-arrow-left me-1"></i>Kembali</a>
+    <a href="report" class="btn btn-sm btn-outline-secondary mb-3"><i class="bi bi-arrow-left me-1"></i>Kembali</a>
     <div class="row g-4">
       <!-- Konten -->
       <div class="col-lg-8">
@@ -113,7 +113,7 @@
   <script>
     (async function () {
       const body = document.getElementById("reportBody");
-      const backBtn = '<a href="report.html" class="btn btn-sm btn-primary mt-2"><i class="bi bi-arrow-left me-1"></i>Kembali ke daftar laporan</a>';
+      const backBtn = '<a href="report" class="btn btn-sm btn-primary mt-2"><i class="bi bi-arrow-left me-1"></i>Kembali ke daftar laporan</a>';
       const fail = (type, msg) => { body.innerHTML = `<div class="alert alert-${type}">${msg}</div>${backBtn}`; };
       const id = new URLSearchParams(location.search).get("id");
       if (!id) { fail("warning", "ID laporan tidak ada di alamat."); return; }
@@ -151,7 +151,7 @@
         if (r.status === "pending") {
           return `<li><span><i class="bi bi-lock flex-shrink-0"></i><span>${esc(r.meeting_no)} — Belum tersedia</span></span></li>`;
         }
-        const href = r.link_type === "content" ? `view.html?id=${encodeURIComponent(r.id)}` : esc(r.url || "#");
+        const href = r.link_type === "content" ? `view?id=${encodeURIComponent(r.id)}` : esc((r.url || "#").replace(/\.html(?=($|[?#]))/i, ""));
         const active = String(r.id) === String(id) ? " active" : "";
         return `<li><a href="${href}" class="${active}"><i class="bi bi-journal-text flex-shrink-0"></i><span>${label}</span></a></li>`;
       }).join("");

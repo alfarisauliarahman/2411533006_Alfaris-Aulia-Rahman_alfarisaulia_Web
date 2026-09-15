@@ -16,7 +16,7 @@
 
   // href tujuan kartu sesuai jenis tautan
   const hrefFor = (r) =>
-    r.link_type === "content" ? `view.html?id=${encodeURIComponent(r.id)}` : esc(r.url || "#");
+    r.link_type === "content" ? `view?id=${encodeURIComponent(r.id)}` : esc(r.url || "#");
 
   function reportCard(r) {
     const done = r.status !== "pending";
