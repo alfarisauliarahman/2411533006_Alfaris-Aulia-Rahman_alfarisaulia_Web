@@ -14,9 +14,20 @@
       .replaceAll("<", "&lt;")
       .replaceAll(">", "&gt;");
 
-  // href tujuan kartu sesuai jenis tautan
-  const hrefFor = (r) =>
-    r.link_type === "content" ? `view?id=${encodeURIComponent(r.id)}` : esc(r.url || "#");
+  // PWeb P6–P9 memakai halaman statis di report/dump.
+  // Jangan biarkan nilai link_type lama dari Supabase mengalihkannya ke view dinamis.
+  const staticWebReports = {
+    6: "dump/pertemuan-6-konfigurasi-laravel",
+    7: "dump/pertemuan-7-migration-seeding-routing-model-controller-view",
+    8: "dump/pertemuan-8-eloquent-relationship",
+    9: "dump/pertemuan-9-laravel-ui-bootstrap-templating",
+  };
+
+  const hrefFor = (r) => {
+    const meeting = Number.parseInt(String(r.meeting_no || "").replace(/\D/g, ""), 10);
+    if (staticWebReports[meeting]) return staticWebReports[meeting];
+    return r.link_type === "content" ? `view?id=${encodeURIComponent(r.id)}` : esc((r.url || "#").replace(/\.html(?=($|[?#]))/i, ""));
+  };
 
   function reportCard(r) {
     const done = r.status !== "pending";
