@@ -1,0 +1,19 @@
+RewriteEngine On
+
+# Halaman daftar report memakai file report/report.html.
+RewriteRule ^report/?$ report/report.html [L]
+
+# Hilangkan ekstensi .html dari URL halaman statis.
+# File asli tetap dipertahankan agar link lama tidak langsung rusak.
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_URI} !/$
+RewriteCond %{DOCUMENT_ROOT}/$1.html -f
+RewriteRule ^(.+)$ $1.html [L]
+
+# Versi dengan trailing slash, misalnya /about/ atau /report/dump/pertemuan-6/.
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_URI} /$
+RewriteCond %{DOCUMENT_ROOT}/$1.html -f
+RewriteRule ^(.+)/$ $1.html [L]
