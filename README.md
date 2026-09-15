@@ -40,10 +40,10 @@ gallery.html        Gallery
 kontak.html         Contact
 report/             Web Programming practicum reports
 report/mobile/      Mobile Application practicum reports
-images/aplikasi mobile/p3/       Flutter Practicum 3 screenshots and Carbon code images
-images/pemrograman web/p6/       Web Programming Meeting 6 screenshots
-images/pemrograman web/p7/       Web Programming Meeting 7 screenshots
-images/pemrograman web/p8/       Web Programming Meeting 8 screenshots
+images/aplikasi-mobile/p3/       Flutter Practicum 3 screenshots and Carbon code images
+images/pemrograman-web/p6/       Web Programming Meeting 6 screenshots
+images/pemrograman-web/p7/       Web Programming Meeting 7 screenshots
+images/pemrograman-web/p8/       Web Programming Meeting 8 screenshots
 css/custom.css      Custom styles
 js/main.js          Scripts
 .github/workflows/deploy_alfarisaulia.yml   Deployment pipeline
