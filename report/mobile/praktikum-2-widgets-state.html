@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Praktikum 2 — Widgets dan State · Alfaris Aulia</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <link href="../../css/custom.css?v=7" rel="stylesheet">
+  <script>try{document.documentElement.setAttribute("data-bs-theme",localStorage.getItem("theme")||"light")}catch(e){}</script>
+  <style>
+    .page-hero{background:linear-gradient(135deg,#1a1f35,#2d3548);color:#fff;margin-top:-70px;padding:calc(70px + 1.4rem) 0 1.6rem}
+    .page-hero .breadcrumb-item a{color:rgba(255,255,255,.7);text-decoration:none}.page-hero .breadcrumb-item.active{color:rgba(255,255,255,.5)}.page-hero .breadcrumb-item+.breadcrumb-item::before{color:rgba(255,255,255,.35)}.page-hero h1{font-size:1.55rem}.page-hero .sub{font-size:.82rem;color:rgba(255,255,255,.6)}
+    .section-label{color:#0d6efd;font-size:.7rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-bottom:.6rem}
+    .sub-section{margin-top:1.7rem}.sub-section-title{font-size:.95rem;font-weight:700;padding-bottom:.5rem;border-bottom:1px solid #dee2e6;margin-bottom:.9rem}
+    .report-img{display:block;width:100%;height:auto;border:1px solid #dee2e6;border-radius:.5rem}.device-shot{max-height:720px;object-fit:contain;background:#f8f9fa}
+    .img-caption{text-align:center;color:#6c757d;font-size:.82rem;margin:.4rem 0 1rem}
+    .nav-pertemuan{list-style:none;padding:0;margin:0}.nav-pertemuan li a{display:flex;align-items:center;gap:.55rem;padding:.45rem .5rem;border-radius:.4rem;font-size:.86rem;color:#0d6efd;text-decoration:none}.nav-pertemuan li a:hover{background:rgba(13,110,253,.07)}.nav-pertemuan li a.active{background:#0d6efd;color:#fff;font-weight:600}.nav-pertemuan li+li{margin-top:.15rem}
+    .laprak-side{position:sticky;top:90px}@media(max-width:991px){.laprak-side{position:static}}
+  </style>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top shadow-sm"><div class="container">
+    <a class="navbar-brand fw-semibold" href="../../index.html">Alfaris Aulia</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav"><span class="navbar-toggler-icon"></span></button>
+    <div class="collapse navbar-collapse" id="mainNav"><ul class="navbar-nav ms-auto align-items-lg-center gap-lg-1">
+      <li class="nav-item"><a class="nav-link" href="../../index.html">Home</a></li><li class="nav-item"><a class="nav-link" href="../../portofolio.html">Portofolio</a></li><li class="nav-item"><a class="nav-link" href="../../about.html">About</a></li><li class="nav-item"><a class="nav-link" href="../../gallery.html">Gallery</a></li><li class="nav-item"><a class="nav-link active" href="../report.html#mobileReports">Report</a></li><li class="nav-item"><a class="nav-link" href="../../kontak.html">Contact</a></li>
+    </ul></div>
+  </div></nav>
+  <div class="page-hero"><div class="container"><nav aria-label="breadcrumb" class="mb-2"><ol class="breadcrumb mb-0" style="font-size:.8rem;"><li class="breadcrumb-item"><a href="../report.html#mobileReports">Report</a></li><li class="breadcrumb-item active">Praktikum 2</li></ol></nav><div class="d-flex align-items-start justify-content-between flex-wrap gap-2 mt-1"><div><h1 class="fw-bold mb-1">Widgets Stateless, Stateful &amp; State Dasar</h1><p class="sub mb-0">Mata Kuliah Aplikasi Mobile &mdash; Flutter</p></div><span class="badge bg-success px-3 py-2 align-self-center" style="font-size:.85rem;">Selesai</span></div></div></div>
+  <div class="container py-4"><div class="row g-4"><main class="col-lg-8">
+    <section class="card border shadow-sm mb-3"><div class="card-body"><p class="section-label">1.1 Tujuan</p>
+      <ul class="text-secondary mb-0" style="font-size:.88rem;"><li>Memahami struktur dasar aplikasi Flutter melalui <code>MaterialApp</code> dan <code>Scaffold</code>.</li><li>Membedakan <code>StatelessWidget</code> dan <code>StatefulWidget</code>.</li><li>Menggunakan <code>setState()</code> agar tampilan saldo berubah saat tombol mata ditekan.</li></ul>
+    </div></section>
+    <section class="card border shadow-sm mb-3"><div class="card-body"><p class="section-label">1.2 Alat</p><ul class="text-secondary mb-0" style="font-size:.88rem;"><li>Flutter SDK dan Dart SDK.</li><li>Visual Studio Code.</li><li>Android Emulator untuk menguji tampilan dan interaksi.</li></ul></div></section>
+    <section class="card border shadow-sm mb-3"><div class="card-body"><p class="section-label">1.3 Dasar Teori</p><div class="sub-section"><h2 class="sub-section-title">StatelessWidget</h2><p class="text-secondary" style="font-size:.88rem;">Widget yang tidak menyimpan state yang berubah selama aplikasi berjalan. <code>GreetingWidget</code> menampilkan avatar, nama, dan teks sapaan.</p></div><div class="sub-section"><h2 class="sub-section-title">StatefulWidget dan setState()</h2><p class="text-secondary mb-0" style="font-size:.88rem;"><code>BalanceCardWidget</code> menyimpan nilai <code>_isBalanceVisible</code>. Saat tombol mata ditekan, <code>setState()</code> mengubah nilainya dan Flutter menggambar ulang kartu saldo.</p></div></div></section>
+    <section class="card border shadow-sm mb-3"><div class="card-body"><p class="section-label">1.4 Langkah-Langkah dan Implementasi</p>
+      <div class="sub-section"><h2 class="sub-section-title">A. Menyiapkan halaman utama</h2>
+        <p class="text-secondary" style="font-size:.88rem;">Aplikasi dimulai dari <code>main()</code> yang memanggil <code>MyApp</code>. <code>MaterialApp</code> menentukan halaman awal, sementara <code>Scaffold</code> menyediakan AppBar dan area isi. Di dalam <code>Column</code>, sapaan diletakkan di atas kartu saldo.</p>
+        <img class="report-img" src="../../images/aplikasi-mobile/p2/kode-halaman-carbon.png" alt="Kode MaterialApp, Scaffold, dan susunan dashboard"><p class="img-caption">Gambar 1. Kode halaman utama dan urutan widget</p>
+      </div>
+      <div class="sub-section"><h2 class="sub-section-title">B. Membuat sapaan dengan StatelessWidget</h2>
+        <p class="text-secondary" style="font-size:.88rem;"><code>GreetingWidget</code> tidak perlu menyimpan data yang berubah. Widget ini memakai <code>Row</code> untuk menempatkan avatar di samping <code>Column</code> yang berisi nama dan teks sapaan.</p>
+        <img class="report-img" src="../../images/aplikasi-mobile/p2/kode-sapaan-carbon.png" alt="Kode GreetingWidget dengan Row dan Column"><p class="img-caption">Gambar 2. Kode sapaan statis</p>
+      </div>
+      <div class="sub-section"><h2 class="sub-section-title">C. Membuat kartu saldo yang interaktif</h2>
+        <p class="text-secondary" style="font-size:.88rem;"><code>BalanceCardWidget</code> menyimpan nilai <code>_isBalanceVisible</code>. Ketukan pada <code>IconButton</code> memanggil <code>_toggleVisibility()</code>. Di dalam fungsi itu, <code>setState()</code> membalik nilai boolean dan membuat tampilan nominal serta ikon mata diperbarui.</p>
+        <img class="report-img" src="../../images/aplikasi-mobile/p2/kode-state-saldo-carbon.png" alt="Kode state dan tombol untuk menyembunyikan saldo"><p class="img-caption">Gambar 3. Kode perubahan state kartu saldo</p>
+      </div>
+      <div class="sub-section"><h2 class="sub-section-title">D. Menguji hasil awal</h2>
+        <p class="text-secondary" style="font-size:.88rem;">Sebelum tugas dikerjakan, kartu masih biru dan belum mempunyai teks nomor rekening. Pengujian tombol mata memperlihatkan dua keadaan saldo berikut.</p>
+        <div class="row g-3"><div class="col-md-6"><img class="report-img device-shot" src="../../images/aplikasi-mobile/p2/sebelum-saldo-terlihat.png" alt="Sebelum tugas: saldo biru terlihat"><p class="img-caption">Gambar 4. Saldo terlihat pada kartu biru</p></div><div class="col-md-6"><img class="report-img device-shot" src="../../images/aplikasi-mobile/p2/sebelum-saldo-disensor.png" alt="Sebelum tugas: saldo biru disensor"><p class="img-caption">Gambar 5. Saldo disensor setelah tombol mata ditekan</p></div></div>
+      </div>
+    </div></section>
+    <section class="card border shadow-sm mb-3"><div class="card-body"><p class="section-label">1.5 Latihan / Tugas</p>
+      <div class="sub-section"><h2 class="sub-section-title">Tugas 1 — Mengubah warna kartu saldo</h2>
+        <p class="text-secondary" style="font-size:.88rem;">Pada <code>BalanceCardWidget</code>, properti <code>color</code> milik <code>Card</code> diganti dari <code>Colors.blueAccent</code> menjadi <code>Colors.teal</code>. Perubahan ini hanya memengaruhi latar kartu; logika tombol mata tetap sama.</p>
+        <img class="report-img" src="../../images/aplikasi-mobile/p2/kode-tugas-1-carbon.png" alt="Kode tugas 1 mengganti warna Card menjadi teal"><p class="img-caption">Gambar 6. Kode tugas 1: warna kartu teal</p>
+        <img class="report-img device-shot" src="../../images/aplikasi-mobile/p2/setelah-warna-teal.png" alt="Hasil tugas 1 kartu saldo teal"><p class="img-caption">Gambar 7. Hasil tugas 1: kartu saldo teal</p>
+      </div>
+      <div class="sub-section"><h2 class="sub-section-title">Tugas 2 — Menambahkan nomor rekening</h2>
+        <p class="text-secondary" style="font-size:.88rem;">Sebuah <code>Text</code> ditambahkan setelah widget nominal di dalam <code>Column</code> kartu saldo. Karena nomor rekening tidak berubah saat tombol mata ditekan, teks ini tetap tampil ketika nominal disensor.</p>
+        <img class="report-img" src="../../images/aplikasi-mobile/p2/kode-tugas-2-carbon.png" alt="Kode tugas 2 menambah teks nomor rekening"><p class="img-caption">Gambar 8. Kode tugas 2: teks nomor rekening</p>
+        <img class="report-img device-shot" src="../../images/aplikasi-mobile/p2/setelah-nomor-rekening.png" alt="Hasil tugas 2 kartu teal dengan nomor rekening"><p class="img-caption">Gambar 9. Hasil tugas 2: nomor rekening di bawah saldo</p>
+      </div>
+    </div></section>
+    <section class="card border shadow-sm mb-3"><div class="card-body"><p class="section-label">1.6 Analisis Hasil Pengujian</p><div class="table-responsive"><table class="table table-bordered align-middle small mb-0"><thead><tr><th>Pengujian</th><th>Tindakan</th><th>Hasil</th></tr></thead><tbody><tr><td>Saldo terlihat</td><td>Buka dashboard</td><td>Nominal Rp 5.000.000 terlihat.</td></tr><tr><td>Saldo disensor</td><td>Tekan ikon mata</td><td>Nominal berubah menjadi tanda bintang.</td></tr><tr><td>Warna kartu</td><td>Jalankan kode setelah tugas 1</td><td>Kartu tampil teal.</td></tr><tr><td>Nomor rekening</td><td>Jalankan kode setelah tugas 2</td><td>Teks rekening tampil di bawah saldo.</td></tr></tbody></table></div></div></section>
+    <section class="card border shadow-sm"><div class="card-body"><p class="section-label">1.7 Kesimpulan</p><p class="text-secondary mb-0">Praktikum menerapkan <code>StatelessWidget</code> untuk sapaan dan <code>StatefulWidget</code> untuk kartu saldo. <code>setState()</code> mengubah tampilan nominal; hasil tugas menunjukkan perubahan warna kartu dan penambahan nomor rekening.</p></div></section>
+  </main><aside class="col-lg-4"><div class="laprak-side"><div class="card border shadow-sm mb-3"><div class="card-body"><p class="section-label">Informasi</p><table class="table table-sm table-borderless mb-0 small"><tr><td>Mata Kuliah</td><td>Aplikasi Mobile</td></tr><tr><td>Praktikum</td><td>2</td></tr><tr><td>Nama</td><td>Alfaris Aulia Rahman</td></tr><tr><td>NIM</td><td>2411533006</td></tr><tr><td>Status</td><td><span class="badge bg-success">Selesai</span></td></tr></table></div></div>
+    <div class="card border shadow-sm"><div class="card-body"><p class="section-label">Daftar Laporan Aplikasi Mobile</p>
+      <ul class="nav-pertemuan">
+        <li><a href="praktikum-3-input-widgets.html"><i class="bi bi-journal-text flex-shrink-0"></i><span>Praktikum 1 — Input Widgets</span></a></li>
+        <li><a href="praktikum-2-widgets-state.html" class="active" aria-current="page"><i class="bi bi-journal-text flex-shrink-0"></i><span>Praktikum 2 — Widgets &amp; State</span></a></li>
+        <li><a href="praktikum-3-layouting-styling.html"><i class="bi bi-journal-text flex-shrink-0"></i><span>Praktikum 3 — Layouting</span></a></li>
+      </ul>
+      <a class="btn btn-sm btn-outline-primary w-100 mt-3" href="../report.html#mobileReports">Kembali ke daftar report</a>
+      <a class="btn btn-sm btn-dark w-100 mt-2" href="https://github.com/alfarisauliarahman/2411533006_AlfarisAuliaRahman_AplikasiMobile_A/tree/praktikum-2" target="_blank" rel="noopener"><i class="bi bi-github me-1"></i>Repository GitHub</a>
+    </div></div></div></aside></div></div>
+  <footer class="pt-5 pb-4"><div class="container text-center"><p class="mb-0">&copy; 2026 Alfaris Aulia. All rights reserved.</p></div></footer>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script><script src="../../js/main.js?v=7"></script>
+</body>
+</html>

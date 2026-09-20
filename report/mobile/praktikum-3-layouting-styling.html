@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Praktikum 3 — Layouting dan Styling · Alfaris Aulia</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <link href="../../css/custom.css?v=7" rel="stylesheet">
+  <script>try{document.documentElement.setAttribute("data-bs-theme",localStorage.getItem("theme")||"light")}catch(e){}</script>
+  <style>
+    .page-hero{background:linear-gradient(135deg,#1a1f35,#2d3548);color:#fff;margin-top:-70px;padding:calc(70px + 1.4rem) 0 1.6rem}
+    .page-hero .breadcrumb-item a{color:rgba(255,255,255,.7);text-decoration:none}.page-hero .breadcrumb-item.active{color:rgba(255,255,255,.5)}.page-hero .breadcrumb-item+.breadcrumb-item::before{color:rgba(255,255,255,.35)}.page-hero h1{font-size:1.55rem}.page-hero .sub{font-size:.82rem;color:rgba(255,255,255,.6)}
+    .section-label{color:#0d6efd;font-size:.7rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-bottom:.6rem}
+    .sub-section{margin-top:1.7rem}.sub-section-title{font-size:.95rem;font-weight:700;padding-bottom:.5rem;border-bottom:1px solid #dee2e6;margin-bottom:.9rem}
+    .report-img{display:block;width:100%;height:auto;border:1px solid #dee2e6;border-radius:.5rem}.device-shot{max-height:720px;object-fit:contain;background:#f8f9fa}
+    .img-caption{text-align:center;color:#6c757d;font-size:.82rem;margin:.4rem 0 1rem}
+    .nav-pertemuan{list-style:none;padding:0;margin:0}.nav-pertemuan li a{display:flex;align-items:center;gap:.55rem;padding:.45rem .5rem;border-radius:.4rem;font-size:.86rem;color:#0d6efd;text-decoration:none}.nav-pertemuan li a:hover{background:rgba(13,110,253,.07)}.nav-pertemuan li a.active{background:#0d6efd;color:#fff;font-weight:600}.nav-pertemuan li+li{margin-top:.15rem}
+    .laprak-side{position:sticky;top:90px}@media(max-width:991px){.laprak-side{position:static}}
+  </style>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top shadow-sm"><div class="container">
+    <a class="navbar-brand fw-semibold" href="../../index.html">Alfaris Aulia</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav"><span class="navbar-toggler-icon"></span></button>
+    <div class="collapse navbar-collapse" id="mainNav"><ul class="navbar-nav ms-auto align-items-lg-center gap-lg-1">
+      <li class="nav-item"><a class="nav-link" href="../../index.html">Home</a></li><li class="nav-item"><a class="nav-link" href="../../portofolio.html">Portofolio</a></li><li class="nav-item"><a class="nav-link" href="../../about.html">About</a></li><li class="nav-item"><a class="nav-link" href="../../gallery.html">Gallery</a></li><li class="nav-item"><a class="nav-link active" href="../report.html#mobileReports">Report</a></li><li class="nav-item"><a class="nav-link" href="../../kontak.html">Contact</a></li>
+    </ul></div>
+  </div></nav>
+  <div class="page-hero"><div class="container"><nav aria-label="breadcrumb" class="mb-2"><ol class="breadcrumb mb-0" style="font-size:.8rem;"><li class="breadcrumb-item"><a href="../report.html#mobileReports">Report</a></li><li class="breadcrumb-item active">Praktikum 3</li></ol></nav><div class="d-flex align-items-start justify-content-between flex-wrap gap-2 mt-1"><div><h1 class="fw-bold mb-1">Layouting &amp; Styling Dashboard</h1><p class="sub mb-0">Mata Kuliah Aplikasi Mobile &mdash; Flutter</p></div><span class="badge bg-success px-3 py-2 align-self-center" style="font-size:.85rem;">Selesai</span></div></div></div>
+  <div class="container py-4"><div class="row g-4"><main class="col-lg-8">
+    <section class="card border shadow-sm mb-3"><div class="card-body"><p class="section-label">1.1 Tujuan</p>
+      <ul class="text-secondary mb-0" style="font-size:.88rem;"><li>Menyusun tiga tombol aksi menggunakan <code>Row</code>.</li><li>Menampilkan daftar transaksi dengan <code>Column</code> dan <code>ListTile</code>.</li><li>Mengatur padding dan warna <code>Container</code>, serta menjaga dashboard tetap dapat di-scroll.</li></ul>
+    </div></section>
+    <section class="card border shadow-sm mb-3"><div class="card-body"><p class="section-label">1.2 Alat</p><ul class="text-secondary mb-0" style="font-size:.88rem;"><li>Flutter SDK dan Dart SDK.</li><li>Visual Studio Code.</li><li>Android Emulator dan iPhone Simulator untuk mengamati hasil.</li></ul></div></section>
+    <section class="card border shadow-sm mb-3"><div class="card-body"><p class="section-label">1.3 Dasar Teori</p><div class="sub-section"><h2 class="sub-section-title">Row, Column, dan Container</h2><p class="text-secondary" style="font-size:.88rem;"><code>Row</code> menempatkan tombol aksi mendatar, <code>Column</code> menumpuk bagian dashboard, sedangkan <code>Container</code> memberi padding serta latar pada ikon.</p></div><div class="sub-section"><h2 class="sub-section-title">ListTile dan SingleChildScrollView</h2><p class="text-secondary mb-0" style="font-size:.88rem;"><code>ListTile</code> mengatur ikon, judul, tanggal, dan nominal transaksi dalam satu baris. <code>SingleChildScrollView</code> memungkinkan dashboard tetap dibaca ketika daftar bertambah panjang.</p></div></div></section>
+    <section class="card border shadow-sm mb-3"><div class="card-body"><p class="section-label">1.4 Langkah-Langkah dan Implementasi</p>
+      <div class="sub-section"><h2 class="sub-section-title">A. Mengembangkan dashboard sebelumnya</h2>
+        <p class="text-secondary" style="font-size:.88rem;">Kode <code>GreetingWidget</code> dan <code>BalanceCardWidget</code> dipakai lagi. Dua widget baru, <code>ActionButtonsWidget</code> dan <code>RecentTransactionsWidget</code>, ditempatkan di bawah kartu saldo. <code>SingleChildScrollView</code> membungkus semuanya agar daftar yang panjang tidak meluap keluar layar.</p>
+        <img class="report-img" src="../../images/aplikasi-mobile/p3-layout/kode-scroll-carbon.png" alt="Kode dashboard scrollable dengan empat widget utama"><p class="img-caption">Gambar 1. Kode dashboard yang dapat di-scroll</p>
+      </div>
+      <div class="sub-section"><h2 class="sub-section-title">B. Menyusun tiga tombol aksi</h2>
+        <p class="text-secondary" style="font-size:.88rem;"><code>Row</code> menempatkan tombol Pemasukan, Pengeluaran, dan Transfer mendatar. <code>MainAxisAlignment.spaceEvenly</code> membagi jarak antar tombol. Setiap ikon dibungkus <code>Container</code> supaya mempunyai padding, warna latar, dan sudut membulat.</p>
+        <img class="report-img" src="../../images/aplikasi-mobile/p3-layout/kode-tombol-aksi-carbon.png" alt="Kode Row dan Container untuk tombol aksi"><p class="img-caption">Gambar 2. Kode tiga tombol aksi</p>
+      </div>
+      <div class="sub-section"><h2 class="sub-section-title">C. Menyusun daftar transaksi</h2>
+        <p class="text-secondary" style="font-size:.88rem;">Judul “Transaksi Terakhir” dan daftar transaksi ditumpuk dalam <code>Column</code>. Pada setiap <code>ListTile</code>, <code>leading</code> berisi ikon, <code>title</code> nama transaksi, <code>subtitle</code> tanggal, dan <code>trailing</code> nominal. Implementasi awal berisi Makan Siang, Gaji Bulanan, dan Isi Bensin.</p>
+        <img class="report-img" src="../../images/aplikasi-mobile/p3-layout/kode-listtile-carbon.png" alt="Kode Column dan ListTile transaksi awal"><p class="img-caption">Gambar 3. Kode struktur daftar transaksi</p>
+      </div>
+      <div class="sub-section"><h2 class="sub-section-title">D. Menguji dashboard awal</h2>
+        <p class="text-secondary" style="font-size:.88rem;">Screenshot awal memperlihatkan ketiga tombol aksi dan tiga transaksi. Warna nominal merah/hijau juga sudah tampak di kode awal yang dipakai; bagian tugas di bawah menjelaskan pengaturan warnanya.</p>
+        <img class="report-img device-shot" src="../../images/aplikasi-mobile/p3-layout/sebelum-tambah-transaksi.png" alt="Dashboard awal dengan tiga transaksi"><p class="img-caption">Gambar 4. Dashboard awal dengan tiga transaksi</p>
+      </div>
+    </div></section>
+    <section class="card border shadow-sm mb-3"><div class="card-body"><p class="section-label">1.5 Latihan / Tugas</p>
+      <div class="sub-section"><h2 class="sub-section-title">Tugas 1 — Memberi warna pada nominal</h2>
+        <p class="text-secondary" style="font-size:.88rem;">Nominal transaksi pengeluaran diberi <code>Colors.red</code>, sedangkan pemasukan diberi <code>Colors.green</code>. Pengaturan dilakukan pada <code>TextStyle</code> widget <code>Text</code> di bagian <code>trailing</code> setiap <code>ListTile</code>. Pada screenshot awal (Gambar 4), Makan Siang dan Isi Bensin tampak merah, sementara Gaji Bulanan hijau.</p>
+        <img class="report-img" src="../../images/aplikasi-mobile/p3-layout/kode-tugas-1-carbon.png" alt="Kode tugas 1 warna nominal transaksi"><p class="img-caption">Gambar 5. Kode tugas 1: warna pengeluaran dan pemasukan</p>
+      </div>
+      <div class="sub-section"><h2 class="sub-section-title">Tugas 2 — Menambahkan dua transaksi</h2>
+        <p class="text-secondary" style="font-size:.88rem;">Dua <code>ListTile</code> baru ditambahkan setelah Isi Bensin, yaitu Belanja Online dan Tagihan Internet. Keduanya bertanda minus karena merupakan pengeluaran; nominalnya diberi warna merah. <code>Divider</code> memisahkan baris-baris transaksi.</p>
+        <img class="report-img" src="../../images/aplikasi-mobile/p3-layout/kode-tugas-2-carbon.png" alt="Kode tugas 2 dua ListTile transaksi tambahan"><p class="img-caption">Gambar 6. Kode tugas 2: Belanja Online dan Tagihan Internet</p>
+        <img class="report-img device-shot" src="../../images/aplikasi-mobile/p3-layout/setelah-tambah-transaksi.png" alt="Dashboard setelah tugas dengan lima transaksi di iPhone Simulator"><p class="img-caption">Gambar 7. Hasil akhir dengan lima transaksi pada iPhone Simulator</p>
+      </div>
+    </div></section>
+    <section class="card border shadow-sm mb-3"><div class="card-body"><p class="section-label">1.6 Analisis Hasil Pengujian</p><div class="table-responsive"><table class="table table-bordered align-middle small mb-0"><thead><tr><th>Pengujian</th><th>Sebelum tugas</th><th>Sesudah tugas</th></tr></thead><tbody><tr><td>Jumlah transaksi</td><td>3 transaksi</td><td>5 transaksi</td></tr><tr><td>Nominal pengeluaran</td><td>Transaksi awal</td><td>Ditampilkan merah, termasuk dua transaksi tambahan.</td></tr><tr><td>Nominal pemasukan</td><td>Gaji Bulanan</td><td>Ditampilkan hijau.</td></tr><tr><td>Daftar panjang</td><td>Dashboard awal</td><td>Dapat di-scroll melalui <code>SingleChildScrollView</code>.</td></tr></tbody></table></div></div></section>
+    <section class="card border shadow-sm"><div class="card-body"><p class="section-label">1.7 Kesimpulan</p><p class="text-secondary mb-0">Dashboard menggabungkan widget dari praktikum sebelumnya dengan susunan aksi dan daftar transaksi. Hasil tugas menunjukkan perbedaan warna nominal pemasukan/pengeluaran dan penambahan dua transaksi, sehingga totalnya menjadi lima.</p></div></section>
+  </main><aside class="col-lg-4"><div class="laprak-side"><div class="card border shadow-sm mb-3"><div class="card-body"><p class="section-label">Informasi</p><table class="table table-sm table-borderless mb-0 small"><tr><td>Mata Kuliah</td><td>Aplikasi Mobile</td></tr><tr><td>Praktikum</td><td>3</td></tr><tr><td>Nama</td><td>Alfaris Aulia Rahman</td></tr><tr><td>NIM</td><td>2411533006</td></tr><tr><td>Status</td><td><span class="badge bg-success">Selesai</span></td></tr></table></div></div>
+    <div class="card border shadow-sm"><div class="card-body"><p class="section-label">Daftar Laporan Aplikasi Mobile</p>
+      <ul class="nav-pertemuan">
+        <li><a href="praktikum-3-input-widgets.html"><i class="bi bi-journal-text flex-shrink-0"></i><span>Praktikum 1 — Input Widgets</span></a></li>
+        <li><a href="praktikum-2-widgets-state.html"><i class="bi bi-journal-text flex-shrink-0"></i><span>Praktikum 2 — Widgets &amp; State</span></a></li>
+        <li><a href="praktikum-3-layouting-styling.html" class="active" aria-current="page"><i class="bi bi-journal-text flex-shrink-0"></i><span>Praktikum 3 — Layouting</span></a></li>
+      </ul>
+      <a class="btn btn-sm btn-outline-primary w-100 mt-3" href="../report.html#mobileReports">Kembali ke daftar report</a>
+      <a class="btn btn-sm btn-dark w-100 mt-2" href="https://github.com/alfarisauliarahman/2411533006_AlfarisAuliaRahman_AplikasiMobile_A/tree/praktikum-3" target="_blank" rel="noopener"><i class="bi bi-github me-1"></i>Repository GitHub</a>
+    </div></div></div></aside></div></div>
+  <footer class="pt-5 pb-4"><div class="container text-center"><p class="mb-0">&copy; 2026 Alfaris Aulia. All rights reserved.</p></div></footer>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script><script src="../../js/main.js?v=7"></script>
+</body>
+</html>
